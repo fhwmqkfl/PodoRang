@@ -37,6 +37,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="c4T-z1-jt3" eventType="touchUpInside" id="icR-A4-ARH"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZD-Rc-Nhm">
                                 <rect key="frame" x="121.66666666666669" y="240" width="150" height="150"/>
