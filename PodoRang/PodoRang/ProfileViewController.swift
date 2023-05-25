@@ -23,13 +23,23 @@ class ProfileViewController: UIViewController {
     
     func setupUI() {
         mainLabel.font = .boldSystemFont(ofSize: 20)
+        
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = UIColor.systemPurple.cgColor
+        profileImageView.layer.borderColor = Color.mainPurpleColor.cgColor
+        profileImageView.backgroundColor = Color.mainPurpleColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
+        nameTextField.layer.borderWidth = 1.0
+        nameTextField.layer.borderColor = Color.mainPurpleColor.cgColor
+        nameTextField.layer.cornerRadius = 10
+        
         saveButton.setTitle("SAVE", for: .normal)
+
+        saveButton.backgroundColor = Color.mainPurpleColor
+        saveButton.layer.cornerRadius = 10
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     func setupImageView() {
