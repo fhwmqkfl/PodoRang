@@ -49,14 +49,26 @@ class ProfileViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if let userimage = profileImageView.image, nameTextField.text != "" {
-            let user = UserData(username: nameTextField.text!, userImage: userimage)
-            UserData.list.append(user)
-            print(UserData.list)
+
+            UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
+            saveImage(UIImage: userimage, forKey:"userImage")
+            
+            let mainVC = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            mainVC.modalPresentationStyle = .fullScreen
+            present(mainVC, animated: true)
         } else {
             print("유저명과 이미지를 다시한번 확인해주세요")
         }
     }
+    
+    func saveImage(UIImage value: UIImage, forKey key: String) {
+        guard let data = value.jpegData(compressionQuality: 0.5) else { return }
+        let encoded = try! PropertyListEncoder().encode(data)
+        UserDefaults.standard.set(encoded, forKey: key)
+    }
 }
+
+
 
 extension ProfileViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -75,5 +87,4 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
             print("이미지를 가져오는데 실패했습니다")
         }
     }
-    
 }

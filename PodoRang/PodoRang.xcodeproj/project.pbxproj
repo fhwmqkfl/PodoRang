@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */; };
-		CC36347F2A1E59220071EE4F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36347E2A1E59220071EE4F /* UserData.swift */; };
 		CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468A82A1A88560092B04C /* AppDelegate.swift */; };
 		CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AA2A1A88560092B04C /* SceneDelegate.swift */; };
 		CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AC2A1A88560092B04C /* ViewController.swift */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		CC36347E2A1E59220071EE4F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		CC5468A52A1A88560092B04C /* PodoRang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodoRang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5468A82A1A88560092B04C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC5468AA2A1A88560092B04C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				CC5468B12A1A88570092B04C /* Assets.xcassets */,
 				CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */,
 				CC5468B62A1A88570092B04C /* Info.plist */,
-				CC36347E2A1E59220071EE4F /* UserData.swift */,
 			);
 			path = PodoRang;
 			sourceTree = "<group>";
@@ -147,7 +144,6 @@
 				CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
-				CC36347F2A1E59220071EE4F /* UserData.swift in Sources */,
 				CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
