@@ -26,18 +26,17 @@ class ProfileViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = Color.mainPurpleColor.cgColor
-        profileImageView.backgroundColor = Color.mainPurpleColor
+        profileImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        profileImageView.backgroundColor = CustomColor.mainPurpleColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
-        nameTextField.layer.borderWidth = 1.0
-        nameTextField.layer.borderColor = Color.mainPurpleColor.cgColor
+        nameTextField.layer.borderWidth = 1
+        nameTextField.layer.borderColor = CustomColor.mainPurpleColor.cgColor
         nameTextField.layer.cornerRadius = 10
         
         saveButton.setTitle("SAVE", for: .normal)
-
-        saveButton.backgroundColor = Color.mainPurpleColor
+        saveButton.backgroundColor = CustomColor.mainPurpleColor
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
     }
@@ -62,13 +61,10 @@ class ProfileViewController: UIViewController {
 
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userimage, forKey:"userImage")
-    
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            
+            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }
             mainVC.modalPresentationStyle = .fullScreen
             present(mainVC, animated: true)
-            
-            
         } else {
             print("유저명과 이미지를 다시한번 확인해주세요")
         }
