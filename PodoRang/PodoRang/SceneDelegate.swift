@@ -56,7 +56,8 @@ extension SceneDelegate {
 
         if let _ = UserDefaults.standard.string(forKey: "userName"), let _ = UserDefaults.standard.data(forKey: "userImage") {
             setRootViewController(scene, name: "Main",
-                                  identifier: "ViewController")
+                                  identifier: "TabBarController")
+        
         } else {
             setRootViewController(scene, name: "Main",
                                   identifier: "ProfileViewController")
@@ -64,6 +65,7 @@ extension SceneDelegate {
     }
     
     private func setRootViewController(_ scene: UIScene, name: String, identifier: String) {
+
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let storyboard = UIStoryboard(name: name, bundle: nil)
