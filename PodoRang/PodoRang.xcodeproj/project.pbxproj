@@ -63,12 +63,12 @@
 				CC5468A82A1A88560092B04C /* AppDelegate.swift */,
 				CC5468AA2A1A88560092B04C /* SceneDelegate.swift */,
 				CC5468AC2A1A88560092B04C /* ViewController.swift */,
+				CC8A43242A1F7AFD0063697F /* Color.swift */,
 				CC5468AE2A1A88560092B04C /* Main.storyboard */,
 				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
 				CC5468B12A1A88570092B04C /* Assets.xcassets */,
 				CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */,
 				CC5468B62A1A88570092B04C /* Info.plist */,
-				CC8A43242A1F7AFD0063697F /* Color.swift */,
 			);
 			path = PodoRang;
 			sourceTree = "<group>";

@@ -62,10 +62,13 @@ class ProfileViewController: UIViewController {
 
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userimage, forKey:"userImage")
-            
-            let mainVC = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+    
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainVC = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             mainVC.modalPresentationStyle = .fullScreen
             present(mainVC, animated: true)
+            
+            
         } else {
             print("유저명과 이미지를 다시한번 확인해주세요")
         }

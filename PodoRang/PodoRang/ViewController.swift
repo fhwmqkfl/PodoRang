@@ -33,16 +33,15 @@ class ViewController: UIViewController {
         if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
             mainLabel.text = "안녕하세요 \(userName)님"
             loadImage(UIImage: userImage)
-
         } else {
             print("데이터를 가져오는데 실패했습니다")
         }
     }
     
     func loadImage(UIImage value: Data) {
-        if let image = UIImage(data: value) {
-            mainImage.image = image
-        }
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
+        let image = UIImage(data: decoded)
+        mainImage.image = image
     }
 }
 
