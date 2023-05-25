@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c4T-z1-jt3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5LR-aO-l49">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -11,16 +11,13 @@
         <!--Profile View Controller-->
         <scene sceneID="qme-9o-zpI">
             <objects>
-                <viewController id="c4T-z1-jt3" customClass="ProfileViewController" customModule="PodoRang" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="c4T-z1-jt3" customClass="ProfileViewController" customModule="PodoRang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5OP-pg-4Zw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필을 설정해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSD-B8-t5b">
-                                <rect key="frame" x="96.666666666666686" y="179" width="200" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="nEQ-eA-K4d"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필을 설정해주세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSD-B8-t5b">
+                                <rect key="frame" x="120.66666666666667" y="179" width="151.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -31,19 +28,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D24-wn-SV7">
-                                <rect key="frame" x="159" y="504" width="75" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="cV5-Ge-puF"/>
-                                </constraints>
+                                <rect key="frame" x="40" y="504" width="313" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="saveButtonClicked:" destination="c4T-z1-jt3" eventType="touchUpInside" id="icR-A4-ARH"/>
+                                    <action selector="saveButtonClicked:" destination="c4T-z1-jt3" eventType="touchUpInside" id="WI2-7h-hcT"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZD-Rc-Nhm">
                                 <rect key="frame" x="121.66666666666669" y="240" width="150" height="150"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="0.64705882349999999" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="CqI-gZ-v90"/>
                                     <constraint firstAttribute="width" secondItem="cZD-Rc-Nhm" secondAttribute="height" multiplier="1:1" id="czE-n6-jiF"/>
@@ -53,15 +46,15 @@
                         <viewLayoutGuide key="safeArea" id="mqC-AL-8u6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="utm-0m-Ufs" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="6Cy-hD-KxQ"/>
                             <constraint firstItem="cZD-Rc-Nhm" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="BJ3-XB-tK9"/>
                             <constraint firstItem="D24-wn-SV7" firstAttribute="top" secondItem="utm-0m-Ufs" secondAttribute="bottom" constant="40" id="GE3-Sw-Qu2"/>
                             <constraint firstItem="mqC-AL-8u6" firstAttribute="trailing" secondItem="utm-0m-Ufs" secondAttribute="trailing" constant="40" id="LsQ-4T-VVT"/>
                             <constraint firstItem="eSD-B8-t5b" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="b2S-V8-FZ3"/>
                             <constraint firstItem="eSD-B8-t5b" firstAttribute="top" secondItem="mqC-AL-8u6" secondAttribute="top" constant="120" id="gQO-de-kcW"/>
                             <constraint firstItem="utm-0m-Ufs" firstAttribute="top" secondItem="cZD-Rc-Nhm" secondAttribute="bottom" constant="40" id="jie-rp-fjE"/>
-                            <constraint firstItem="D24-wn-SV7" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="oPI-vV-CnV"/>
+                            <constraint firstItem="mqC-AL-8u6" firstAttribute="trailing" secondItem="D24-wn-SV7" secondAttribute="trailing" constant="40" id="pFn-up-9I4"/>
                             <constraint firstItem="cZD-Rc-Nhm" firstAttribute="top" secondItem="eSD-B8-t5b" secondAttribute="bottom" constant="40" id="szl-98-IBK"/>
+                            <constraint firstItem="D24-wn-SV7" firstAttribute="leading" secondItem="mqC-AL-8u6" secondAttribute="leading" constant="40" id="tKm-b9-fvB"/>
                             <constraint firstItem="utm-0m-Ufs" firstAttribute="leading" secondItem="mqC-AL-8u6" secondAttribute="leading" constant="40" id="uT6-Hh-kx1"/>
                         </constraints>
                     </view>
@@ -74,12 +67,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ji-gV-J78" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2006.8702290076335" y="-21.126760563380284"/>
+            <point key="canvasLocation" x="2001" y="-416"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PodoRang" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="PodoRang" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +89,7 @@
                                                     <constraint firstAttribute="width" secondItem="X92-QL-ZF9" secondAttribute="height" multiplier="1:1" id="6ZP-xL-Rlh"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요 코코님!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B71-YN-Qpa">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B71-YN-Qpa">
                                                 <rect key="frame" x="135" y="52" width="238" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -177,6 +170,10 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mainImage" destination="X92-QL-ZF9" id="tOa-fv-MQ7"/>
+                        <outlet property="mainLabel" destination="B71-YN-Qpa" id="bmJ-pq-zP3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,7 +226,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="C80-gz-2Qk">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="5LR-aO-l49" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="5LR-aO-l49" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cvc-xU-wQe">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

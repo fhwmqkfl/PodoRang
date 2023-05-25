@@ -9,7 +9,6 @@ import UIKit
 import PhotosUI
 
 class ProfileViewController: UIViewController {
-    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -23,13 +22,22 @@ class ProfileViewController: UIViewController {
     
     func setupUI() {
         mainLabel.font = .boldSystemFont(ofSize: 20)
+        
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = UIColor.systemPurple.cgColor
+        profileImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        profileImageView.backgroundColor = CustomColor.mainPurpleColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
+        nameTextField.layer.borderWidth = 1
+        nameTextField.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        nameTextField.layer.cornerRadius = 10
+        
         saveButton.setTitle("SAVE", for: .normal)
+        saveButton.backgroundColor = CustomColor.mainPurpleColor
+        saveButton.layer.cornerRadius = 10
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     func setupImageView() {
@@ -49,14 +57,25 @@ class ProfileViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if let userimage = profileImageView.image, nameTextField.text != "" {
-            let user = UserData(username: nameTextField.text!, userImage: userimage)
-            UserData.list.append(user)
-            print(UserData.list)
+            UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
+            saveImage(UIImage: userimage, forKey:"userImage")
+            
+            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }
+            mainVC.modalPresentationStyle = .fullScreen
+            present(mainVC, animated: true)
         } else {
             print("유저명과 이미지를 다시한번 확인해주세요")
         }
     }
+    
+    func saveImage(UIImage value: UIImage, forKey key: String) {
+        guard let data = value.jpegData(compressionQuality: 0.5) else { return }
+        let encoded = try! PropertyListEncoder().encode(data)
+        UserDefaults.standard.set(encoded, forKey: key)
+    }
 }
+
+
 
 extension ProfileViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -75,5 +94,4 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
             print("이미지를 가져오는데 실패했습니다")
         }
     }
-    
 }
