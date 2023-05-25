@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
     

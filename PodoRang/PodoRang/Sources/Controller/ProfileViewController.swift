@@ -9,7 +9,6 @@ import UIKit
 import PhotosUI
 
 class ProfileViewController: UIViewController {
-    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
@@ -58,7 +57,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         if let userimage = profileImageView.image, nameTextField.text != "" {
-
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userimage, forKey:"userImage")
             

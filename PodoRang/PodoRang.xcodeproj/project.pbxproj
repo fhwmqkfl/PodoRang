@@ -15,6 +15,7 @@
 		CC5468B22A1A88570092B04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B12A1A88570092B04C /* Assets.xcassets */; };
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
+		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +62,66 @@
 		CC5468A72A1A88560092B04C /* PodoRang */ = {
 			isa = PBXGroup;
 			children = (
-				CC5468A82A1A88560092B04C /* AppDelegate.swift */,
-				CC5468AA2A1A88560092B04C /* SceneDelegate.swift */,
-				CC5468AC2A1A88560092B04C /* ViewController.swift */,
-				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
-				CC5468AE2A1A88560092B04C /* Main.storyboard */,
-				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
-				CC5468B12A1A88570092B04C /* Assets.xcassets */,
-				CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */,
-				CC5468B62A1A88570092B04C /* Info.plist */,
+				CCBFC26A2A1FB56F0022FEAD /* Resources */,
+				CCBFC2692A1FB5650022FEAD /* Sources */,
 			);
 			path = PodoRang;
+			sourceTree = "<group>";
+		};
+		CCBFC2692A1FB5650022FEAD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CC5468A82A1A88560092B04C /* AppDelegate.swift */,
+				CC5468AA2A1A88560092B04C /* SceneDelegate.swift */,
+				CCBFC26E2A1FB5EF0022FEAD /* Extensions */,
+				CCBFC26D2A1FB5AF0022FEAD /* Model */,
+				CCBFC26C2A1FB59D0022FEAD /* View */,
+				CCBFC26B2A1FB5920022FEAD /* Controller */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		CCBFC26A2A1FB56F0022FEAD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CC5468B12A1A88570092B04C /* Assets.xcassets */,
+				CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */,
+				CC5468AE2A1A88560092B04C /* Main.storyboard */,
+				CC5468B62A1A88570092B04C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CCBFC26B2A1FB5920022FEAD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
+				CC5468AC2A1A88560092B04C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CCBFC26C2A1FB59D0022FEAD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCBFC26D2A1FB5AF0022FEAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCBFC26E2A1FB5EF0022FEAD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */,
+				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
@@ -296,7 +348,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PodoRang/Info.plist;
+				INFOPLIST_FILE = PodoRang/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -323,7 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PodoRang/Info.plist;
+				INFOPLIST_FILE = PodoRang/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
