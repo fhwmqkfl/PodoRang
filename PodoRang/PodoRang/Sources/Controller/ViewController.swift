@@ -10,12 +10,19 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentButton: UISegmentedControl!
+    
+    var progressArray: [String] = ["a","b","c","d","e"]
+    var finishedArray: [String] = ["x","y","z"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         setUI()
         getUserData()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func setUI() {
@@ -42,5 +49,34 @@ class ViewController: UIViewController {
         let image = UIImage(data: decoded)
         mainImage.image = image
     }
+    
+    @IBAction func segmentClicked(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+    }
 }
 
+extension ViewController: UITableViewDelegate {}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if segmentButton.selectedSegmentIndex == 0 {
+            return progressArray.count
+        } else {
+            return finishedArray.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as? MainTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        if segmentButton.selectedSegmentIndex == 0 {
+            cell.titleLabel.text = progressArray[indexPath.row]
+        } else {
+            cell.titleLabel.text = finishedArray[indexPath.row]
+        }
+        
+        return cell
+    }
+}
