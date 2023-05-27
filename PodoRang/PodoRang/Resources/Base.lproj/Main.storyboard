@@ -197,6 +197,9 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="ieh-TG-aTz">
                                 <color key="tintColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="bw7-sd-94Q"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="bell.fill" catalog="system" id="fJ2-11-l4h">
                                 <color key="tintColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

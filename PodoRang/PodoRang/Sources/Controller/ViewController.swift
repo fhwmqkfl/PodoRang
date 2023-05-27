@@ -13,9 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentButton: UISegmentedControl!
     
-    var progressArray: [String] = ["a","b","c","d","e"]
-    var finishedArray: [String] = ["x","y","z"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -33,7 +30,6 @@ class ViewController: UIViewController {
         mainImage.backgroundColor = CustomColor.mainPurpleColor
         mainImage.contentMode = .scaleAspectFill
         mainImage.clipsToBounds = true
-
     }
     
     func getUserData() {
@@ -54,16 +50,28 @@ class ViewController: UIViewController {
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
+    
+    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        // 랜덤하게 값 추가하게 처리
+        let random = Int.random(in: 0...1)
+        print("random is : \(random)")
+        if random == 0 {
+            ProgressProject.progressArray.append("ho")
+            tableView.reloadData()
+        } else {
+            FinishProject.finishedArray.append("hi")
+        }
+    }
 }
 
 extension ViewController: UITableViewDelegate {}
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentButton.selectedSegmentIndex == 0 {
-            return progressArray.count
+        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+            return ProgressProject.progressArray.count
         } else {
-            return finishedArray.count
+            return FinishProject.finishedArray.count
         }
     }
     
@@ -72,10 +80,11 @@ extension ViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if segmentButton.selectedSegmentIndex == 0 {
-            cell.titleLabel.text = "test : \(indexPath.row)"
+        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+            cell.titleLabel.text = "test {\(indexPath.row)}"
+            cell.ddayLabel.layer.isHidden = false
         } else {
-            cell.titleLabel.text = finishedArray[indexPath.row]
+            cell.titleLabel.text = "test {\(indexPath.row)}"
             cell.ddayLabel.layer.isHidden = true
         }
         
