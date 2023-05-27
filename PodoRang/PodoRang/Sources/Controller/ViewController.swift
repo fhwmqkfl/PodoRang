@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         mainImage.backgroundColor = CustomColor.mainPurpleColor
         mainImage.contentMode = .scaleAspectFill
         mainImage.clipsToBounds = true
+
     }
     
     func getUserData() {
@@ -72,9 +73,10 @@ extension ViewController: UITableViewDataSource {
         }
         
         if segmentButton.selectedSegmentIndex == 0 {
-            cell.titleLabel.text = progressArray[indexPath.row]
+            cell.titleLabel.text = "test : \(indexPath.row)"
         } else {
             cell.titleLabel.text = finishedArray[indexPath.row]
+            cell.ddayLabel.layer.isHidden = true
         }
         
         return cell

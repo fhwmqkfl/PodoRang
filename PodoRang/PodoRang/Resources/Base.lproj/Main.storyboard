@@ -134,20 +134,42 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-Ue-uXt">
-                                                    <rect key="frame" x="342" y="33" width="44" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-Ue-uXt">
+                                                    <rect key="frame" x="329" y="25" width="44" height="50"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="greaterthan" catalog="system"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j">
+                                                    <rect key="frame" x="224" y="24" width="80" height="52"/>
+                                                    <color key="backgroundColor" red="0.6470588235294118" green="0.34509803921568627" blue="0.88627450980392153" alpha="0.44" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="ix4-wJ-G9Z"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Wyc-dy-4Qq" firstAttribute="leading" secondItem="peS-ke-Mxa" secondAttribute="leading" constant="50" id="7Uh-50-Xh9"/>
                                                 <constraint firstAttribute="bottom" secondItem="Wyc-dy-4Qq" secondAttribute="bottom" constant="24" id="KEY-SD-dmP"/>
                                                 <constraint firstItem="Wyc-dy-4Qq" firstAttribute="top" secondItem="peS-ke-Mxa" secondAttribute="top" constant="24" id="Rtt-mh-m4m"/>
+                                                <constraint firstAttribute="bottom" secondItem="QaS-Rc-E6j" secondAttribute="bottom" constant="24" id="Txm-Az-oMx"/>
+                                                <constraint firstAttribute="bottom" secondItem="Abf-Ue-uXt" secondAttribute="bottom" constant="25" id="crv-Fl-Rgp"/>
+                                                <constraint firstItem="Abf-Ue-uXt" firstAttribute="leading" secondItem="QaS-Rc-E6j" secondAttribute="trailing" constant="25" id="lzc-xm-KDN"/>
+                                                <constraint firstItem="Abf-Ue-uXt" firstAttribute="top" secondItem="peS-ke-Mxa" secondAttribute="top" constant="25" id="pUh-YK-9e5"/>
+                                                <constraint firstAttribute="trailing" secondItem="Abf-Ue-uXt" secondAttribute="trailing" constant="20" id="qKA-gt-4E8"/>
+                                                <constraint firstItem="QaS-Rc-E6j" firstAttribute="top" secondItem="peS-ke-Mxa" secondAttribute="top" constant="24" id="xMg-9f-wJA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="ddayLabel" destination="QaS-Rc-E6j" id="1E0-px-83V"/>
                                             <outlet property="titleLabel" destination="Wyc-dy-4Qq" id="alN-6n-6Lf"/>
                                         </connections>
                                     </tableViewCell>

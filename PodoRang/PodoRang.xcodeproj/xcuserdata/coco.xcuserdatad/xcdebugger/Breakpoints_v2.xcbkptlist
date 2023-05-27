@@ -20,5 +20,113 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodoRang/Sources/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - f856d1cd708219d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.segmentButton.getter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - aea04a21be8c31dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.segmentButton.setter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - f18827e692893cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.segmentButton.modify : Swift.Optional&lt;__C.UISegmentedControl&gt;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - 934ffa579d00a826"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.segmentButton.modify : Swift.Optional&lt;__C.UISegmentedControl&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - a693cf56709339d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; PodoRang.ViewController"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "256">
+               </Location>
+               <Location
+                  uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - 44d5c4a2d206d4c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;PodoRang.ViewController&gt;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/Documents/GitHub/PodoRang/PodoRang/PodoRang/Sources/Controller/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
