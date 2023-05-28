@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentButton: UISegmentedControl!
     
+    let dataManager = DataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -20,6 +22,7 @@ class ViewController: UIViewController {
         getUserData()
         tableView.dataSource = self
         tableView.delegate = self
+        dataManager.setupArrayData()
     }
     
     func setUI() {
@@ -54,13 +57,16 @@ class ViewController: UIViewController {
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         // 랜덤하게 값 추가하게 처리
         let random = Int.random(in: 0...1)
-        print("random is : \(random)")
+
         if random == 0 {
-            ProgressProject.progressArray.append("ho")
-            tableView.reloadData()
+            let newProject = ProgressProject(title: "new")
+            dataManager.makeNewProgressProject(newProject)
         } else {
-            FinishProject.finishedArray.append("hi")
+            let finishedProject = FinishProject(title: "finished-new")
+            dataManager.addFinisehdProject(finishedProject)
         }
+        
+        tableView.reloadData()
     }
 }
 
@@ -69,9 +75,9 @@ extension ViewController: UITableViewDelegate {}
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
-            return ProgressProject.progressArray.count
+            return dataManager.getProgressList().count
         } else {
-            return FinishProject.finishedArray.count
+            return dataManager.getFinishedList().count
         }
     }
     

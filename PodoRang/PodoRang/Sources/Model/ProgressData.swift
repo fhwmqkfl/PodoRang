@@ -8,9 +8,15 @@
 import Foundation
 
 struct ProgressProject {
-    static var progressArray: [String] = ["a"]
+    var title: String
+//    let day: Date
+//    let projectDay: Int
+//    let color: CustomColor
 }
 
 struct FinishProject {
-    static var finishedArray: [String] = []
+    var title: String
+//    let day: Date
+//    let projectDay: Int
+//    let color: CustomColor
 }
