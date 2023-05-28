@@ -16,6 +16,7 @@
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
 		CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141A42A23457300188B72 /* DetailViewController.swift */; };
 		CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC8141A92A2345E400188B72 /* SnapKit */; };
+		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
 		CCB582842A22606B00B5924A /* ProgressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* ProgressData.swift */; };
 		CCB582862A2261FF00B5924A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582852A2261FF00B5924A /* Constants.swift */; };
@@ -35,6 +36,7 @@
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC8141A42A23457300188B72 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		CCB582832A22606B00B5924A /* ProgressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressData.swift; sourceTree = "<group>"; };
 		CCB582852A2261FF00B5924A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
+				CC8141AB2A23A0D000188B72 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */,
+				CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */,
 				CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */,
 				CCB582882A2327BA00B5924A /* DataManager.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,

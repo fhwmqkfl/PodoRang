@@ -9,8 +9,11 @@ import UIKit
 
 class DetailViewController: UIViewController {
     var index: Int?
-    
     let dataManager = DataManager()
+    
+    override func loadView() {
+        view = DetailView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +25,9 @@ class DetailViewController: UIViewController {
     func setupUI() {
         tabBarController?.tabBar.isHidden = true
         
-        navigationController?.navigationBar.topItem?.title = "돌아가기"
-        navigationController?.navigationBar.tintColor = CustomColor.mainPurpleColor
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = CustomColor.navigationTitleColor
+        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitleColor]
 
         view.backgroundColor = .white
         
