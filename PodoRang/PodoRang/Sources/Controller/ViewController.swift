@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     
     let dataManager = DataManager()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -70,7 +75,13 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate {}
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        detailVC.index = indexPath.row
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +105,7 @@ extension ViewController: UITableViewDataSource {
             cell.ddayLabel.layer.isHidden = true
         }
         
+        cell.selectionStyle = .none
         return cell
     }
 }
