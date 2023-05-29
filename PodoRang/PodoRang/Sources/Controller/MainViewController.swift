@@ -7,27 +7,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentButton: UISegmentedControl!
+    @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var switchSegmentControl: UISegmentedControl!
+    
+    enum SegmentIndex: Int {
+        case inProgres
+        case finish
+    }
     
     let dataManager = DataManager()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
     
         setUI()
         getUserData()
-        tableView.dataSource = self
-        tableView.delegate = self
-        dataManager.setupArrayData()
+        dataManager.setupData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
     
     func setUI() {
@@ -56,7 +63,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
-        tableView.reloadData()
+        mainTableView.reloadData()
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
@@ -65,17 +72,17 @@ class ViewController: UIViewController {
 
         if random == 0 {
             let newProject = ProgressProject(title: "new")
-            dataManager.makeNewProgressProject(newProject)
+            dataManager.addProgress(newProject)
         } else {
             let finishedProject = FinishProject(title: "finished-new")
-            dataManager.addFinisehdProject(finishedProject)
+            dataManager.addFinished(finishedProject)
         }
         
-        tableView.reloadData()
+        mainTableView.reloadData()
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
@@ -83,12 +90,12 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
-            return dataManager.getProgressList().count
+        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+            return dataManager.fetchProgress().count
         } else {
-            return dataManager.getFinishedList().count
+            return dataManager.fetchFinished().count
         }
     }
     
@@ -97,7 +104,7 @@ extension ViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
             cell.titleLabel.text = "test {\(indexPath.row)}"
             cell.ddayLabel.layer.isHidden = false
         } else {

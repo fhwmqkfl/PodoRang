@@ -11,7 +11,7 @@ final class DataManager {
     private var progressList: [ProgressProject] = []
     private var finishedList: [FinishProject] = []
     
-    func setupArrayData() {
+    func setupData() {
         progressList = [
             ProgressProject(title: "first"),
             ProgressProject(title: "second"),
@@ -26,19 +26,19 @@ final class DataManager {
         ]
     }
     
-    func getProgressList() -> [ProgressProject] {
+    func fetchProgress() -> [ProgressProject] {
         return progressList
     }
     
-    func getFinishedList() -> [FinishProject] {
+    func fetchFinished() -> [FinishProject] {
         return finishedList
     }
     
-    func makeNewProgressProject(_ project: ProgressProject) {
+    func addProgress(_ project: ProgressProject) {
         progressList.append(project)
     }
     
-    func addFinisehdProject(_ project: FinishProject) {
+    func addFinished(_ project: FinishProject) {
         finishedList.append(project)
     }
 }

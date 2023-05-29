@@ -8,8 +8,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    var index: Int?
     let dataManager = DataManager()
+    var index: Int?
     
     override func loadView() {
         view = DetailView()
@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataManager.setupArrayData()
+        dataManager.setupData()
         setupUI()
     }
     
@@ -32,8 +32,7 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         guard let index else { return }
-        let name = dataManager.getProgressList()[index].title
-        title = name
+        title = dataManager.fetchProgress()[index].title
     }
 
 }

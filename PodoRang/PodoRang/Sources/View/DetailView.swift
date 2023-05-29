@@ -9,15 +9,14 @@ import UIKit
 import SnapKit
 
 class DetailView: UIView {
-
     let mainLabel = UILabel()
     var mainImage = UIImageView()
     let infoLabel = UILabel()
     let modifyButton = UIButton()
     let deleteButton = UIButton()
-    let horizontalStackVIew = UIStackView()
+    let horizontalStackView = UIStackView()
     let historyLabel = UILabel()
-    let tableView = UITableView()
+    let detailTableView = UITableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,11 +33,11 @@ class DetailView: UIView {
         self.addSubview(mainLabel)
         self.addSubview(mainImage)
         self.addSubview(infoLabel)
-        self.addSubview(horizontalStackVIew)
-        horizontalStackVIew.addArrangedSubview(modifyButton)
-        horizontalStackVIew.addArrangedSubview(deleteButton)
+        self.addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubview(modifyButton)
+        horizontalStackView.addArrangedSubview(deleteButton)
         self.addSubview(historyLabel)
-        self.addSubview(tableView)
+        self.addSubview(detailTableView)
         
         mainLabel.text = "앞으로 ()개의 포도알을 채우면 완성이에요"
         mainLabel.backgroundColor = CustomColor.mainPurpleColor
@@ -66,17 +65,17 @@ class DetailView: UIView {
         deleteButton.clipsToBounds = true
         deleteButton.layer.cornerRadius = 10
         
-        horizontalStackVIew.axis = .horizontal
-        horizontalStackVIew.spacing = 10
-        horizontalStackVIew.distribution = .fillEqually
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.spacing = 10
+        horizontalStackView.distribution = .fillEqually
         
         historyLabel.text = "포도알을 칠한 날들"
         historyLabel.font = .boldSystemFont(ofSize: 15)
         historyLabel.textColor = CustomColor.infoGreenColor
         
-        tableView.backgroundColor = CustomColor.lightPurpleColor
-        tableView.clipsToBounds = true
-        tableView.layer.cornerRadius = 10
+        detailTableView.backgroundColor = CustomColor.lightPurpleColor
+        detailTableView.clipsToBounds = true
+        detailTableView.layer.cornerRadius = 10
     }
     
     func setupConstraints() {
@@ -101,7 +100,7 @@ class DetailView: UIView {
             $0.centerX.equalToSuperview()
         }
         
-        horizontalStackVIew.snp.makeConstraints {
+        horizontalStackView.snp.makeConstraints {
             $0.top.equalTo(infoLabel.snp.bottom).offset(15)
             $0.leading.equalTo(safeArea).offset(25)
             $0.trailing.equalTo(safeArea).offset(-25)
@@ -110,11 +109,11 @@ class DetailView: UIView {
         }
         
         historyLabel.snp.makeConstraints {
-            $0.top.equalTo(horizontalStackVIew.snp.bottom).offset(15)
+            $0.top.equalTo(horizontalStackView.snp.bottom).offset(15)
             $0.centerX.equalToSuperview()
         }
         
-        tableView.snp.makeConstraints {
+        detailTableView.snp.makeConstraints {
             $0.top.equalTo(historyLabel.snp.bottom).offset(15)
             $0.bottom.equalTo(safeArea).offset(-20)
             $0.leading.equalTo(safeArea).offset(25)
