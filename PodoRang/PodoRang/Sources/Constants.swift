@@ -11,3 +11,9 @@ public enum SegmentIndex: Int {
     case inProgres
     case finish
 }
+
+public enum SettingMenu: Int {
+    case alarm
+    case modifyProfile
+    case review
+}
