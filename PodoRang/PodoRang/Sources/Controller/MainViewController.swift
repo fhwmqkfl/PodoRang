@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         case finish
     }
     
-    let dataManager = DataManager()
+    let dataManager = DataManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,11 +71,12 @@ class MainViewController: UIViewController {
         let random = Int.random(in: 0...1)
 
         if random == 0 {
-            let newProject = ProgressProject(title: "new")
-            dataManager.addProgress(newProject)
+            let newProject = Project(title: "newproject-progress")
+            dataManager.addProject(newProject)
+            print(dataManager.getArray())
         } else {
-            let finishedProject = FinishProject(title: "finished-new")
-            dataManager.addFinished(finishedProject)
+            let finishedProject = Project(title: "newproject-finished", isFinished: true)
+            dataManager.addProject(finishedProject)
         }
         
         mainTableView.reloadData()
@@ -86,6 +87,11 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
+        
+        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.finish.rawValue {
+            detailVC.isFinished = true
+        }
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -93,9 +99,9 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if switchSegmentControl.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
-            return dataManager.fetchProgress().count
+            return dataManager.fetchArray(isfinished: false).count
         } else {
-            return dataManager.fetchFinished().count
+            return dataManager.fetchArray(isfinished: true).count
         }
     }
     

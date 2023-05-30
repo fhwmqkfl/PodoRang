@@ -8,37 +8,36 @@
 import Foundation
 
 final class DataManager {
-    private var progressList: [ProgressProject] = []
-    private var finishedList: [FinishProject] = []
+    static let shared = DataManager()
+    
+    private init() {}
+    
+    private var projectArray: [Project] = []
     
     func setupData() {
-        progressList = [
-            ProgressProject(title: "first"),
-            ProgressProject(title: "second"),
-            ProgressProject(title: "third"),
-            ProgressProject(title: "fourth")
+        projectArray = [
+            Project(title: "progrss-first"),
+            Project(title: "progrss-second"),
+            Project(title: "progrss-third"),
+            Project(title: "progrss-fourth"),
+            Project(title: "finished-first", isFinished: true),
+            Project(title: "finished-second", isFinished: true)
         ]
+    }
+    
+    func getArray() -> [Project] {
+        return projectArray
+    }
+    
+    func fetchArray(isfinished: Bool) -> [Project] {
+        let array = projectArray.filter { project in
+            project.isFinished == isfinished
+        }
         
-        finishedList = [
-            FinishProject(title: "finished-first"),
-            FinishProject(title: "finished-second"),
-            FinishProject(title: "finished-third")
-        ]
+        return array
     }
     
-    func fetchProgress() -> [ProgressProject] {
-        return progressList
-    }
-    
-    func fetchFinished() -> [FinishProject] {
-        return finishedList
-    }
-    
-    func addProgress(_ project: ProgressProject) {
-        progressList.append(project)
-    }
-    
-    func addFinished(_ project: FinishProject) {
-        finishedList.append(project)
+    func addProject(_ project: Project) {
+        projectArray.append(project)
     }
 }

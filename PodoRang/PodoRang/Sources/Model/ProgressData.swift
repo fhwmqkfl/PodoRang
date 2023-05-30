@@ -7,16 +7,7 @@
 
 import Foundation
 
-struct ProgressProject {
+struct Project {
     var title: String
-//    let day: Date
-//    let projectDay: Int
-//    let color: CustomColor
-}
-
-struct FinishProject {
-    var title: String
-//    let day: Date
-//    let projectDay: Int
-//    let color: CustomColor
+    var isFinished: Bool = false
 }
