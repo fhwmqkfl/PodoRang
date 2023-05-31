@@ -15,7 +15,11 @@
 		CC5468B22A1A88570092B04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B12A1A88570092B04C /* Assets.xcassets */; };
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
+		CCB582842A22606B00B5924A /* ProgressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* ProgressData.swift */; };
+		CCB582862A2261FF00B5924A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582852A2261FF00B5924A /* Constants.swift */; };
+		CCB582882A2327BA00B5924A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* DataManager.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
+		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +33,11 @@
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CCB582832A22606B00B5924A /* ProgressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressData.swift; sourceTree = "<group>"; };
+		CCB582852A2261FF00B5924A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CCB582872A2327BA00B5924A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,7 @@
 				CCBFC26D2A1FB5AF0022FEAD /* Model */,
 				CCBFC26C2A1FB59D0022FEAD /* View */,
 				CCBFC26B2A1FB5920022FEAD /* Controller */,
+				CCB582852A2261FF00B5924A /* Constants.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -104,6 +113,7 @@
 		CCBFC26C2A1FB59D0022FEAD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -112,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
+				CCB582832A22606B00B5924A /* ProgressData.swift */,
+				CCB582872A2327BA00B5924A /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,11 +208,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */,
+				CCB582882A2327BA00B5924A /* DataManager.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
+				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
+				CCB582842A22606B00B5924A /* ProgressData.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */,
+				CCB582862A2261FF00B5924A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

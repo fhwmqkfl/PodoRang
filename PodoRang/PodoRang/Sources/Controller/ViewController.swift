@@ -10,12 +10,19 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentButton: UISegmentedControl!
+    
+    let dataManager = DataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         setUI()
         getUserData()
+        tableView.dataSource = self
+        tableView.delegate = self
+        dataManager.setupArrayData()
     }
     
     func setUI() {
@@ -42,5 +49,51 @@ class ViewController: UIViewController {
         let image = UIImage(data: decoded)
         mainImage.image = image
     }
+    
+    @IBAction func segmentClicked(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+    }
+    
+    @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
+        // 랜덤하게 값 추가하게 처리
+        let random = Int.random(in: 0...1)
+
+        if random == 0 {
+            let newProject = ProgressProject(title: "new")
+            dataManager.makeNewProgressProject(newProject)
+        } else {
+            let finishedProject = FinishProject(title: "finished-new")
+            dataManager.addFinisehdProject(finishedProject)
+        }
+        
+        tableView.reloadData()
+    }
 }
 
+extension ViewController: UITableViewDelegate {}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+            return dataManager.getProgressList().count
+        } else {
+            return dataManager.getFinishedList().count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as? MainTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        if segmentButton.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
+            cell.titleLabel.text = "test {\(indexPath.row)}"
+            cell.ddayLabel.layer.isHidden = false
+        } else {
+            cell.titleLabel.text = "test {\(indexPath.row)}"
+            cell.ddayLabel.layer.isHidden = true
+        }
+        
+        return cell
+    }
+}
