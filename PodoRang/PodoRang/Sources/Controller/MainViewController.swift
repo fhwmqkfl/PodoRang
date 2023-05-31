@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  PodoRang
 //
 //  Created by coco on 2023/05/22.
@@ -9,16 +9,16 @@ import UIKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var mainTableView: UITableView!
-    @IBOutlet weak var switchSegmentControl: UISegmentedControl!
+    @IBOutlet weak var statusSementedControl: UISegmentedControl!
     
     enum SegmentIndex: Int {
-        case inProgres
+        case inProgress
         case finish
     }
     
-    let dataManager = DataManager.shared
+    let projectManager = ProjectManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
     
         setUI()
         getUserData()
-        dataManager.setupData()
+        projectManager.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,12 +39,12 @@ class MainViewController: UIViewController {
     
     func setUI() {
         mainLabel.font = .boldSystemFont(ofSize: 20)
-        mainImage.layer.cornerRadius = mainImage.frame.width / 2
-        mainImage.layer.borderWidth = 1
-        mainImage.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        mainImage.backgroundColor = CustomColor.mainPurpleColor
-        mainImage.contentMode = .scaleAspectFill
-        mainImage.clipsToBounds = true
+        mainImageView.layer.cornerRadius = mainImageView.frame.width / 2
+        mainImageView.layer.borderWidth = 1
+        mainImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        mainImageView.backgroundColor = CustomColor.mainPurpleColor
+        mainImageView.contentMode = .scaleAspectFill
+        mainImageView.clipsToBounds = true
     }
     
     func getUserData() {
@@ -59,7 +59,11 @@ class MainViewController: UIViewController {
     func loadImage(UIImage value: Data) {
         let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
         let image = UIImage(data: decoded)
-        mainImage.image = image
+        mainImageView.image = image
+    }
+    
+    func isFinished() -> Bool {
+        return statusSementedControl.selectedSegmentIndex == SegmentIndex.finish.rawValue
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
@@ -72,11 +76,10 @@ class MainViewController: UIViewController {
 
         if random == 0 {
             let newProject = Project(title: "newproject-progress")
-            dataManager.addProject(newProject)
-            print(dataManager.getArray())
+            projectManager.add(newProject)
         } else {
             let finishedProject = Project(title: "newproject-finished", isFinished: true)
-            dataManager.addProject(finishedProject)
+            projectManager.add(finishedProject)
         }
         
         mainTableView.reloadData()
@@ -87,10 +90,7 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
-        
-        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.finish.rawValue {
-            detailVC.isFinished = true
-        }
+        detailVC.isFinished = isFinished()
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -98,27 +98,16 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
-            return dataManager.fetchArray(isfinished: false).count
-        } else {
-            return dataManager.fetchArray(isfinished: true).count
-        }
+        return projectManager.fetch(isfinished: isFinished()).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell") as? MainTableViewCell else {
-            return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
         
-        if switchSegmentControl.selectedSegmentIndex == SegmentIndex.inProgres.rawValue {
-            cell.titleLabel.text = "test {\(indexPath.row)}"
-            cell.ddayLabel.layer.isHidden = false
-        } else {
-            cell.titleLabel.text = "test {\(indexPath.row)}"
-            cell.ddayLabel.layer.isHidden = true
-        }
-        
+        cell.ddayLabel.layer.isHidden = isFinished()
+        cell.titleLabel.text = "test {\(indexPath.row)}"
         cell.selectionStyle = .none
+        
         return cell
     }
 }

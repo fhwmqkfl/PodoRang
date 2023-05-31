@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupImageView()
     }
@@ -75,8 +76,6 @@ class ProfileViewController: UIViewController {
     }
 }
 
-
-
 extension ProfileViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
@@ -84,9 +83,8 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         let itemProvider = results.first?.itemProvider
 
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
-                    // 이미지 뷰에 표시
                     self.profileImageView.image = image as? UIImage
                 }
             }

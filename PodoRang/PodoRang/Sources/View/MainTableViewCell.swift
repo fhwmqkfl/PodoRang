@@ -8,6 +8,8 @@
 import UIKit
 
 class MainTableViewCell: UITableViewCell {
+    static let identifier = "MainTableViewCell"
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ddayLabel: UILabel!
 }

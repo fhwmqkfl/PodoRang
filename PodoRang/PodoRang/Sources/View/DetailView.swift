@@ -10,7 +10,7 @@ import SnapKit
 
 class DetailView: UIView {
     let mainLabel = UILabel()
-    var mainImage = UIImageView()
+    let mainImageView = UIImageView()
     let infoLabel = UILabel()
     let modifyButton = UIButton()
     let deleteButton = UIButton()
@@ -31,7 +31,7 @@ class DetailView: UIView {
     
     func setupUI() {
         self.addSubview(mainLabel)
-        self.addSubview(mainImage)
+        self.addSubview(mainImageView)
         self.addSubview(infoLabel)
         self.addSubview(horizontalStackView)
         horizontalStackView.addArrangedSubview(modifyButton)
@@ -47,31 +47,18 @@ class DetailView: UIView {
         mainLabel.clipsToBounds = true
         mainLabel.layer.cornerRadius = 20
         
-        mainImage.backgroundColor = CustomColor.mainPurpleColor
+        mainImageView.backgroundColor = CustomColor.mainPurpleColor
         
-        infoLabel.text = "🍇 포도를 누르면 포도알을 칠할 수 있어요"
-        infoLabel.textColor = CustomColor.infoGreenColor
-        infoLabel.font = .boldSystemFont(ofSize: 15)
+        setLabel(infoLabel, title: "🍇 포도를 누르면 포도알을 칠할 수 있어요")
         
-        modifyButton.backgroundColor = CustomColor.buttonColor
-        modifyButton.setTitle("목표 수정하기", for: .normal)
-        modifyButton.tintColor = .white
-        modifyButton.clipsToBounds = true
-        modifyButton.layer.cornerRadius = 10
-        
-        deleteButton.backgroundColor = CustomColor.buttonColor
-        deleteButton.setTitle("목표 삭제하기", for: .normal)
-        deleteButton.tintColor = .white
-        deleteButton.clipsToBounds = true
-        deleteButton.layer.cornerRadius = 10
+        setButton(modifyButton, title: "목표 수정하기")
+        setButton(deleteButton, title: "목표 삭제하기")
         
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 10
         horizontalStackView.distribution = .fillEqually
         
-        historyLabel.text = "포도알을 칠한 날들"
-        historyLabel.font = .boldSystemFont(ofSize: 15)
-        historyLabel.textColor = CustomColor.infoGreenColor
+        setLabel(historyLabel, title: "포도알을 칠한 날들")
         
         detailTableView.backgroundColor = CustomColor.lightPurpleColor
         detailTableView.clipsToBounds = true
@@ -88,15 +75,15 @@ class DetailView: UIView {
             $0.height.equalTo(50)
         }
         
-        mainImage.snp.makeConstraints {
+        mainImageView.snp.makeConstraints {
             $0.top.equalTo(mainLabel.snp.bottom).offset(30)
             $0.width.equalTo(200)
-            $0.height.equalTo(mainImage.snp.width)
+            $0.height.equalTo(mainImageView.snp.width)
             $0.centerX.equalToSuperview()
         }
         
         infoLabel.snp.makeConstraints {
-            $0.top.equalTo(mainImage.snp.bottom).offset(30)
+            $0.top.equalTo(mainImageView.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
         }
         
@@ -119,5 +106,19 @@ class DetailView: UIView {
             $0.leading.equalTo(safeArea).offset(25)
             $0.trailing.equalTo(safeArea).offset(-25)
         }
+    }
+    
+    func setLabel(_ label: UILabel, title: String) {
+        label.text = title
+        label.textColor = CustomColor.infoGreenColor
+        label.font = .boldSystemFont(ofSize: 15)
+    }
+    
+    func setButton(_ button: UIButton, title: String) {
+        button.backgroundColor = CustomColor.buttonColor
+        button.setTitle(title, for: .normal)
+        button.tintColor = .white
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 10
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    let dataManager = DataManager.shared
+    let projectManager = ProjectManager.shared
     var index: Int?
     var isFinished: Bool = false
     
@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
         
         guard let index else { return }
         
-        title = dataManager.fetchArray(isfinished: isFinished)[index].title
+        title = projectManager.fetch(isfinished: isFinished)[index].title
     }
 
 }
