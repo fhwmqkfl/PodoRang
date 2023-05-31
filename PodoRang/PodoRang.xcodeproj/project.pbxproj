@@ -10,14 +10,18 @@
 		CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */; };
 		CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468A82A1A88560092B04C /* AppDelegate.swift */; };
 		CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AA2A1A88560092B04C /* SceneDelegate.swift */; };
-		CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AC2A1A88560092B04C /* ViewController.swift */; };
+		CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AC2A1A88560092B04C /* MainViewController.swift */; };
 		CC5468B02A1A88560092B04C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468AE2A1A88560092B04C /* Main.storyboard */; };
 		CC5468B22A1A88570092B04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B12A1A88570092B04C /* Assets.xcassets */; };
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
+		CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141A42A23457300188B72 /* DetailViewController.swift */; };
+		CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC8141A92A2345E400188B72 /* SnapKit */; };
+		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
+		CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B02A23B4AA00188B72 /* SettingViewController.swift */; };
+		CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
-		CCB582842A22606B00B5924A /* ProgressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* ProgressData.swift */; };
-		CCB582862A2261FF00B5924A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582852A2261FF00B5924A /* Constants.swift */; };
-		CCB582882A2327BA00B5924A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* DataManager.swift */; };
+		CCB582842A22606B00B5924A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* Project.swift */; };
+		CCB582882A2327BA00B5924A /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* ProjectManager.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -27,15 +31,18 @@
 		CC5468A52A1A88560092B04C /* PodoRang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodoRang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5468A82A1A88560092B04C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC5468AA2A1A88560092B04C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CC5468AC2A1A88560092B04C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC5468AC2A1A88560092B04C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CC5468AF2A1A88560092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC5468B12A1A88570092B04C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC8141A42A23457300188B72 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		CC8141B02A23B4AA00188B72 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
-		CCB582832A22606B00B5924A /* ProgressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressData.swift; sourceTree = "<group>"; };
-		CCB582852A2261FF00B5924A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CCB582872A2327BA00B5924A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		CCB582832A22606B00B5924A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		CCB582872A2327BA00B5924A /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
 		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,11 +89,11 @@
 			children = (
 				CC5468A82A1A88560092B04C /* AppDelegate.swift */,
 				CC5468AA2A1A88560092B04C /* SceneDelegate.swift */,
+				CCB582872A2327BA00B5924A /* ProjectManager.swift */,
 				CCBFC26E2A1FB5EF0022FEAD /* Extensions */,
 				CCBFC26D2A1FB5AF0022FEAD /* Model */,
 				CCBFC26C2A1FB59D0022FEAD /* View */,
 				CCBFC26B2A1FB5920022FEAD /* Controller */,
-				CCB582852A2261FF00B5924A /* Constants.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -104,8 +112,10 @@
 		CCBFC26B2A1FB5920022FEAD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CC8141A42A23457300188B72 /* DetailViewController.swift */,
 				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
-				CC5468AC2A1A88560092B04C /* ViewController.swift */,
+				CC5468AC2A1A88560092B04C /* MainViewController.swift */,
+				CC8141B02A23B4AA00188B72 /* SettingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -114,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
+				CC8141AB2A23A0D000188B72 /* DetailView.swift */,
+				CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -122,8 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
-				CCB582832A22606B00B5924A /* ProgressData.swift */,
-				CCB582872A2327BA00B5924A /* DataManager.swift */,
+				CCB582832A22606B00B5924A /* Project.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +163,9 @@
 			dependencies = (
 			);
 			name = PodoRang;
+			packageProductDependencies = (
+				CC8141A92A2345E400188B72 /* SnapKit */,
+			);
 			productName = PodoRang;
 			productReference = CC5468A52A1A88560092B04C /* PodoRang.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +194,9 @@
 				Base,
 			);
 			mainGroup = CC54689C2A1A88560092B04C;
+			packageReferences = (
+				CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CC5468A62A1A88560092B04C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -207,16 +224,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC5468AD2A1A88560092B04C /* ViewController.swift in Sources */,
-				CCB582882A2327BA00B5924A /* DataManager.swift in Sources */,
+				CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */,
+				CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */,
+				CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */,
+				CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */,
+				CCB582882A2327BA00B5924A /* ProjectManager.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
-				CCB582842A22606B00B5924A /* ProgressData.swift in Sources */,
+				CCB582842A22606B00B5924A /* Project.swift in Sources */,
+				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */,
-				CCB582862A2261FF00B5924A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +452,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CC8141A92A2345E400188B72 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC54689D2A1A88560092B04C /* Project object */;
 }
