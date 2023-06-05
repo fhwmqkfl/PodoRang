@@ -78,6 +78,7 @@ class ProfileViewController: UIViewController {
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userimage, forKey:"userImage")
             if mainLabel.text == Status.modify.rawValue {
+                NotificationCenter.default.post(name: NSNotification.Name("UpdateUserInfo"), object: nil, userInfo: nil)
                 dismiss(animated: true)
             } else {
                 guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }

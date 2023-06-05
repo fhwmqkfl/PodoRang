@@ -29,6 +29,12 @@ class MainViewController: UIViewController {
         setUI()
         getUserData()
         projectManager.setupData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(RefreshViewController), name: NSNotification.Name("UpdateUserInfo"), object: nil)
+    }
+    
+    @objc func RefreshViewController() {
+        getUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +90,10 @@ class MainViewController: UIViewController {
         
         mainTableView.reloadData()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+       }
 }
 
 extension MainViewController: UITableViewDelegate {
