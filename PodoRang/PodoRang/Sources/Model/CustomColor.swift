@@ -12,6 +12,8 @@ struct CustomColor {
     static let mainPurpleColor = UIColor(hexCode: "A558E2", alpha: 0.44)
     static let lightPurpleColor = UIColor(hexCode: "A558E2", alpha: 0.21)
     static let navigationTitleColor = UIColor(hexCode: "A558E2")
+    static let textPurpleColor = UIColor(hexCode: "B11AE7")
     static let infoGreenColor = UIColor(hexCode: "008000")
     static let buttonColor = UIColor(hexCode: "DADADA")
+    static let warningRedColor = UIColor(hexCode: "EB3535")
 }

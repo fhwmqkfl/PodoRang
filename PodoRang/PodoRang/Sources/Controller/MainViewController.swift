@@ -71,18 +71,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
-        // 랜덤하게 값 추가하게 처리
-        let random = Int.random(in: 0...1)
-
-        if random == 0 {
-            let newProject = Project(title: "newproject-progress")
-            projectManager.add(newProject)
-        } else {
-            let finishedProject = Project(title: "newproject-finished", isFinished: true)
-            projectManager.add(finishedProject)
-        }
-        
-        mainTableView.reloadData()
+        let setupVC = SetupViewController()
+        self.navigationController?.pushViewController(setupVC, animated: true)
     }
 }
 
