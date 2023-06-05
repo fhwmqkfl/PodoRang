@@ -30,7 +30,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D24-wn-SV7">
                                 <rect key="frame" x="40" y="504" width="313" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="SAVE"/>
                                 <connections>
                                     <action selector="saveButtonClicked:" destination="c4T-z1-jt3" eventType="touchUpInside" id="WI2-7h-hcT"/>
                                 </connections>
@@ -135,12 +135,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-Ue-uXt">
-                                                    <rect key="frame" x="329" y="25" width="44" height="50"/>
+                                                    <rect key="frame" x="325" y="25" width="48" height="50"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="greaterthan" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="nextpageButton"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j">
-                                                    <rect key="frame" x="224" y="24" width="80" height="52"/>
+                                                    <rect key="frame" x="220" y="24" width="80" height="52"/>
                                                     <color key="backgroundColor" red="0.6470588235294118" green="0.34509803921568627" blue="0.88627450980392153" alpha="0.44" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="ix4-wJ-G9Z"/>
@@ -389,7 +389,6 @@
     </scenes>
     <resources>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
-        <image name="greaterthan" catalog="system" width="128" height="108"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="nextpageButton" width="24" height="24"/>
         <image name="person" catalog="system" width="128" height="121"/>
