@@ -27,19 +27,13 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
     
         setUI()
-        getUserData()
         projectManager.setupData()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(RefreshViewController), name: NSNotification.Name("UpdateUserInfo"), object: nil)
-    }
-    
-    @objc func RefreshViewController() {
-        getUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getUserData()
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -90,10 +84,6 @@ class MainViewController: UIViewController {
         
         mainTableView.reloadData()
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-       }
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -101,7 +91,6 @@ extension MainViewController: UITableViewDelegate {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
         detailVC.isFinished = isFinished()
-        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
