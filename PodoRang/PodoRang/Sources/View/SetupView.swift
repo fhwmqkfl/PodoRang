@@ -14,6 +14,7 @@ class SetupView: UIView {
     let goalTextField = UITextField()
     let startDayLabel = UILabel()
     let startDayTextField = UITextField()
+    let datePicker = UIDatePicker()
     let weekLabel = UILabel()
     let oneWeekButton = UIButton()
     let twoWeeksButton = UIButton()
@@ -26,6 +27,8 @@ class SetupView: UIView {
     let colorHorizontalStackView = UIStackView()
     let warningLabel = UILabel()
     let saveButton = UIButton()
+    
+    var diaryDate: Date?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,21 +45,13 @@ class SetupView: UIView {
     func setupUI() {
         lineView.backgroundColor = .systemGray5
         
-        goalLabel.text = "목표"
-        goalLabel.font = .boldSystemFont(ofSize: 12)
-        goalLabel.textColor = CustomColor.textPurpleColor
+        setLabel(goalLabel, text: "목표")
         
         goalTextField.layer.borderWidth = 1
         goalTextField.layer.borderColor = CustomColor.mainPurpleColor.cgColor
         goalTextField.layer.cornerRadius = 10
         
-        startDayLabel.text = "시작하는 날을 선택해 주세요"
-        startDayLabel.font = .boldSystemFont(ofSize: 12)
-        startDayLabel.textColor = CustomColor.textPurpleColor
-        
-        weekLabel.text = "포도알 갯수"
-        weekLabel.font = .boldSystemFont(ofSize: 12)
-        weekLabel.textColor = CustomColor.textPurpleColor
+        setLabel(startDayLabel, text: "시작하는 날을 선택해 주세요")
         
         startDayTextField.tintColor = .clear
         startDayTextField.layer.borderWidth = 1
@@ -64,59 +59,24 @@ class SetupView: UIView {
         startDayTextField.textColor = .black
         startDayTextField.textAlignment = .center
         
-        oneWeekButton.setTitle("7days", for: .normal)
-        oneWeekButton.setTitleColor(.black, for: .normal)
-        oneWeekButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        oneWeekButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        oneWeekButton.layer.borderWidth = 1
-        oneWeekButton.layer.cornerRadius = 15
+        setupDatePicker()
+        startDayTextField.inputView = datePicker
         
-        twoWeeksButton.setTitle("14days", for: .normal)
-        twoWeeksButton.setTitleColor(.black, for: .normal)
-        twoWeeksButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        twoWeeksButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        twoWeeksButton.layer.borderWidth = 1
-        twoWeeksButton.layer.cornerRadius = 15
+        setLabel(selectColorLabel, text: "포도알 갯수")
         
-        threeWeeksButton.setTitle("21days", for: .normal)
-        threeWeeksButton.setTitleColor(.black, for: .normal)
-        threeWeeksButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        threeWeeksButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        threeWeeksButton.layer.borderWidth = 1
-        threeWeeksButton.layer.cornerRadius = 15
+        setButton(oneWeekButton, title: "7일")
+        setButton(twoWeeksButton, title: "14일")
+        setButton(threeWeeksButton, title: "21일")
         
-        dayHorizontalStackView.axis = .horizontal
-        dayHorizontalStackView.spacing = 15
-        dayHorizontalStackView.distribution = .fillEqually
+        setHorizontalStackView(dayHorizontalStackView)
         
-        selectColorLabel.text = "포도 종류"
-        selectColorLabel.font = .boldSystemFont(ofSize: 12)
-        selectColorLabel.textColor = CustomColor.textPurpleColor
+        setLabel(selectColorLabel, text: "포도 종류")
         
-        purpleButton.setTitle("포도", for: .normal)
-        purpleButton.setTitleColor(.black, for: .normal)
-        purpleButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        purpleButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        purpleButton.layer.borderWidth = 1
-        purpleButton.layer.cornerRadius = 15
+        setButton(purpleButton, title: "포도")
+        setButton(redButton, title: "적포도")
+        setButton(greenButton, title: "청포도")
         
-        redButton.setTitle("적포도", for: .normal)
-        redButton.setTitleColor(.black, for: .normal)
-        redButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        redButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        redButton.layer.borderWidth = 1
-        redButton.layer.cornerRadius = 15
-        
-        greenButton.setTitle("청포도", for: .normal)
-        greenButton.setTitleColor(.black, for: .normal)
-        greenButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        greenButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        greenButton.layer.borderWidth = 1
-        greenButton.layer.cornerRadius = 15
-        
-        colorHorizontalStackView.axis = .horizontal
-        colorHorizontalStackView.spacing = 15
-        colorHorizontalStackView.distribution = .fillEqually
+        setHorizontalStackView(colorHorizontalStackView)
         
         warningLabel.text = "포도알 갯수와 포도 종류는 설정하면 변경할 수 없어요!"
         warningLabel.textColor = CustomColor.warningRedColor
@@ -129,7 +89,31 @@ class SetupView: UIView {
         saveButton.layer.borderColor = CustomColor.mainPurpleColor.cgColor
         saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 15
+    }
+    
+    func setupDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.addTarget(self, action: #selector(dateChange), for: .valueChanged)
         
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolBar.setItems([flexibleSpace, doneButton], animated: true)
+        startDayTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func dateChange(_ datePicker: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        formatter.locale = Locale(identifier: "ko_KR")
+        diaryDate = datePicker.date
+        startDayTextField.text = formatter.string(from: datePicker.date)
+    }
+    
+    @objc func donePressed() {
+        startDayTextField.resignFirstResponder()
     }
     
     func addSubviews() {
@@ -225,5 +209,26 @@ class SetupView: UIView {
             $0.trailing.equalTo(safeArea).offset(-16)
             $0.height.equalTo(50)
         }
+    }
+    
+    func setLabel(_ label: UILabel, text: String) {
+        label.text = text
+        label.font = .boldSystemFont(ofSize: 12)
+        label.textColor = CustomColor.textPurpleColor
+    }
+    
+    func setButton(_ button: UIButton, title: String) {
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 13
+    }
+    
+    func setHorizontalStackView(_ stackView: UIStackView) {
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        stackView.distribution = .fillEqually
     }
 }
