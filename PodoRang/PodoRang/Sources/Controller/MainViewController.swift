@@ -41,8 +41,8 @@ class MainViewController: UIViewController {
         mainLabel.font = .boldSystemFont(ofSize: 20)
         mainImageView.layer.cornerRadius = mainImageView.frame.width / 2
         mainImageView.layer.borderWidth = 1
-        mainImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        mainImageView.backgroundColor = CustomColor.mainPurpleColor
+        mainImageView.layer.borderColor = CustomColor.mainPurple.cgColor
+        mainImageView.backgroundColor = CustomColor.mainPurple
         mainImageView.contentMode = .scaleAspectFill
         mainImageView.clipsToBounds = true
     }

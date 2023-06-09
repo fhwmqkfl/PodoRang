@@ -16,7 +16,13 @@ class DetailView: UIView {
     let deleteButton = UIButton()
     let horizontalStackView = UIStackView()
     let historyLabel = UILabel()
-    let detailTableView = UITableView()
+    let detailTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = CustomColor.lightPurple
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 10
+        return tableView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,26 +36,21 @@ class DetailView: UIView {
     }
     
     func setupUI() {
-        self.addSubview(mainLabel)
-        self.addSubview(mainImageView)
-        self.addSubview(infoLabel)
-        self.addSubview(horizontalStackView)
-        horizontalStackView.addArrangedSubview(modifyButton)
-        horizontalStackView.addArrangedSubview(deleteButton)
-        self.addSubview(historyLabel)
-        self.addSubview(detailTableView)
+        self.addSubviews([mainLabel,mainImageView,infoLabel,horizontalStackView, historyLabel, detailTableView])
+        horizontalStackView.addArragnedSubViews([modifyButton,deleteButton])
         
         mainLabel.text = "앞으로 ()개의 포도알을 채우면 완성이에요"
-        mainLabel.backgroundColor = CustomColor.mainPurpleColor
+        mainLabel.backgroundColor = CustomColor.mainPurple
         mainLabel.font = .boldSystemFont(ofSize: 15)
         mainLabel.textAlignment = .center
         mainLabel.textColor = .white
         mainLabel.clipsToBounds = true
         mainLabel.layer.cornerRadius = 20
         
-        mainImageView.backgroundColor = CustomColor.mainPurpleColor
+        mainImageView.backgroundColor = CustomColor.mainPurple
         
         setLabel(infoLabel, title: "🍇 포도를 누르면 포도알을 칠할 수 있어요")
+        setLabel(historyLabel, title: "포도알을 칠한 날들")
         
         setButton(modifyButton, title: "목표 수정하기")
         setButton(deleteButton, title: "목표 삭제하기")
@@ -57,12 +58,6 @@ class DetailView: UIView {
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 10
         horizontalStackView.distribution = .fillEqually
-        
-        setLabel(historyLabel, title: "포도알을 칠한 날들")
-        
-        detailTableView.backgroundColor = CustomColor.lightPurpleColor
-        detailTableView.clipsToBounds = true
-        detailTableView.layer.cornerRadius = 10
     }
     
     func setupConstraints() {
@@ -89,8 +84,7 @@ class DetailView: UIView {
         
         horizontalStackView.snp.makeConstraints {
             $0.top.equalTo(infoLabel.snp.bottom).offset(15)
-            $0.leading.equalTo(safeArea).offset(25)
-            $0.trailing.equalTo(safeArea).offset(-25)
+            $0.leading.trailing.equalTo(safeArea).inset(25)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
         }
@@ -103,19 +97,18 @@ class DetailView: UIView {
         detailTableView.snp.makeConstraints {
             $0.top.equalTo(historyLabel.snp.bottom).offset(15)
             $0.bottom.equalTo(safeArea).offset(-20)
-            $0.leading.equalTo(safeArea).offset(25)
-            $0.trailing.equalTo(safeArea).offset(-25)
+            $0.leading.trailing.equalTo(safeArea).inset(25)
         }
     }
     
     func setLabel(_ label: UILabel, title: String) {
         label.text = title
-        label.textColor = CustomColor.infoGreenColor
+        label.textColor = CustomColor.infoGreen
         label.font = .boldSystemFont(ofSize: 15)
     }
     
     func setButton(_ button: UIButton, title: String) {
-        button.backgroundColor = CustomColor.buttonColor
+        button.backgroundColor = CustomColor.button
         button.setTitle(title, for: .normal)
         button.tintColor = .white
         button.clipsToBounds = true

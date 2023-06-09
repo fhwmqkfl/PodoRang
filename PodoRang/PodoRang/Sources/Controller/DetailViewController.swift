@@ -26,8 +26,8 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = CustomColor.navigationTitleColor
-        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitleColor]
+        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
 
         view.backgroundColor = .white
         
