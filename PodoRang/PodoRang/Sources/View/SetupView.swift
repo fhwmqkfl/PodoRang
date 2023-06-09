@@ -72,10 +72,14 @@ class SetupView: UIView {
         
         setLabel(selectColorLabel, text: "포도 종류")
         
-        setButton(purpleButton, title: "포도")
-        setButton(redButton, title: "적포도")
-        setButton(greenButton, title: "청포도")
+        setButtonImage(purpleButton)
+        setButtonImage(redButton)
+        setButtonImage(greenButton)
         
+        purpleButton.addTarget(self, action: #selector(purpleButtonClicked), for: .touchUpInside)
+        redButton.addTarget(self, action: #selector(redButtonClicked), for: .touchUpInside)
+        greenButton.addTarget(self, action: #selector(greenButtonClicked), for: .touchUpInside)
+
         setHorizontalStackView(colorHorizontalStackView)
         
         warningLabel.text = "포도알 갯수와 포도 종류는 설정하면 변경할 수 없어요!"
@@ -91,6 +95,36 @@ class SetupView: UIView {
         saveButton.layer.cornerRadius = 15
     }
     
+    @objc func purpleButtonClicked() {
+        if redButton.isEnabled == false {
+            redButton.isEnabled = true
+            greenButton.isEnabled = true
+        } else {
+            redButton.isEnabled = false
+            greenButton.isEnabled = false
+        }
+    }
+
+    @objc func redButtonClicked() {
+        if greenButton.isEnabled == false {
+            purpleButton.isEnabled = true
+            greenButton.isEnabled = true
+        } else {
+            purpleButton.isEnabled = false
+            greenButton.isEnabled = false
+        }
+    }
+    
+    @objc func greenButtonClicked() {
+        if purpleButton.isEnabled == false {
+            redButton.isEnabled = true
+            purpleButton.isEnabled = true
+        } else {
+            redButton.isEnabled = false
+            purpleButton.isEnabled = false
+        }
+    }
+
     func setupDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -231,4 +265,12 @@ class SetupView: UIView {
         stackView.spacing = 15
         stackView.distribution = .fillEqually
     }
+    
+    func setButtonImage(_ button: UIButton) {
+        button.setImage(UIImage(named: "grape"), for: .normal)
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        button.setImage(UIImage(named: "grayGrape"), for: .disabled)
+    }
 }
+
