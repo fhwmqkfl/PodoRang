@@ -1,5 +1,5 @@
 //
-//  SetupViewController.swift
+//  AddProjectViewController.swift
 //  PodoRang
 //
 //  Created by coco on 2023/06/05.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class SetupViewController: UIViewController {
+class AddProjectViewController: UIViewController {
     
     override func loadView() {
-        view = SetupView()
+        view = AddProjectView()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

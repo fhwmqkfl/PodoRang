@@ -1,5 +1,5 @@
 //
-//  SetupView.swift
+//  AddProjectView.swift
 //  PodoRang
 //
 //  Created by coco on 2023/06/05.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SetupView: UIView {
+class AddProjectView: UIView {
     let lineView = UIView()
     let goalLabel = UILabel()
     let goalTextField: UITextField = {
@@ -70,7 +70,7 @@ class SetupView: UIView {
         setupDatePicker()
         startDayTextField.inputView = datePicker
         
-        setLabel(selectColorLabel, text: "포도알 갯수")
+        setLabel(weekLabel, text: "포도알 갯수")
         setButton(oneWeekButton, title: "7일")
         setButton(twoWeeksButton, title: "14일")
         setButton(threeWeeksButton, title: "21일")
@@ -102,13 +102,14 @@ class SetupView: UIView {
     func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
         let layout = 47
+        
         lineView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(safeArea)
             $0.height.equalTo(1)
         }
         
         goalLabel.snp.makeConstraints {
-            $0.top.equalTo(lineView.snp.bottom).offset(42)
+            $0.top.greaterThanOrEqualTo(lineView.snp.bottom).offset(40)
             $0.leading.equalTo(safeArea).offset(layout)
             $0.trailing.greaterThanOrEqualTo(safeArea).offset(-120)
         }
@@ -119,7 +120,7 @@ class SetupView: UIView {
         }
         
         startDayLabel.snp.makeConstraints {
-            $0.top.equalTo(goalTextField.snp.bottom).offset(55)
+            $0.top.greaterThanOrEqualTo(goalTextField.snp.bottom).offset(40)
             $0.leading.equalTo(safeArea).offset(layout)
             $0.trailing.greaterThanOrEqualTo(safeArea).offset(-120)
         }
@@ -130,7 +131,7 @@ class SetupView: UIView {
         }
         
         weekLabel.snp.makeConstraints {
-            $0.top.equalTo(startDayTextField.snp.bottom).offset(55)
+            $0.top.greaterThanOrEqualTo(startDayTextField.snp.bottom).offset(40)
             $0.leading.trailing.equalTo(safeArea).inset(layout)
         }
         
@@ -140,12 +141,12 @@ class SetupView: UIView {
         }
         
         selectColorLabel.snp.makeConstraints {
-            $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(55)
+            $0.top.greaterThanOrEqualTo(dayHorizontalStackView.snp.bottom).offset(40)
             $0.leading.trailing.equalTo(safeArea).inset(layout)
         }
         
         purpleButton.snp.makeConstraints {
-            $0.height.equalTo(130)
+            $0.height.greaterThanOrEqualTo(130)
         }
         
         colorHorizontalStackView.snp.makeConstraints {
@@ -154,14 +155,14 @@ class SetupView: UIView {
         }
         
         warningLabel.snp.makeConstraints {
-            $0.top.equalTo(colorHorizontalStackView.snp.bottom).offset(95)
             $0.leading.trailing.equalTo(safeArea).inset(50)
+            $0.bottom.equalTo(saveButton.snp.top).offset(-15)
         }
         
         saveButton.snp.makeConstraints {
-            $0.top.equalTo(warningLabel.snp.bottom).offset(16)
             $0.leading.trailing.equalTo(safeArea).inset(15)
             $0.height.equalTo(50)
+            $0.bottom.greaterThanOrEqualTo(safeArea).offset(-40)
         }
     }
     

@@ -71,7 +71,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
-        let setupVC = SetupViewController()
+        let setupVC = AddProjectViewController()
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
 }
