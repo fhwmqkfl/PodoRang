@@ -7,19 +7,14 @@
 
 import UIKit
 import SnapKit
+import TextFieldEffects
 
 class AddProjectView: UIView {
     let lineView = UIView()
     let goalLabel = UILabel()
-    let goalTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = CustomColor.mainPurple.cgColor
-        textField.layer.cornerRadius = 10
-        return textField
-    }()
+    let goalTextField = IsaoTextField()
     let startDayLabel = UILabel()
-    let startDayTextField = UITextField()
+    let startDayTextField = IsaoTextField()
     let datePicker = UIDatePicker()
     let weekLabel = UILabel()
     let oneWeekButton = UIButton()
@@ -56,18 +51,18 @@ class AddProjectView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
+    
     func setupUI() {
         lineView.backgroundColor = .systemGray5
         
         setLabel(goalLabel, text: "목표")
         setLabel(startDayLabel, text: "시작하는 날을 선택해 주세요")
         
-        startDayTextField.tintColor = .clear
-        startDayTextField.layer.borderWidth = 1
-        startDayTextField.layer.borderColor = UIColor.blue.cgColor
-        startDayTextField.textColor = .black
-        startDayTextField.textAlignment = .center
-        
+        setTextField(goalTextField)
+        setTextField(startDayTextField)
         setupDatePicker()
         startDayTextField.inputView = datePicker
         
@@ -201,6 +196,11 @@ class AddProjectView: UIView {
         button.setImage(UIImage(named: "grayGrape"), for: .disabled)
     }
     
+    func setTextField(_ textField: IsaoTextField) {
+        textField.inactiveColor = CustomColor.lightPurple
+        textField.activeColor = CustomColor.mainPurple
+    }
+    
     func setupDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -274,4 +274,3 @@ class AddProjectView: UIView {
         }
     }
 }
-

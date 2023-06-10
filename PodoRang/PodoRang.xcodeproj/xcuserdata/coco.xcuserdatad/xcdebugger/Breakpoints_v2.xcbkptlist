@@ -112,7 +112,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - 44d5c4a2d206d4c7"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;PodoRang.ViewController&gt;"
@@ -132,7 +132,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E04CC763-DE6D-4FC7-BE32-906A4284CF03"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PodoRang/Sources/Controller/DetailViewController.swift"

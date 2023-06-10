@@ -28,6 +28,7 @@
 		CCBA10D02A2DD28A00456AA9 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CF2A2DD28A00456AA9 /* AddProjectView.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
+		CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */,
+				CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +179,7 @@
 			name = PodoRang;
 			packageProductDependencies = (
 				CC8141A92A2345E400188B72 /* SnapKit */,
+				CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */,
 			);
 			productName = PodoRang;
 			productReference = CC5468A52A1A88560092B04C /* PodoRang.app */;
@@ -208,6 +211,7 @@
 			mainGroup = CC54689C2A1A88560092B04C;
 			packageReferences = (
 				CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = CC5468A62A1A88560092B04C /* Products */;
 			projectDirPath = "";
@@ -478,6 +482,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -485,6 +497,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
