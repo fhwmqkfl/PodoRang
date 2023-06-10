@@ -42,6 +42,7 @@ class AddProjectView: UIView {
     let saveButton = UIButton()
     
     var diaryDate: Date?
+    var buttonArray = [UIButton]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +75,12 @@ class AddProjectView: UIView {
         setButton(oneWeekButton, title: "7일")
         setButton(twoWeeksButton, title: "14일")
         setButton(threeWeeksButton, title: "21일")
+        buttonArray.append(oneWeekButton)
+        buttonArray.append(twoWeeksButton)
+        buttonArray.append(threeWeeksButton)
+        oneWeekButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
+        twoWeeksButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
+        threeWeeksButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
         setHorizontalStackView(dayHorizontalStackView)
         
         setLabel(selectColorLabel, text: "포도 종류")
@@ -209,9 +216,11 @@ class AddProjectView: UIView {
     
     @objc func purpleButtonClicked() {
         if redButton.isEnabled == false {
+            purpleButton.isSelected = false
             redButton.isEnabled = true
             greenButton.isEnabled = true
         } else {
+            purpleButton.isSelected = true
             redButton.isEnabled = false
             greenButton.isEnabled = false
         }
@@ -219,9 +228,11 @@ class AddProjectView: UIView {
 
     @objc func redButtonClicked() {
         if greenButton.isEnabled == false {
+            redButton.isSelected = false
             purpleButton.isEnabled = true
             greenButton.isEnabled = true
         } else {
+            redButton.isSelected = true
             purpleButton.isEnabled = false
             greenButton.isEnabled = false
         }
@@ -229,9 +240,11 @@ class AddProjectView: UIView {
     
     @objc func greenButtonClicked() {
         if purpleButton.isEnabled == false {
+            greenButton.isSelected = false
             redButton.isEnabled = true
             purpleButton.isEnabled = true
         } else {
+            greenButton.isSelected = true
             redButton.isEnabled = false
             purpleButton.isEnabled = false
         }
@@ -247,6 +260,18 @@ class AddProjectView: UIView {
     
     @objc func donePressed() {
         startDayTextField.resignFirstResponder()
+    }
+    
+    @objc func weekButtonClicked(_ sender: UIButton) {
+        for button in buttonArray {
+            if button == sender {
+                button.isSelected = true
+                button.backgroundColor = CustomColor.lightPurple
+            } else {
+                button.isSelected = false
+                button.backgroundColor = .white
+            }
+        }
     }
 }
 
