@@ -101,7 +101,7 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         dismiss(animated: true)
         
         let itemProvider = results.first?.itemProvider
-
+        
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {

@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-    
+        
         setUI()
         projectManager.setupData()
     }
@@ -73,7 +73,7 @@ class MainViewController: UIViewController {
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         // 랜덤하게 값 추가하게 처리
         let random = Int.random(in: 0...1)
-
+        
         if random == 0 {
             let newProject = Project(title: "newproject-progress")
             projectManager.add(newProject)
@@ -102,11 +102,9 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
-        
         cell.ddayLabel.layer.isHidden = isFinished()
         cell.titleLabel.text = "test {\(indexPath.row)}"
         cell.selectionStyle = .none
-        
         return cell
     }
 }
