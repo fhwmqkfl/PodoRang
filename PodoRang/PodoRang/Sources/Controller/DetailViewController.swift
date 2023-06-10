@@ -8,14 +8,15 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    let detailView = DetailView()
     let projectManager = ProjectManager.shared
     var index: Int?
     var isFinished: Bool = false
     
     override func loadView() {
-        view = DetailView()
+        view = detailView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,12 +29,10 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitleColor
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitleColor]
-
+        
         view.backgroundColor = .white
         
         guard let index else { return }
-        
         title = projectManager.fetch(isfinished: isFinished)[index].title
     }
-
 }

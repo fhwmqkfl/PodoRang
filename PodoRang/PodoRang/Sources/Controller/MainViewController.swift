@@ -25,21 +25,15 @@ class MainViewController: UIViewController {
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-    
-        setUI()
-        getUserData()
-        projectManager.setupData()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(RefreshViewController), name: NSNotification.Name("UpdateUserInfo"), object: nil)
-    }
-    
-    @objc func RefreshViewController() {
-        getUserData()
+        setUI()
+        projectManager.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getUserData()
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -79,7 +73,7 @@ class MainViewController: UIViewController {
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         // 랜덤하게 값 추가하게 처리
         let random = Int.random(in: 0...1)
-
+        
         if random == 0 {
             let newProject = Project(title: "newproject-progress")
             projectManager.add(newProject)
@@ -90,10 +84,6 @@ class MainViewController: UIViewController {
         
         mainTableView.reloadData()
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-       }
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -101,7 +91,6 @@ extension MainViewController: UITableViewDelegate {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
         detailVC.isFinished = isFinished()
-        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -113,11 +102,9 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
-        
         cell.ddayLabel.layer.isHidden = isFinished()
         cell.titleLabel.text = "test {\(indexPath.row)}"
         cell.selectionStyle = .none
-        
         return cell
     }
 }
