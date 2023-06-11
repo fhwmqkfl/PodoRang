@@ -38,16 +38,17 @@ class ProfileViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        profileImageView.backgroundColor = CustomColor.mainPurpleColor
+        profileImageView.layer.borderColor = CustomColor.mainPurple.cgColor
+        profileImageView.backgroundColor = CustomColor.mainPurple
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
         nameTextField.layer.borderWidth = 1
-        nameTextField.layer.borderColor = CustomColor.mainPurpleColor.cgColor
+        nameTextField.layer.borderColor = CustomColor.mainPurple.cgColor
         nameTextField.layer.cornerRadius = 10
         
-        saveButton.backgroundColor = CustomColor.mainPurpleColor
+        saveButton.setTitle("SAVE", for: .normal)
+        saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
     }

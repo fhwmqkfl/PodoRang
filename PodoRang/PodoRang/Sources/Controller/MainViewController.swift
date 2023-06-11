@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         case finish
     }
     
-    let projectManager = ProjectManager.shared
+    let goalManager = GoalManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,8 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
         
         setUI()
-        projectManager.setupData()
+        getUserData()
+        goalManager.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,14 +36,15 @@ class MainViewController: UIViewController {
         
         getUserData()
         tabBarController?.tabBar.isHidden = false
+        mainTableView.reloadData()
     }
     
     func setUI() {
         mainLabel.font = .boldSystemFont(ofSize: 20)
         mainImageView.layer.cornerRadius = mainImageView.frame.width / 2
         mainImageView.layer.borderWidth = 1
-        mainImageView.layer.borderColor = CustomColor.mainPurpleColor.cgColor
-        mainImageView.backgroundColor = CustomColor.mainPurpleColor
+        mainImageView.layer.borderColor = CustomColor.mainPurple.cgColor
+        mainImageView.backgroundColor = CustomColor.mainPurple
         mainImageView.contentMode = .scaleAspectFill
         mainImageView.clipsToBounds = true
     }
@@ -71,18 +73,8 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
-        // 랜덤하게 값 추가하게 처리
-        let random = Int.random(in: 0...1)
-        
-        if random == 0 {
-            let newProject = Project(title: "newproject-progress")
-            projectManager.add(newProject)
-        } else {
-            let finishedProject = Project(title: "newproject-finished", isFinished: true)
-            projectManager.add(finishedProject)
-        }
-        
-        mainTableView.reloadData()
+        let setupVC = AddGoalViewController()
+        self.navigationController?.pushViewController(setupVC, animated: true)
     }
 }
 
@@ -97,7 +89,7 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectManager.fetch(isfinished: isFinished()).count
+        return goalManager.fetch(isfinished: isFinished()).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

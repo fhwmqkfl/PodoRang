@@ -8,8 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    let detailView = DetailView()
-    let projectManager = ProjectManager.shared
+    let goalManager = GoalManager.shared
     var index: Int?
     var isFinished: Bool = false
     
@@ -27,12 +26,12 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = CustomColor.navigationTitleColor
-        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitleColor]
-        
+        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
+
         view.backgroundColor = .white
         
         guard let index else { return }
-        title = projectManager.fetch(isfinished: isFinished)[index].title
+        title = goalManager.fetch(isfinished: isFinished)[index].title
     }
 }

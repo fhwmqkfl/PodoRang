@@ -112,7 +112,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - 44d5c4a2d206d4c7"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;PodoRang.ViewController&gt;"
@@ -132,14 +132,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E04CC763-DE6D-4FC7-BE32-906A4284CF03"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PodoRang/Sources/Controller/DetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -163,16 +163,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FE441888-35BF-4921-B879-8BCA220E8D5F"
+            uuid = "EC650BDB-7C13-44B0-A9E0-237140D72FC9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PodoRang/Sources/Controller/ProfileViewController.swift"
+            filePath = "PodoRang/Sources/View/SetupView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "picker(_:didFinishPicking:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "setupConstraints()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

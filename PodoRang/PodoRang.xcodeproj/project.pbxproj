@@ -20,11 +20,18 @@
 		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
 		CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B02A23B4AA00188B72 /* SettingViewController.swift */; };
 		CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */; };
+		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
+		CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
-		CCB582842A22606B00B5924A /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* Project.swift */; };
-		CCB582882A2327BA00B5924A /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* ProjectManager.swift */; };
+		CCB582842A22606B00B5924A /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* Goal.swift */; };
+		CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* GoalManager.swift */; };
+		CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */; };
+		CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
+		CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */; };
+		CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85802A359E05001FD6C7 /* Date+.swift */; };
+		CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85822A359E1D001FD6C7 /* String+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,11 +49,17 @@
 		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8141B02A23B4AA00188B72 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
-		CCB582832A22606B00B5924A /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		CCB582872A2327BA00B5924A /* ProjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
+		CCB582832A22606B00B5924A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		CCB582872A2327BA00B5924A /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
+		CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		CCFE85802A359E05001FD6C7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		CCFE85822A359E1D001FD6C7 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */,
+				CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +105,7 @@
 			children = (
 				CC5468A82A1A88560092B04C /* AppDelegate.swift */,
 				CC5468AA2A1A88560092B04C /* SceneDelegate.swift */,
-				CCB582872A2327BA00B5924A /* ProjectManager.swift */,
+				CCB582872A2327BA00B5924A /* GoalManager.swift */,
 				CCBFC26E2A1FB5EF0022FEAD /* Extensions */,
 				CCBFC26D2A1FB5AF0022FEAD /* Model */,
 				CCBFC26C2A1FB59D0022FEAD /* View */,
@@ -117,7 +131,7 @@
 				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
 				CC5468AC2A1A88560092B04C /* MainViewController.swift */,
 				CC8141B02A23B4AA00188B72 /* SettingViewController.swift */,
-				CC8141A42A23457300188B72 /* DetailViewController.swift */,
+				CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -128,7 +142,7 @@
 				CC8141AB2A23A0D000188B72 /* DetailView.swift */,
 				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
 				CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */,
-				CC39F6152A2A3CC00064630C /* AlarmTableViewCell.swift */,
+				CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
-				CCB582832A22606B00B5924A /* Project.swift */,
+				CCB582832A22606B00B5924A /* Goal.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */,
+				CC87DBB42A337AC4002D90B6 /* UIView+.swift */,
+				CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */,
+				CCFE85802A359E05001FD6C7 /* Date+.swift */,
+				CCFE85822A359E1D001FD6C7 /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -168,6 +186,7 @@
 			name = PodoRang;
 			packageProductDependencies = (
 				CC8141A92A2345E400188B72 /* SnapKit */,
+				CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */,
 			);
 			productName = PodoRang;
 			productReference = CC5468A52A1A88560092B04C /* PodoRang.app */;
@@ -199,6 +218,7 @@
 			mainGroup = CC54689C2A1A88560092B04C;
 			packageReferences = (
 				CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 			);
 			productRefGroup = CC5468A62A1A88560092B04C /* Products */;
 			projectDirPath = "";
@@ -231,15 +251,21 @@
 				CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */,
 				CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */,
 				CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */,
-				CCB582882A2327BA00B5924A /* ProjectManager.swift in Sources */,
+				CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */,
+				CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
+				CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
-				CCB582842A22606B00B5924A /* Project.swift in Sources */,
+				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
+				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
 				CC39F6162A2A3CC00064630C /* AlarmTableViewCell.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
+				CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
+				CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */,
+				CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */,
 				CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +492,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raulriera/TextFieldEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -473,6 +507,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
+			productName = TextFieldEffects;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
