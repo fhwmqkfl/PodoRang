@@ -24,7 +24,7 @@
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
 		CCB582842A22606B00B5924A /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* Goal.swift */; };
 		CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* GoalManager.swift */; };
-		CCBA10CE2A2DD25700456AA9 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CD2A2DD25700456AA9 /* AddProjectViewController.swift */; };
+		CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */; };
 		CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
@@ -52,7 +52,7 @@
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		CCB582832A22606B00B5924A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		CCB582872A2327BA00B5924A /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
-		CCBA10CD2A2DD25700456AA9 /* AddProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
+		CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */,
 				CC5468AC2A1A88560092B04C /* MainViewController.swift */,
 				CC8141B02A23B4AA00188B72 /* SettingViewController.swift */,
-				CCBA10CD2A2DD25700456AA9 /* AddProjectViewController.swift */,
+				CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 				CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */,
 				CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
-				CCBA10CE2A2DD25700456AA9 /* AddProjectViewController.swift in Sources */,
+				CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
