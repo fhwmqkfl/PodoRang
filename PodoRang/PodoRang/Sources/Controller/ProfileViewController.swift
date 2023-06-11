@@ -14,6 +14,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
+    enum Status: String {
+        case create = "프로필 등록"
+        case modify = "프로필 수정"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +27,13 @@ class ProfileViewController: UIViewController {
     }
     
     func setupUI() {
+        if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
+            nameTextField.text = userName
+            loadImage(UIImage: userImage)
+            mainLabel.text = Status.modify.rawValue
+            saveButton.setTitle("MODIFTY", for: .normal)
+        }
+        
         mainLabel.font = .boldSystemFont(ofSize: 20)
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
@@ -41,13 +53,19 @@ class ProfileViewController: UIViewController {
         saveButton.setTitleColor(.white, for: .normal)
     }
     
+    func loadImage(UIImage value: Data) {
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
+        let image = UIImage(data: decoded)
+        profileImageView.image = image
+    }
+    
     func setupImageView() {
-        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(test))
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePickerPage))
         profileImageView.addGestureRecognizer(tabGesture)
         profileImageView.isUserInteractionEnabled = true
     }
     
-    @objc func test() {
+    @objc func showImagePickerPage() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
         
@@ -60,10 +78,13 @@ class ProfileViewController: UIViewController {
         if let userimage = profileImageView.image, nameTextField.text != "" {
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userimage, forKey:"userImage")
-            
-            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }
-            mainVC.modalPresentationStyle = .fullScreen
-            present(mainVC, animated: true)
+            if mainLabel.text == Status.modify.rawValue {
+                dismiss(animated: true)
+            } else {
+                guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }
+                mainVC.modalPresentationStyle = .fullScreen
+                present(mainVC, animated: true)
+            }
         } else {
             print("유저명과 이미지를 다시한번 확인해주세요")
         }
@@ -81,7 +102,7 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         dismiss(animated: true)
         
         let itemProvider = results.first?.itemProvider
-
+        
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {

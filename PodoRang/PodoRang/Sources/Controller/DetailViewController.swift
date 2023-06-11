@@ -13,9 +13,9 @@ class DetailViewController: UIViewController {
     var isFinished: Bool = false
     
     override func loadView() {
-        view = DetailView()
+        view = detailView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,5 +34,4 @@ class DetailViewController: UIViewController {
         guard let index else { return }
         title = goalManager.fetch(isfinished: isFinished)[index].title
     }
-
 }

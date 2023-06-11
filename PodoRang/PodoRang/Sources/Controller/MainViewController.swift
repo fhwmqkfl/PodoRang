@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-    
+        
         setUI()
         getUserData()
         goalManager.setupData()
@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getUserData()
         tabBarController?.tabBar.isHidden = false
         mainTableView.reloadData()
     }
@@ -82,7 +83,6 @@ extension MainViewController: UITableViewDelegate {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
         detailVC.isFinished = isFinished()
-        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
@@ -94,11 +94,9 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
-        
         cell.ddayLabel.layer.isHidden = isFinished()
         cell.titleLabel.text = "test {\(indexPath.row)}"
         cell.selectionStyle = .none
-        
         return cell
     }
 }
