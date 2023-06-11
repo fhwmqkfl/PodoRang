@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    let projectManager = ProjectManager.shared
+    let goalManager = GoalManager.shared
     var index: Int?
     var isFinished: Bool = false
     
@@ -32,8 +32,7 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         guard let index else { return }
-        
-        title = projectManager.fetch(isfinished: isFinished)[index].title
+        title = goalManager.fetch(isfinished: isFinished)[index].title
     }
 
 }

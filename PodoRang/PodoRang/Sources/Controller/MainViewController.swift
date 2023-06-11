@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
         case finish
     }
     
-    let projectManager = ProjectManager.shared
+    let goalManager = GoalManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +28,14 @@ class MainViewController: UIViewController {
     
         setUI()
         getUserData()
-        projectManager.setupData()
+        goalManager.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        mainTableView.reloadData()
     }
     
     func setUI() {
@@ -88,7 +89,7 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return projectManager.fetch(isfinished: isFinished()).count
+        return goalManager.fetch(isfinished: isFinished()).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
