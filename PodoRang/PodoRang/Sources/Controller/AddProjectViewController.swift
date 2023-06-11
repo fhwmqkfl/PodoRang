@@ -8,7 +8,7 @@
 import UIKit
 
 class AddProjectViewController: UIViewController {
-    let addProjectView = AddProjectView()
+    let addProjectView = AddGoalView()
     let goalManager = GoalManager.shared
     
     override func loadView() {

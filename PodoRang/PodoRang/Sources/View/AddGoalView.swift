@@ -1,5 +1,5 @@
 //
-//  AddProjectView.swift
+//  AddGoalView.swift
 //  PodoRang
 //
 //  Created by coco on 2023/06/05.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import TextFieldEffects
 
-class AddProjectView: UIView {
+class AddGoalView: UIView {
     let lineView = UIView()
     let goalLabel = UILabel()
     let goalTextField = IsaoTextField()
