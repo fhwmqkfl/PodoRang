@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     let goalManager = GoalManager.shared
+    let detailView = DetailView()
     var index: Int?
     var isFinished: Bool = false
     

@@ -305,8 +305,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="alarmSwitch" destination="J88-56-aYe" id="M9C-Go-dhq"/>
-                                            <outlet property="titleLabel" destination="LbK-if-J0F" id="Hg1-w3-Pho"/>
+                                            <outlet property="alarmSwitch" destination="J88-56-aYe" id="fkP-6j-vwu"/>
+                                            <outlet property="titleLabel" destination="LbK-if-J0F" id="3T8-f7-BJN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

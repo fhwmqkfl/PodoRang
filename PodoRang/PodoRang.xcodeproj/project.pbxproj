@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */; };
-		CC39F6162A2A3CC00064630C /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC39F6152A2A3CC00064630C /* AlarmTableViewCell.swift */; };
 		CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468A82A1A88560092B04C /* AppDelegate.swift */; };
 		CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AA2A1A88560092B04C /* SceneDelegate.swift */; };
 		CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AC2A1A88560092B04C /* MainViewController.swift */; };
 		CC5468B02A1A88560092B04C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468AE2A1A88560092B04C /* Main.storyboard */; };
 		CC5468B22A1A88570092B04C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B12A1A88570092B04C /* Assets.xcassets */; };
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
-		CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141A42A23457300188B72 /* DetailViewController.swift */; };
 		CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC8141A92A2345E400188B72 /* SnapKit */; };
 		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
 		CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B02A23B4AA00188B72 /* SettingViewController.swift */; };
@@ -29,6 +27,8 @@
 		CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */; };
 		CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */; };
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
+		CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */; };
+		CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC625602A38A8A8003E37ED /* DetailViewController.swift */; };
 		CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */; };
 		CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85802A359E05001FD6C7 /* Date+.swift */; };
 		CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85822A359E1D001FD6C7 /* String+.swift */; };
@@ -36,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		CC39F6152A2A3CC00064630C /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		CC5468A52A1A88560092B04C /* PodoRang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodoRang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5468A82A1A88560092B04C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC5468AA2A1A88560092B04C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 		CC5468B12A1A88570092B04C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC8141A42A23457300188B72 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8141B02A23B4AA00188B72 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +56,8 @@
 		CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		CCBFC26F2A1FB6040022FEAD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
+		CCC625602A38A8A8003E37ED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CCFE85802A359E05001FD6C7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		CCFE85822A359E1D001FD6C7 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +132,7 @@
 				CC5468AC2A1A88560092B04C /* MainViewController.swift */,
 				CC8141B02A23B4AA00188B72 /* SettingViewController.swift */,
 				CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */,
+				CCC625602A38A8A8003E37ED /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -143,6 +144,7 @@
 				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
 				CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */,
 				CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */,
+				CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,7 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC8141A52A23457300188B72 /* DetailViewController.swift in Sources */,
 				CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */,
 				CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */,
 				CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */,
@@ -255,14 +256,15 @@
 				CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */,
 				CCBFC2702A1FB6040022FEAD /* UIColor+.swift in Sources */,
 				CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */,
+				CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
 				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
-				CC39F6162A2A3CC00064630C /* AlarmTableViewCell.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
 				CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */,
+				CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */,
 				CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */,

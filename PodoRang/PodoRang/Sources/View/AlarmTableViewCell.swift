@@ -1,5 +1,5 @@
 //
-//  CustomTableViewCell.swift
+//  AlarmTableViewCell.swift
 //  PodoRang
 //
 //  Created by coco on 2023/06/03.
