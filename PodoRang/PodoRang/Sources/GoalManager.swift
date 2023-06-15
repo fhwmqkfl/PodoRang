@@ -17,12 +17,12 @@ final class GoalManager {
     
     func setupData() {
         goalList = [
-            Goal(title: "progrss-first"),
-            Goal(title: "progrss-second"),
-            Goal(title: "progrss-third"),
-            Goal(title: "progrss-fourth"),
-            Goal(title: "finished-first", isFinished: true),
-            Goal(title: "finished-second", isFinished: true)
+            Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true),
+            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true)
         ]
     }
     

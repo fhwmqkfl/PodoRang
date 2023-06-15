@@ -10,6 +10,12 @@ import SnapKit
 import TextFieldEffects
 
 class AddGoalView: UIView {
+    let contentScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    let contentView = UIView()
     let lineView = UIView()
     let goalLabel = UILabel()
     let goalTextField = IsaoTextField()
@@ -21,6 +27,13 @@ class AddGoalView: UIView {
     let twoWeeksButton = UIButton()
     let threeWeeksButton = UIButton()
     let dayHorizontalStackView = UIStackView()
+    let alartLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = CustomColor.warningRed
+        label.font = .boldSystemFont(ofSize: 14)
+        label.textAlignment = .center
+        return label
+    }()
     let selectColorLabel = UILabel()
     let purpleButton = UIButton()
     let redButton = UIButton()
@@ -38,9 +51,12 @@ class AddGoalView: UIView {
     
     var diaryDate: Date?
     var buttonArray = [UIButton]()
+    var grapeTypeArray = [UIButton]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        goalTextField.delegate = self
         
         setupUI()
         addSubviews()
@@ -49,10 +65,6 @@ class AddGoalView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.endEditing(true)
     }
     
     func setupUI() {
@@ -67,9 +79,9 @@ class AddGoalView: UIView {
         startDayTextField.inputView = datePicker
         
         setLabel(weekLabel, text: "포도알 갯수")
-        setButton(oneWeekButton, title: "7일")
-        setButton(twoWeeksButton, title: "14일")
-        setButton(threeWeeksButton, title: "21일")
+        setButton(oneWeekButton, title: "7일", tag: 7)
+        setButton(twoWeeksButton, title: "14일", tag: 14)
+        setButton(threeWeeksButton, title: "21일", tag: 21)
         buttonArray.append(oneWeekButton)
         buttonArray.append(twoWeeksButton)
         buttonArray.append(threeWeeksButton)
@@ -79,9 +91,12 @@ class AddGoalView: UIView {
         setHorizontalStackView(dayHorizontalStackView)
         
         setLabel(selectColorLabel, text: "포도 종류")
-        setButtonImage(purpleButton)
-        setButtonImage(redButton)
-        setButtonImage(greenButton)
+        setButtonImage(purpleButton, tag: 0)
+        setButtonImage(redButton, tag: 1)
+        setButtonImage(greenButton, tag: 2)
+        grapeTypeArray.append(purpleButton)
+        grapeTypeArray.append(redButton)
+        grapeTypeArray.append(greenButton)
         purpleButton.addTarget(self, action: #selector(purpleButtonClicked), for: .touchUpInside)
         redButton.addTarget(self, action: #selector(redButtonClicked), for: .touchUpInside)
         greenButton.addTarget(self, action: #selector(greenButtonClicked), for: .touchUpInside)
@@ -93,94 +108,115 @@ class AddGoalView: UIView {
         saveButton.layer.borderColor = CustomColor.mainPurple.cgColor
         saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 15
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
+        recognizer.numberOfTapsRequired = 1
+        recognizer.numberOfTouchesRequired = 1
+        contentScrollView.addGestureRecognizer(recognizer)
     }
     
     func addSubviews() {
-        self.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, colorHorizontalStackView, warningLabel, saveButton])
+        addSubview(contentScrollView)
+        contentScrollView.addSubview(contentView)
+        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, alartLabel, colorHorizontalStackView, warningLabel, saveButton])
         dayHorizontalStackView.addArragnedSubViews([oneWeekButton, twoWeeksButton, threeWeeksButton])
         colorHorizontalStackView.addArragnedSubViews([purpleButton, redButton, greenButton])
     }
     
     func setupConstraints() {
-        let safeArea = self.safeAreaLayoutGuide
-        let layout = 47
+        let contentViewArea = contentView.safeAreaLayoutGuide
+        let layout = 40
+        
+        contentScrollView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(contentScrollView.contentLayoutGuide)
+            $0.width.equalTo(contentScrollView.frameLayoutGuide)
+        }
         
         lineView.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(safeArea)
+            $0.top.leading.trailing.equalTo(contentViewArea)
             $0.height.equalTo(1)
         }
         
         goalLabel.snp.makeConstraints {
             $0.top.greaterThanOrEqualTo(lineView.snp.bottom).offset(40)
-            $0.leading.equalTo(safeArea).offset(layout)
-            $0.trailing.greaterThanOrEqualTo(safeArea).offset(-120)
+            $0.leading.equalTo(contentViewArea).offset(layout)
         }
         
         goalTextField.snp.makeConstraints {
             $0.top.equalTo(goalLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(safeArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         startDayLabel.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(goalTextField.snp.bottom).offset(40)
-            $0.leading.equalTo(safeArea).offset(layout)
-            $0.trailing.greaterThanOrEqualTo(safeArea).offset(-120)
+            $0.top.equalTo(goalTextField.snp.bottom).offset(40)
+            $0.leading.equalTo(contentViewArea).offset(layout)
         }
         
         startDayTextField.snp.makeConstraints {
             $0.top.equalTo(startDayLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(safeArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         weekLabel.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(startDayTextField.snp.bottom).offset(40)
-            $0.leading.trailing.equalTo(safeArea).inset(layout)
+            $0.top.equalTo(startDayTextField.snp.bottom).offset(40)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         dayHorizontalStackView.snp.makeConstraints {
             $0.top.equalTo(weekLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(safeArea).inset(30)
+            $0.leading.trailing.equalTo(contentViewArea).inset(30)
+        }
+        
+        alartLabel.snp.makeConstraints {
+            $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(15)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         selectColorLabel.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(dayHorizontalStackView.snp.bottom).offset(40)
-            $0.leading.trailing.equalTo(safeArea).inset(layout)
+            $0.top.equalTo(alartLabel.snp.bottom).offset(30)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         purpleButton.snp.makeConstraints {
-            $0.height.greaterThanOrEqualTo(130)
+            $0.height.equalTo(purpleButton.snp.width).multipliedBy(1.3)
         }
         
         colorHorizontalStackView.snp.makeConstraints {
             $0.top.equalTo(selectColorLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(safeArea).inset(30)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         warningLabel.snp.makeConstraints {
-            $0.leading.trailing.equalTo(safeArea).inset(50)
-            $0.bottom.equalTo(saveButton.snp.top).offset(-15)
+            $0.top.equalTo(colorHorizontalStackView.snp.bottom).offset(90)
+            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
         }
         
         saveButton.snp.makeConstraints {
-            $0.leading.trailing.equalTo(safeArea).inset(15)
+            $0.top.equalTo(warningLabel.snp.bottom).offset(15)
+            $0.leading.trailing.equalTo(contentViewArea).inset(25)
             $0.height.equalTo(50)
-            $0.bottom.greaterThanOrEqualTo(safeArea).offset(-40)
+            $0.bottom.equalToSuperview().offset(-10)
         }
     }
     
     func setLabel(_ label: UILabel, text: String) {
         label.text = text
-        label.font = .boldSystemFont(ofSize: 12)
+        label.font = .boldSystemFont(ofSize: 16)
         label.textColor = CustomColor.textPurple
     }
     
-    func setButton(_ button: UIButton, title: String) {
+    func setButton(_ button: UIButton, title: String, tag: Int) {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.layer.borderColor = CustomColor.mainPurple.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 13
+        button.tag = tag
     }
     
     func setHorizontalStackView(_ stackView: UIStackView) {
@@ -189,16 +225,18 @@ class AddGoalView: UIView {
         stackView.distribution = .fillEqually
     }
     
-    func setButtonImage(_ button: UIButton) {
+    func setButtonImage(_ button: UIButton, tag: Int) {
         button.setImage(UIImage(named: "grape"), for: .normal)
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         button.setImage(UIImage(named: "grayGrape"), for: .disabled)
+        button.tag = tag
     }
     
     func setTextField(_ textField: IsaoTextField) {
         textField.inactiveColor = CustomColor.lightPurple
         textField.activeColor = CustomColor.mainPurple
+        textField.font = .systemFont(ofSize: 16)
     }
     
     func setupDatePicker() {
@@ -225,7 +263,7 @@ class AddGoalView: UIView {
             greenButton.isEnabled = false
         }
     }
-
+    
     @objc func redButtonClicked() {
         if greenButton.isEnabled == false {
             redButton.isSelected = false
@@ -262,6 +300,10 @@ class AddGoalView: UIView {
         startDayTextField.resignFirstResponder()
     }
     
+    @objc func touch() {
+        self.contentView.endEditing(true)
+    }
+    
     @objc func weekButtonClicked(_ sender: UIButton) {
         for button in buttonArray {
             if button == sender {
@@ -274,3 +316,11 @@ class AddGoalView: UIView {
         }
     }
 }
+
+extension AddGoalView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
