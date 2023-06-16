@@ -8,7 +8,7 @@
 import Foundation
 
 enum Grape: Int, CaseIterable {
-    case purple
+    case purple = 0
     case red
     case green
 }
