@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
     let detailView = DetailView()
     var index: Int?
     var isFinished: Int?
+    var selectedGoal: (goal: Goal, index: Int)?
     
     override func loadView() {
         view = detailView
@@ -19,40 +20,16 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        findGoal()
         setupUI()
         setupImageGesture()
     }
     
-    func setupUI() {
-        tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
-        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
-        view.backgroundColor = .white
-        
+    /// find the Goal from the goalList
+    func findGoal() {
         guard let index = index, let isFinished = isFinished else { return }
         
-        if isFinished == 0 {
-            let goal = GoalManager.shared.fetchInprogress()[index]
-            self.title = goal.title
-        } else {
-            let goal = GoalManager.shared.fetchFinished()[index]
-            self.title = goal.title
-        }
-    }
-    
-    func setupImageGesture() {
-        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(tapGrapeImage))
-        detailView.mainImageView.addGestureRecognizer(tabGesture)
-        detailView.mainImageView.isUserInteractionEnabled = true
-    }
-    
-    @objc func tapGrapeImage() {
-        let date = Date()
         var goal: Goal
-        
-        guard let index = index, let isFinished = isFinished else { return }
-        
         if isFinished == 0 {
             goal = GoalManager.shared.fetchInprogress()[index]
         } else {
@@ -70,7 +47,30 @@ class DetailViewController: UIViewController {
                 break
             }
         }
+        selectedGoal = (goalList[goalListIndex], goalListIndex)
+    }
+    
+    func setupUI() {
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
+        view.backgroundColor = .white
         
-        GoalManager.shared.goalList[goalListIndex].checkDays.append(date)
+        guard let selectedGoal = selectedGoal else { return }
+        title = selectedGoal.goal.title
+    }
+    
+    func setupImageGesture() {
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(tapGrapeImage))
+        detailView.mainImageView.addGestureRecognizer(tabGesture)
+        detailView.mainImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc func tapGrapeImage() {
+        guard let selectedGoal = selectedGoal else { return }
+        let date = Date()
+        GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
+        print(GoalManager.shared.goalList[selectedGoal.index].checkDays)
     }
 }
