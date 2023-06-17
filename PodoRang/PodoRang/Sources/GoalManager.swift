@@ -13,7 +13,7 @@ final class GoalManager {
     
     private init() {}
     
-    private var goalList: [Goal] = []
+    var goalList: [Goal] = []
     
     func setupData() {
         goalList = [
