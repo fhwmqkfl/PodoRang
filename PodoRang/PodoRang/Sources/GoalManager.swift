@@ -21,13 +21,17 @@ final class GoalManager {
             Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true),
-            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true)
-        ]
+            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
+            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
+        ].sorted(by: { $0.startDate < $1.startDate })
     }
     
-    func fetch(isfinished: Bool) -> [Goal] {
-        return goalList.filter { $0.isFinished == isfinished }
+    func fetchInprogress() -> [Goal] {
+        return goalList.filter{$0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
+    }
+    
+    func fetchFinished() -> [Goal] {
+        return goalList.filter{$0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func add(_ goal: Goal) {

@@ -13,12 +13,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var statusSementedControl: UISegmentedControl!
     
-    enum SegmentIndex: Int {
-        case inProgress
-        case finish
-    }
-    
-    let goalManager = GoalManager.shared
+    var inProgressList: [Goal] = []
+    var finishedList: [Goal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +24,8 @@ class MainViewController: UIViewController {
         
         setUI()
         getUserData()
-        goalManager.setupData()
+        GoalManager.shared.setupData()
+        refreshGoalLists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,14 +55,15 @@ class MainViewController: UIViewController {
         }
     }
     
+    func refreshGoalLists() {
+        finishedList = GoalManager.shared.fetchFinished()
+        inProgressList = GoalManager.shared.fetchInprogress()
+    }
+    
     func loadImage(UIImage value: Data) {
         let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
         let image = UIImage(data: decoded)
         mainImageView.image = image
-    }
-    
-    func isFinished() -> Bool {
-        return statusSementedControl.selectedSegmentIndex == SegmentIndex.finish.rawValue
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
@@ -82,21 +80,34 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.index = indexPath.row
-        detailVC.isFinished = isFinished()
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goalManager.fetch(isfinished: isFinished()).count
+        if statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue {
+            return inProgressList.count
+        } else {
+            return finishedList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
-        cell.ddayLabel.layer.isHidden = isFinished()
-        cell.titleLabel.text = "test {\(indexPath.row)}"
+        let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
+        var goal: Goal
+
+        if isFinished {
+            goal = finishedList[indexPath.row]
+        } else {
+            goal = inProgressList[indexPath.row]
+        }
+        
+        cell.titleLabel.text = goal.title
+        cell.ddayLabel.isHidden = isFinished
         cell.selectionStyle = .none
+        
         return cell
     }
 }

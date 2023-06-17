@@ -33,6 +33,6 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         guard let index else { return }
-        title = goalManager.fetch(isfinished: isFinished)[index].title
+//        title = goalManager.fetch(isfinished: isFinished)[index].title
     }
 }
