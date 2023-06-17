@@ -8,10 +8,9 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    let goalManager = GoalManager.shared
     let detailView = DetailView()
     var index: Int?
-    var isFinished: Bool = false
+    var isFinished: Int?
     
     override func loadView() {
         view = detailView
@@ -32,7 +31,15 @@ class DetailViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        guard let index else { return }
-//        title = goalManager.fetch(isfinished: isFinished)[index].title
+        guard let index = index, let isFinished = isFinished else { return }
+        if isFinished == 0 {
+            let goal = GoalManager.shared.fetchInprogress()[index]
+            self.title = goal.title
+        } else {
+            let goal = GoalManager.shared.fetchFinished()[index]
+            self.title = goal.title
+
+        }
+        
     }
 }

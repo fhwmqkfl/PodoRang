@@ -78,7 +78,9 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 진행/완료 여부 & 그 안에서 몇번째인지 인덱스 정보
         let detailVC = DetailViewController()
+        detailVC.isFinished = statusSementedControl.selectedSegmentIndex
         detailVC.index = indexPath.row
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
