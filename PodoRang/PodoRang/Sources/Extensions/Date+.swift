@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     func toString() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY/MM/dd"
+        formatter.dateFormat = "YYYY/MM/dd(E) HH:mm"
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         

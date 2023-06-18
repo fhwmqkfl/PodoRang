@@ -37,7 +37,7 @@
             <Locations>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - f856d1cd708219d0"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.segmentButton.getter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
@@ -52,7 +52,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - aea04a21be8c31dc"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.segmentButton.setter : Swift.Optional&lt;__C.UISegmentedControl&gt;"
@@ -67,7 +67,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - f18827e692893cf"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.segmentButton.modify : Swift.Optional&lt;__C.UISegmentedControl&gt;"
@@ -82,7 +82,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - 934ffa579d00a826"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.segmentButton.modify : Swift.Optional&lt;__C.UISegmentedControl&gt; with unmangled suffix &quot;.resume.0&quot;"
@@ -97,7 +97,7 @@
                </Location>
                <Location
                   uuid = "ABA7FFF4-76A1-4DFA-8F05-C0FCECDB10F8 - a693cf56709339d1"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "PodoRang.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; PodoRang.ViewController"
@@ -126,54 +126,6 @@
                   offsetFromSymbolStart = "232">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E04CC763-DE6D-4FC7-BE32-906A4284CF03"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PodoRang/Sources/Controller/DetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "setupUI()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CFC78252-A97A-4B54-979F-6793297C7903"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PodoRang/Sources/Model/DataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "ProjectManager"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EC650BDB-7C13-44B0-A9E0-237140D72FC9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PodoRang/Sources/View/SetupView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "setupConstraints()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

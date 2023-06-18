@@ -21,6 +21,9 @@ class DetailView: UIView {
         tableView.backgroundColor = CustomColor.lightPurple
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 10
+        tableView.separatorColor = .white
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.register(DaysTableViewCell.self, forCellReuseIdentifier: DaysTableViewCell.identifier)
         return tableView
     }()
     

@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        detailView.detailTableView.delegate = self
+        detailView.detailTableView.dataSource = self
+        
         findGoal()
         setupUI()
         setupImageGesture()
@@ -71,6 +74,26 @@ class DetailViewController: UIViewController {
         guard let selectedGoal = selectedGoal else { return }
         let date = Date()
         GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
-        print(GoalManager.shared.goalList[selectedGoal.index].checkDays)
+        detailView.detailTableView.reloadData()
+    }
+}
+
+extension DetailViewController: UITableViewDelegate {}
+
+extension DetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let selectedGoal = selectedGoal else { return 0 }
+        let checkDays = GoalManager.shared.goalList[selectedGoal.index].checkDays.count
+        return checkDays
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell,
+            let selectedGoal = selectedGoal
+        else { return UITableViewCell()}
+        let checkDay = GoalManager.shared.goalList[selectedGoal.index].checkDays[indexPath.row].toString()
+        cell.mainLabel.text = checkDay
+        return cell
     }
 }
