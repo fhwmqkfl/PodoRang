@@ -51,7 +51,14 @@ class MainViewController: UIViewController {
             mainLabel.text = "안녕하세요 \(userName)님"
             loadImage(UIImage: userImage)
         } else {
-            print("데이터를 가져오는데 실패했습니다")
+            let alertController = UIAlertController(title: "", message: "프로필 설정후 다시 접근해 주세요", preferredStyle: UIAlertController.Style.alert)
+            let checked = UIAlertAction(title: "OK", style: .default) { _ in
+                guard let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+                profileVC.modalPresentationStyle = .fullScreen
+                self.present(profileVC, animated: true)
+            }
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         }
     }
     

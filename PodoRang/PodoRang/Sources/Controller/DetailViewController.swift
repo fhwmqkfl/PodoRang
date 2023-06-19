@@ -89,7 +89,6 @@ class DetailViewController: UIViewController {
         let cancel = UIAlertAction(title: "NO", style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
-        
         present(alertController, animated: true)
     }
 }

@@ -22,8 +22,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.delegate = self
+        
         setupUI()
         setupImageView()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          view.endEditing(true)
     }
     
     func setupUI() {
@@ -86,7 +92,10 @@ class ProfileViewController: UIViewController {
                 present(mainVC, animated: true)
             }
         } else {
-            print("유저명과 이미지를 다시한번 확인해주세요")
+            let alertController = UIAlertController(title: "", message: "유저명과 이미지를 다시한번 확인해주세요", preferredStyle: UIAlertController.Style.alert)
+            let checked = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         }
     }
     
@@ -110,7 +119,17 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                 }
             }
         } else {
-            print("이미지를 가져오는데 실패했습니다")
+            let alertController = UIAlertController(title: "", message: "이미지를 가져오는데 실패했습니다", preferredStyle: UIAlertController.Style.alert)
+            let checked = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         }
+    }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
