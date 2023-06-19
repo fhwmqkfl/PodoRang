@@ -71,10 +71,26 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
-        guard let selectedGoal = selectedGoal else { return }
-        let date = Date()
-        GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
-        detailView.detailTableView.reloadData()
+        let text: String = "포도알 채우기"
+        let attributeString = NSMutableAttributedString(string: text)
+        let font = UIFont.boldSystemFont(ofSize: 18)
+        attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text)) // 폰트 적용.
+        attributeString.addAttribute(.foregroundColor, value: CustomColor.textGreen, range: (text as NSString).range(of: text))
+        
+        let alertController = UIAlertController(title: text, message: "오늘의 포도를 채울까요?", preferredStyle: UIAlertController.Style.alert)
+        alertController.setValue(attributeString, forKey: "attributedTitle")
+        
+        let addDate = UIAlertAction(title: "YES", style: .default) { _ in
+            guard let selectedGoal = self.selectedGoal else { return }
+            let date = Date()
+            GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
+            self.detailView.detailTableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "NO", style: .destructive)
+        alertController.addAction(addDate)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true)
     }
 }
 
