@@ -17,8 +17,8 @@ final class GoalManager {
     
     func setupData() {
         goalList = [
-            Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
+            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 21일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),

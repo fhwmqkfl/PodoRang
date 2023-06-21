@@ -42,7 +42,6 @@ class DetailView: UIView {
         self.addSubviews([mainLabel,mainImageView,infoLabel,horizontalStackView, historyLabel, detailTableView])
         horizontalStackView.addArragnedSubViews([modifyButton,deleteButton])
         
-        mainLabel.text = "앞으로 ()개의 포도알을 채우면 완성이에요"
         mainLabel.backgroundColor = CustomColor.mainPurple
         mainLabel.font = .boldSystemFont(ofSize: 15)
         mainLabel.textAlignment = .center

@@ -115,7 +115,6 @@ extension MainViewController: UITableViewDataSource {
         cell.titleLabel.text = goal.title
         cell.ddayLabel.isHidden = isFinished
         cell.selectionStyle = .none
-        
         return cell
     }
 }

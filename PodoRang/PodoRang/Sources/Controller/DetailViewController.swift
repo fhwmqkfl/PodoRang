@@ -71,22 +71,52 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
-        let text: String = "포도알 채우기"
+        let today = Date().toStringWithoutTime()
+        guard let selectedGoal = selectedGoal else { return }
+        let checkDays = GoalManager.shared.goalList[selectedGoal.index].checkDays
+        var stringCheckDays: [String] = []
+        
+        for day in checkDays {
+            stringCheckDays.append(day.toStringWithoutTime())
+        }
+        
+        if stringCheckDays.contains(today) {
+            presentAlert(title: "포도알 삭제하기", message: "채워진 포도를 지울까요?", buttonTitle: "삭제") {
+                // TODO: delete
+            }
+        } else {
+            presentAlert(title: "포도알 채우기", message: "오늘의 포도를 채울까요?", buttonTitle: "추가") {
+                //TODO: add
+            }
+        }
+    }
+    
+    func presentAlert(title: String, message: String, buttonTitle: String, completion: @escaping () -> Void) {
+        let text: String = title
         let attributeString = NSMutableAttributedString(string: text)
         let font = UIFont.boldSystemFont(ofSize: 18)
-        attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text)) // 폰트 적용.
+        attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text))
         attributeString.addAttribute(.foregroundColor, value: CustomColor.textGreen, range: (text as NSString).range(of: text))
         
-        let alertController = UIAlertController(title: text, message: "오늘의 포도를 채울까요?", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: text, message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.setValue(attributeString, forKey: "attributedTitle")
         
-        let addDate = UIAlertAction(title: "YES", style: .default) { _ in
-            guard let selectedGoal = self.selectedGoal else { return }
-            let date = Date()
-            GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
-            self.detailView.detailTableView.reloadData()
+        let addDate = UIAlertAction(title: "test", style: .default) { _ in
+            completion()
         }
-        let cancel = UIAlertAction(title: "NO", style: .destructive)
+        
+        // TODO: addDate로직 삭제/추가 여부에 맞춰 적용필요
+//        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in
+//            guard let selectedGoal = self.selectedGoal else { return }
+//            let date = Date()
+//            GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
+//            self.detailView.detailTableView.reloadData()
+//
+//            DispatchQueue.main.async {
+//                self.detailView.mainLabel.text = "호옹이"
+//            }
+//        }
+        let cancel = UIAlertAction(title: "취소", style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
         present(alertController, animated: true)
@@ -98,16 +128,19 @@ extension DetailViewController: UITableViewDelegate {}
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let selectedGoal = selectedGoal else { return 0 }
-        let checkDays = GoalManager.shared.goalList[selectedGoal.index].checkDays.count
-        return checkDays
+        let count = GoalManager.shared.goalList[selectedGoal.index].checkDays.count
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell,
             let selectedGoal = selectedGoal
-        else { return UITableViewCell()}
-        let checkDay = GoalManager.shared.goalList[selectedGoal.index].checkDays[indexPath.row].toString()
+        else {
+            return UITableViewCell()
+        }
+        
+        let checkDay = GoalManager.shared.goalList[selectedGoal.index].checkDays[indexPath.row].toStringWithTime()
         cell.mainLabel.text = checkDay
         return cell
     }
