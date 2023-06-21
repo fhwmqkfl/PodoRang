@@ -37,4 +37,12 @@ final class GoalManager {
     func add(_ goal: Goal) {
         goalList.append(goal)
     }
+    
+    func addCheckDay() {
+        print(#function)
+    }
+    
+    func removeCheckDay() {
+        print(#function)
+    }
 }

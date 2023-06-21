@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     let detailView = DetailView()
+    var grainCount: Int = 7
     var index: Int?
     var isFinished: Int?
     var selectedGoal: (goal: Goal, index: Int)?
@@ -26,6 +27,12 @@ class DetailViewController: UIViewController {
         findGoal()
         setupUI()
         setupImageGesture()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        saveGoal()
     }
     
     /// find the Goal from the goalList
@@ -60,8 +67,30 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
         view.backgroundColor = .white
         
-        guard let selectedGoal = selectedGoal else { return }
-        title = selectedGoal.goal.title
+        guard let index = selectedGoal?.index else { return }
+        title = selectedGoal?.goal.title
+        grainCount = GoalManager.shared.goalList[index].grainCount.rawValue
+        selectedGoal?.goal.checkDays = GoalManager.shared.goalList[index].checkDays
+        calculateRemainCount(selectedGoal?.goal.checkDays.count ?? 0)
+    }
+    
+    func saveGoal() {
+        guard let checkDays = selectedGoal?.goal.checkDays else { return }
+        guard let index = selectedGoal?.index else { return }
+        
+        if checkDays != GoalManager.shared.goalList[index].checkDays {
+            let isAppended = checkDays.count > GoalManager.shared.goalList[index].checkDays.count
+            if isAppended {
+                GoalManager.shared.addCheckDay()
+            } else {
+                GoalManager.shared.removeCheckDay()
+            }
+        }
+    }
+    
+    func calculateRemainCount(_ checkDaysCount: Int) {
+        let remainCount = grainCount - checkDaysCount
+        detailView.mainLabel.text = "앞으로 \(remainCount)개의 포도알을 채우면 완성이에요"
     }
     
     func setupImageGesture() {
@@ -71,15 +100,15 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
-        let today = Date().toStringWithoutTime()
         guard let selectedGoal = selectedGoal else { return }
-        let checkDays = GoalManager.shared.goalList[selectedGoal.index].checkDays
-        var stringCheckDays: [String] = []
         
-        for day in checkDays {
+        let today = Date().toStringWithoutTime()
+        var stringCheckDays: [String] = []
+
+        for day in selectedGoal.goal.checkDays {
             stringCheckDays.append(day.toStringWithoutTime())
         }
-        
+
         if stringCheckDays.contains(today) {
             presentAlert(title: "포도알 삭제하기", message: "채워진 포도를 지울까요?", buttonTitle: "삭제") {
                 // TODO: delete
