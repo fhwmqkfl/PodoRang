@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     var index: Int?
     var isFinished: Int?
     var selectedGoal: (goal: Goal, index: Int)?
+    var checkDays: [Date] = []
     
     override func loadView() {
         view = detailView
@@ -58,6 +59,7 @@ class DetailViewController: UIViewController {
             }
         }
         selectedGoal = (goalList[goalListIndex], goalListIndex)
+        checkDays = selectedGoal?.goal.checkDays ?? []
     }
     
     func setupUI() {
@@ -70,20 +72,17 @@ class DetailViewController: UIViewController {
         guard let index = selectedGoal?.index else { return }
         title = selectedGoal?.goal.title
         grainCount = GoalManager.shared.goalList[index].grainCount.rawValue
-        selectedGoal?.goal.checkDays = GoalManager.shared.goalList[index].checkDays
-        calculateRemainCount(selectedGoal?.goal.checkDays.count ?? 0)
+        calculateRemainCount(checkDays.count)
     }
     
     func saveGoal() {
-        guard let checkDays = selectedGoal?.goal.checkDays else { return }
         guard let index = selectedGoal?.index else { return }
-        
         if checkDays != GoalManager.shared.goalList[index].checkDays {
             let isAppended = checkDays.count > GoalManager.shared.goalList[index].checkDays.count
             if isAppended {
-                GoalManager.shared.addCheckDay()
+                GoalManager.shared.addCheckDay(checkDays, index)
             } else {
-                GoalManager.shared.removeCheckDay()
+                GoalManager.shared.removeCheckDay(checkDays, index)
             }
         }
     }
@@ -100,22 +99,29 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
-        guard let selectedGoal = selectedGoal else { return }
-        
-        let today = Date().toStringWithoutTime()
+        let date = Date()
+        let stringToday = date.toStringWithoutTime()
         var stringCheckDays: [String] = []
-
-        for day in selectedGoal.goal.checkDays {
+        
+        for day in checkDays {
             stringCheckDays.append(day.toStringWithoutTime())
         }
-
-        if stringCheckDays.contains(today) {
+        
+        if stringCheckDays.contains(stringToday) {
             presentAlert(title: "포도알 삭제하기", message: "채워진 포도를 지울까요?", buttonTitle: "삭제") {
-                // TODO: delete
+                self.checkDays.remove(at: 0)
+                DispatchQueue.main.async {
+                    self.calculateRemainCount(self.checkDays.count)
+                    self.detailView.detailTableView.reloadData()
+                }
             }
         } else {
             presentAlert(title: "포도알 채우기", message: "오늘의 포도를 채울까요?", buttonTitle: "추가") {
-                //TODO: add
+                self.checkDays.insert(date, at: 0)
+                DispatchQueue.main.async {
+                    self.calculateRemainCount(self.checkDays.count)
+                    self.detailView.detailTableView.reloadData()
+                }
             }
         }
     }
@@ -129,22 +135,9 @@ class DetailViewController: UIViewController {
         
         let alertController = UIAlertController(title: text, message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.setValue(attributeString, forKey: "attributedTitle")
-        
-        let addDate = UIAlertAction(title: "test", style: .default) { _ in
+        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in
             completion()
         }
-        
-        // TODO: addDate로직 삭제/추가 여부에 맞춰 적용필요
-//        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in
-//            guard let selectedGoal = self.selectedGoal else { return }
-//            let date = Date()
-//            GoalManager.shared.goalList[selectedGoal.index].checkDays.append(date)
-//            self.detailView.detailTableView.reloadData()
-//
-//            DispatchQueue.main.async {
-//                self.detailView.mainLabel.text = "호옹이"
-//            }
-//        }
         let cancel = UIAlertAction(title: "취소", style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
@@ -156,20 +149,11 @@ extension DetailViewController: UITableViewDelegate {}
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let selectedGoal = selectedGoal else { return 0 }
-        let count = GoalManager.shared.goalList[selectedGoal.index].checkDays.count
-        return count
+        return checkDays.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell,
-            let selectedGoal = selectedGoal
-        else {
-            return UITableViewCell()
-        }
-        
-        let checkDay = GoalManager.shared.goalList[selectedGoal.index].checkDays[indexPath.row].toStringWithTime()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell else { return UITableViewCell() }
+        let checkDay = checkDays[indexPath.row].toStringWithTime()
         cell.mainLabel.text = checkDay
         return cell
     }

@@ -18,7 +18,7 @@ final class GoalManager {
     func setupData() {
         goalList = [
             Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
-            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 21일".toDate()!, "2023년 5월 29일".toDate()!]),
+            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
@@ -38,11 +38,11 @@ final class GoalManager {
         goalList.append(goal)
     }
     
-    func addCheckDay() {
-        print(#function)
+    func addCheckDay(_ newCheckDays: [Date], _ index: Int) {
+        goalList[index].checkDays = newCheckDays
     }
     
-    func removeCheckDay() {
-        print(#function)
+    func removeCheckDay(_ newCheckDays: [Date], _ index: Int) {
+        goalList[index].checkDays = newCheckDays
     }
 }
