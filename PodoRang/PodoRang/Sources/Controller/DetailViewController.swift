@@ -73,6 +73,9 @@ class DetailViewController: UIViewController {
         title = selectedGoal?.goal.title
         grainCount = GoalManager.shared.goalList[index].grainCount.rawValue
         calculateRemainCount(checkDays.count)
+        
+        detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
+        detailView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
     
     func saveGoal() {
@@ -140,6 +143,26 @@ class DetailViewController: UIViewController {
         }
         let cancel = UIAlertAction(title: "취소", style: .destructive)
         alertController.addAction(addDate)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
+    }
+    
+    @objc func modifyButtonClicked() {
+        print(#function)
+        // TODO: addgoalVC로이동(수정하기가 되어야함)
+        let addGoalVC = AddGoalViewController()
+        self.navigationController?.pushViewController(addGoalVC, animated: true)
+    }
+    
+    @objc func deleteButtonClicked() {
+        let alertController = UIAlertController(title: nil, message: "이 포도를 정말 삭제하시겠습니까?", preferredStyle: .actionSheet)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            guard let selectedGoal = self.selectedGoal else { return }
+            GoalManager.shared.delete(selectedGoal.goal, selectedGoal.index)
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .default)
+        alertController.addAction(delete)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }

@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
         setUI()
         getUserData()
         GoalManager.shared.setupData()
-        refreshGoalLists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +32,7 @@ class MainViewController: UIViewController {
         
         getUserData()
         tabBarController?.tabBar.isHidden = false
+        refreshGoalLists()
         mainTableView.reloadData()
     }
     

@@ -38,6 +38,10 @@ final class GoalManager {
         goalList.append(goal)
     }
     
+    func delete(_ deleteGoal: Goal, _ index: Int) {
+        goalList.remove(at: index)
+    }
+    
     func addCheckDay(_ newCheckDays: [Date], _ index: Int) {
         goalList[index].checkDays = newCheckDays
     }
