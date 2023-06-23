@@ -27,26 +27,35 @@ final class GoalManager {
     }
     
     func fetchInprogress() -> [Goal] {
-        return goalList.filter{$0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
+        return goalList.filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func fetchFinished() -> [Goal] {
-        return goalList.filter{$0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
+        return goalList.filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func add(_ goal: Goal) {
         goalList.append(goal)
     }
-    
-    func delete(_ deleteGoal: Goal, _ index: Int) {
+    // TODO: 삭제 & UI수정하고 그러면..될듯?
+    func delete(deleteGoal: Goal, index: Int) {
         goalList.remove(at: index)
     }
     
-    func addCheckDay(_ newCheckDays: [Date], _ index: Int) {
+    func update(goal: Goal, index: Int) {
+        goalList[index] = goal
+    }
+    
+    func updateGoal(newCheckDays: [Date], index: Int) {
         goalList[index].checkDays = newCheckDays
     }
     
-    func removeCheckDay(_ newCheckDays: [Date], _ index: Int) {
+    // TODO: 두개 합치기(updateGoal()위에 값으로)
+    func addCheckDay(newCheckDays: [Date], index: Int) {
+        goalList[index].checkDays = newCheckDays
+    }
+    
+    func removeCheckDay(newCheckDays: [Date], index: Int) {
         goalList[index].checkDays = newCheckDays
     }
 }

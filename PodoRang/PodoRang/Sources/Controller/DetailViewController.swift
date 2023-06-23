@@ -25,9 +25,14 @@ class DetailViewController: UIViewController {
         detailView.detailTableView.delegate = self
         detailView.detailTableView.dataSource = self
         
+        setupImageGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         findGoal()
         setupUI()
-        setupImageGesture()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,6 +46,7 @@ class DetailViewController: UIViewController {
         guard let index = index, let isFinished = isFinished else { return }
         
         var goal: Goal
+        
         if isFinished == 0 {
             goal = GoalManager.shared.fetchInprogress()[index]
         } else {
@@ -70,7 +76,7 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         
         guard let index = selectedGoal?.index else { return }
-        title = selectedGoal?.goal.title
+        self.navigationItem.title = selectedGoal?.goal.title
         grainCount = GoalManager.shared.goalList[index].grainCount.rawValue
         calculateRemainCount(checkDays.count)
         
@@ -82,10 +88,11 @@ class DetailViewController: UIViewController {
         guard let index = selectedGoal?.index else { return }
         if checkDays != GoalManager.shared.goalList[index].checkDays {
             let isAppended = checkDays.count > GoalManager.shared.goalList[index].checkDays.count
+            
             if isAppended {
-                GoalManager.shared.addCheckDay(checkDays, index)
+                GoalManager.shared.addCheckDay(newCheckDays: checkDays, index: index)
             } else {
-                GoalManager.shared.removeCheckDay(checkDays, index)
+                GoalManager.shared.removeCheckDay(newCheckDays: checkDays, index: index)
             }
         }
     }
@@ -148,9 +155,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc func modifyButtonClicked() {
-        print(#function)
-        // TODO: addgoalVC로이동(수정하기가 되어야함)
+        guard let index = selectedGoal?.index else { return }
         let addGoalVC = AddGoalViewController()
+        addGoalVC.setupType = .modify
+        addGoalVC.index = index
         self.navigationController?.pushViewController(addGoalVC, animated: true)
     }
     
@@ -158,7 +166,7 @@ class DetailViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: "이 포도를 정말 삭제하시겠습니까?", preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
             guard let selectedGoal = self.selectedGoal else { return }
-            GoalManager.shared.delete(selectedGoal.goal, selectedGoal.index)
+            GoalManager.shared.delete(deleteGoal: selectedGoal.goal, index: selectedGoal.index)
             self.navigationController?.popViewController(animated: true)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .default)
@@ -174,6 +182,7 @@ extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return checkDays.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell else { return UITableViewCell() }
         let checkDay = checkDays[indexPath.row].toStringWithTime()

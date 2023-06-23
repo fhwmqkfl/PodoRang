@@ -21,9 +21,7 @@ class MainViewController: UIViewController {
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        
         setUI()
-        getUserData()
         GoalManager.shared.setupData()
     }
     
