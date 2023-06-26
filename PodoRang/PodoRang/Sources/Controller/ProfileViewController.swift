@@ -15,8 +15,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     enum Status: String {
-        case create = "프로필 등록"
-        case modify = "프로필 수정"
+        case create = "Account Setup"
+        case modify = "Modify Account"
     }
     
     override func viewDidLoad() {
@@ -39,8 +39,6 @@ class ProfileViewController: UIViewController {
             mainLabel.text = Status.modify.rawValue
             saveButton.setTitle("MODIFTY", for: .normal)
         }
-        
-        mainLabel.font = .boldSystemFont(ofSize: 20)
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
@@ -92,7 +90,7 @@ class ProfileViewController: UIViewController {
                 present(mainVC, animated: true)
             }
         } else {
-            let alertController = UIAlertController(title: "", message: "유저명과 이미지를 다시한번 확인해주세요", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "", message: "Check user name and image", preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default)
             alertController.addAction(checked)
             present(alertController, animated: true)
@@ -119,7 +117,7 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                 }
             }
         } else {
-            let alertController = UIAlertController(title: "", message: "이미지를 가져오는데 실패했습니다", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "", message: "Image not found", preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default)
             alertController.addAction(checked)
             present(alertController, animated: true)

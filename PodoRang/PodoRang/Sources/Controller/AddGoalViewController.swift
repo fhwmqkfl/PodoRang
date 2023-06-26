@@ -9,8 +9,8 @@ import UIKit
 
 class AddGoalViewController: UIViewController {
     enum SetupType: String {
-        case add = "작성"
-        case modify = "수정"
+        case add = "Add"
+        case modify = "Modify"
     }
     
     let addGoalView = AddGoalView()
@@ -36,7 +36,7 @@ class AddGoalViewController: UIViewController {
     }
     
     func setupUI() {
-        title = "목표 \(setupType.rawValue)하기"
+        title = "\(setupType.rawValue) Goal"
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
@@ -47,7 +47,7 @@ class AddGoalViewController: UIViewController {
         if  setupType == .modify {
             guard let goal = goal else { return }
             addGoalView.goalTextField.text = goal.title
-            addGoalView.alartLabel.text = "수정은 목표명만 가능해요!"
+            addGoalView.alartLabel.text = "You can only modify Goal title!"
             addGoalView.startDayTextField.text = goal.startDate.toStringWithoutTime()
             addGoalView.startDayTextField.isUserInteractionEnabled = false
             addGoalView.startDayTextField.textColor = .systemGray2
@@ -72,7 +72,7 @@ class AddGoalViewController: UIViewController {
                     let grainCountButton = addGoalView.buttonArray.filter ({ $0.isSelected }).first,
                     let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first
                 else {
-                    addGoalView.alartLabel.text = "포도알 갯수 또는 종류를 확인해주세요"
+                    addGoalView.alartLabel.text = "Check Count or Type of Grape"
                     return
                 }
                 let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .oneWeek
@@ -82,11 +82,11 @@ class AddGoalViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             } else {
                 if title.isEmpty {
-                    addGoalView.goalTextField.placeholder = "목표를 입력해주세요"
+                    addGoalView.goalTextField.placeholder = "Enter Goal"
                     addGoalView.goalTextField.inactiveColor = CustomColor.mainPurple
                 }
                 if startDate.isEmpty {
-                    addGoalView.startDayTextField.placeholder = "시작날짜를 입력해주세요"
+                    addGoalView.startDayTextField.placeholder = "Enter Startdate"
                     addGoalView.startDayTextField.inactiveColor = CustomColor.mainPurple
                 }
             }
@@ -98,7 +98,7 @@ class AddGoalViewController: UIViewController {
                 GoalManager.shared.update(goal: goal, index: index)
                 self.navigationController?.popViewController(animated: true)
             } else {
-                addGoalView.goalTextField.placeholder = "목표를 입력해주세요"
+                addGoalView.goalTextField.placeholder = "Enter Goal"
                 addGoalView.goalTextField.inactiveColor = CustomColor.mainPurple
             }
         }

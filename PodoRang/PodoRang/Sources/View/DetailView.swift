@@ -51,11 +51,11 @@ class DetailView: UIView {
         
         mainImageView.backgroundColor = CustomColor.mainPurple
         
-        setLabel(infoLabel, title: "🍇 포도를 누르면 포도알을 칠할 수 있어요")
-        setLabel(historyLabel, title: "포도알을 칠한 날들")
+        setLabel(infoLabel, title: "🍇 press the grapes, you can paint the grapes")
+        setLabel(historyLabel, title: "date of painting grapes")
         
-        setButton(modifyButton, title: "목표 수정하기")
-        setButton(deleteButton, title: "목표 삭제하기")
+        setButton(modifyButton, title: "Modify Goal")
+        setButton(deleteButton, title: "Delete Goal")
         
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 10

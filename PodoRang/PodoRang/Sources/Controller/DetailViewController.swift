@@ -99,7 +99,7 @@ class DetailViewController: UIViewController {
     
     func calculateRemainCount(_ checkDaysCount: Int) {
         let remainCount = grainCount - checkDaysCount
-        detailView.mainLabel.text = "앞으로 \(remainCount)개의 포도알을 채우면 완성이에요"
+        detailView.mainLabel.text = "Only \(remainCount) grapes to achieve"
     }
     
     func setupImageGesture() {
@@ -118,7 +118,7 @@ class DetailViewController: UIViewController {
         }
         
         if stringCheckDays.contains(stringToday) {
-            presentAlert(title: "포도알 삭제하기", message: "채워진 포도를 지울까요?", buttonTitle: "삭제") {
+            presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
                 self.checkDays.remove(at: 0)
                 DispatchQueue.main.async {
                     self.calculateRemainCount(self.checkDays.count)
@@ -126,7 +126,7 @@ class DetailViewController: UIViewController {
                 }
             }
         } else {
-            presentAlert(title: "포도알 채우기", message: "오늘의 포도를 채울까요?", buttonTitle: "추가") {
+            presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
                 self.checkDays.insert(date, at: 0)
                 DispatchQueue.main.async {
                     self.calculateRemainCount(self.checkDays.count)
@@ -148,7 +148,7 @@ class DetailViewController: UIViewController {
         let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in
             completion()
         }
-        let cancel = UIAlertAction(title: "취소", style: .destructive)
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
         present(alertController, animated: true)
@@ -163,7 +163,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc func deleteButtonClicked() {
-        let alertController = UIAlertController(title: nil, message: "이 포도를 정말 삭제하시겠습니까?", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: "Are you sure to delete this goal?", preferredStyle: .actionSheet)
         let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
             guard let selectedGoal = self.selectedGoal else { return }
             GoalManager.shared.delete(deleteGoal: selectedGoal.goal, index: selectedGoal.index)

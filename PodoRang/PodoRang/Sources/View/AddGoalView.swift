@@ -41,7 +41,7 @@ class AddGoalView: UIView {
     let colorHorizontalStackView = UIStackView()
     let warningLabel: UILabel = {
         let label = UILabel()
-        label.text = "포도알 갯수와 포도 종류는 설정하면 변경할 수 없어요!"
+        label.text = "Count & Type cannot be changed!!"
         label.textColor = CustomColor.warningRed
         label.font = .boldSystemFont(ofSize: 12)
         label.textAlignment = .center
@@ -70,18 +70,18 @@ class AddGoalView: UIView {
     func setupUI() {
         lineView.backgroundColor = .systemGray5
         
-        setLabel(goalLabel, text: "목표")
-        setLabel(startDayLabel, text: "시작하는 날을 선택해 주세요")
+        setLabel(goalLabel, text: "Goal")
+        setLabel(startDayLabel, text: "Select a start date")
         
         setTextField(goalTextField)
         setTextField(startDayTextField)
         setupDatePicker()
         startDayTextField.inputView = datePicker
         
-        setLabel(weekLabel, text: "포도알 갯수")
-        setButton(oneWeekButton, title: "7일", tag: GrainCount.oneWeek.rawValue)
-        setButton(twoWeeksButton, title: "14일", tag: GrainCount.twoWeeks.rawValue)
-        setButton(threeWeeksButton, title: "21일", tag: GrainCount.threeWeeks.rawValue)
+        setLabel(weekLabel, text: "Count of Grape")
+        setButton(oneWeekButton, title: "7days", tag: GrainCount.oneWeek.rawValue)
+        setButton(twoWeeksButton, title: "14days", tag: GrainCount.twoWeeks.rawValue)
+        setButton(threeWeeksButton, title: "21days", tag: GrainCount.threeWeeks.rawValue)
         buttonArray.append(oneWeekButton)
         buttonArray.append(twoWeeksButton)
         buttonArray.append(threeWeeksButton)
@@ -90,7 +90,7 @@ class AddGoalView: UIView {
         threeWeeksButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
         setHorizontalStackView(dayHorizontalStackView)
         
-        setLabel(selectColorLabel, text: "포도 종류")
+        setLabel(selectColorLabel, text: "Type of Grape")
         setButtonImage(purpleButton, tag: Grape.purple.rawValue)
         setButtonImage(redButton, tag: Grape.red.rawValue)
         setButtonImage(greenButton, tag: Grape.green.rawValue)

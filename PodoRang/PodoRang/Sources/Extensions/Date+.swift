@@ -11,8 +11,7 @@ extension Date {
     func toStringWithTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd(E) HH:mm"
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.string(from: self)
     }
     
@@ -20,7 +19,6 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd"
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
         return formatter.string(from: self)
     }
 }

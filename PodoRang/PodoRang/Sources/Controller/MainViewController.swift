@@ -46,10 +46,10 @@ class MainViewController: UIViewController {
     
     func getUserData() {
         if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
-            mainLabel.text = "안녕하세요 \(userName)님"
+            mainLabel.text = "Hello, \(userName)"
             loadImage(UIImage: userImage)
         } else {
-            let alertController = UIAlertController(title: "", message: "프로필 설정후 다시 접근해 주세요", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "", message: "Please set up your profile and access again", preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default) { _ in
                 guard let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
                 profileVC.modalPresentationStyle = .fullScreen
