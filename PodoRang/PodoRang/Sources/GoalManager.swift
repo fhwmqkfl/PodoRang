@@ -17,8 +17,8 @@ final class GoalManager {
     
     func setupData() {
         goalList = [
-            Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
-            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
+            Goal(title: "progrss-first", startDate: "2023년 6월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
+            Goal(title: "progrss-second", startDate: "2023년 6월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
@@ -37,7 +37,7 @@ final class GoalManager {
     func add(_ goal: Goal) {
         goalList.append(goal)
     }
-    // TODO: 삭제 & UI수정하고 그러면..될듯?
+    
     func delete(deleteGoal: Goal, index: Int) {
         goalList.remove(at: index)
     }
@@ -47,15 +47,6 @@ final class GoalManager {
     }
     
     func updateGoal(newCheckDays: [Date], index: Int) {
-        goalList[index].checkDays = newCheckDays
-    }
-    
-    // TODO: 두개 합치기(updateGoal()위에 값으로)
-    func addCheckDay(newCheckDays: [Date], index: Int) {
-        goalList[index].checkDays = newCheckDays
-    }
-    
-    func removeCheckDay(newCheckDays: [Date], index: Int) {
         goalList[index].checkDays = newCheckDays
     }
 }

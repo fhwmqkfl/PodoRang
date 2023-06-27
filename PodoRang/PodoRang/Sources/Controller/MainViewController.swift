@@ -110,9 +110,26 @@ extension MainViewController: UITableViewDataSource {
             goal = inProgressList[indexPath.row]
         }
         
+        let today = Date()
+        let grainCount = Double(goal.grainCount.rawValue)
+        let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
+        let calendar = Calendar.current
+        let dday = calendar.dateComponents([.day], from: today, to: enddate).day!
+        
+        if dday >= 0, today >= goal.startDate {
+            cell.ddayLabel.text = "D-\(dday)"
+        } else if today < goal.startDate {
+            cell.ddayLabel.text = "Unstarted"
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.ddayLabel.text = "Finished"
+            cell.isUserInteractionEnabled = false
+        }
+        
         cell.titleLabel.text = goal.title
         cell.ddayLabel.isHidden = isFinished
         cell.selectionStyle = .none
         return cell
     }
+
 }

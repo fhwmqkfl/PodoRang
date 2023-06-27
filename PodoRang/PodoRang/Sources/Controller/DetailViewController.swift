@@ -70,10 +70,15 @@ class DetailViewController: UIViewController {
     
     func setupUI() {
         tabBarController?.tabBar.isHidden = true
+        view.backgroundColor = .white
+
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = barButton
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
-        view.backgroundColor = .white
         
         guard let index = selectedGoal?.index else { return }
         self.navigationItem.title = selectedGoal?.goal.title
@@ -83,18 +88,10 @@ class DetailViewController: UIViewController {
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         detailView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
-    
+        
     func saveGoal() {
         guard let index = selectedGoal?.index else { return }
-        if checkDays != GoalManager.shared.goalList[index].checkDays {
-            let isAppended = checkDays.count > GoalManager.shared.goalList[index].checkDays.count
-            
-            if isAppended {
-                GoalManager.shared.addCheckDay(newCheckDays: checkDays, index: index)
-            } else {
-                GoalManager.shared.removeCheckDay(newCheckDays: checkDays, index: index)
-            }
-        }
+        GoalManager.shared.updateGoal(newCheckDays: checkDays, index: index)
     }
     
     func calculateRemainCount(_ checkDaysCount: Int) {
@@ -174,6 +171,11 @@ class DetailViewController: UIViewController {
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
+    
+    // TODO: popup view
+    @objc func infoButtonTapped() {
+        print(#function)
+    }
 }
 
 extension DetailViewController: UITableViewDelegate {}
@@ -187,6 +189,7 @@ extension DetailViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DaysTableViewCell.identifier, for: indexPath) as? DaysTableViewCell else { return UITableViewCell() }
         let checkDay = checkDays[indexPath.row].toStringWithTime()
         cell.mainLabel.text = checkDay
+        cell.selectionStyle = .none
         return cell
     }
 }
