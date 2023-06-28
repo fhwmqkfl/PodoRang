@@ -21,8 +21,8 @@ final class GoalManager {
             Goal(title: "progrss-second", startDate: "2023년 6월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
-            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
+            Goal(title: "finished-first", startDate: "2023년 5월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
+            Goal(title: "finished-second", startDate: "2023년 5월 10일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
         ].sorted(by: { $0.startDate < $1.startDate })
     }
     
@@ -56,5 +56,25 @@ final class GoalManager {
     
     func updateGoal(newCheckDays: [Date], index: Int) {
         goalList[index].checkDays = newCheckDays
+    }
+    
+    func calculateDday(goal: Goal, targetDate: Date) -> Int {
+        let grainCount = Double(goal.grainCount.rawValue)
+        let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
+        let dday = Calendar.current.dateComponents([.day], from: targetDate, to: enddate).day!
+        return dday
+    }
+    
+    func updateGoalStatus() {
+        let today = Date()
+        
+        for index in 0..<goalList.count {
+            let dday = calculateDday(goal: goalList[index] , targetDate: today)
+            if dday >= 0 {
+                goalList[index].isFinished = .inProgress
+            } else {
+                goalList[index].isFinished = .finished
+            }
+        }
     }
 }
