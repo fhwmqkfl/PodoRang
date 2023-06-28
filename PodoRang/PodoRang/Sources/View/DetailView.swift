@@ -11,7 +11,6 @@ import SnapKit
 class DetailView: UIView {
     let mainLabel = UILabel()
     let mainImageView = UIImageView()
-    let infoLabel = UILabel()
     let modifyButton = UIButton()
     let deleteButton = UIButton()
     let horizontalStackView = UIStackView()
@@ -39,7 +38,7 @@ class DetailView: UIView {
     }
     
     func setupUI() {
-        self.addSubviews([mainLabel,mainImageView,infoLabel,horizontalStackView, historyLabel, detailTableView])
+        self.addSubviews([mainLabel,mainImageView,horizontalStackView, historyLabel, detailTableView])
         horizontalStackView.addArragnedSubViews([modifyButton,deleteButton])
         
         mainLabel.backgroundColor = CustomColor.mainPurple
@@ -51,7 +50,6 @@ class DetailView: UIView {
         
         mainImageView.backgroundColor = CustomColor.mainPurple
         
-        setLabel(infoLabel, title: "🍇 press the grapes, you can paint the grapes")
         setLabel(historyLabel, title: "date of painting grapes")
         
         setButton(modifyButton, title: "Modify Goal")
@@ -79,13 +77,8 @@ class DetailView: UIView {
             $0.centerX.equalToSuperview()
         }
         
-        infoLabel.snp.makeConstraints {
-            $0.top.equalTo(mainImageView.snp.bottom).offset(30)
-            $0.centerX.equalToSuperview()
-        }
-        
         horizontalStackView.snp.makeConstraints {
-            $0.top.equalTo(infoLabel.snp.bottom).offset(15)
+            $0.top.equalTo(mainImageView.snp.bottom).offset(15)
             $0.leading.trailing.equalTo(safeArea).inset(25)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)

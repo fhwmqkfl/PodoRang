@@ -172,9 +172,10 @@ class DetailViewController: UIViewController {
         present(alertController, animated: true)
     }
     
-    // TODO: popup view
     @objc func infoButtonTapped() {
-        print(#function)
+        let popupVC = PopupViewController()
+        popupVC.modalPresentationStyle = .overCurrentContext
+        present(popupVC, animated: true)
     }
 }
 
