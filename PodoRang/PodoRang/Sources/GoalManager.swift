@@ -13,24 +13,48 @@ final class GoalManager {
     
     private init() {}
     
-    private var goalList: [Goal] = []
+    var goalList: [Goal] = []
     
     func setupData() {
         goalList = [
-            Goal(title: "progrss-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "progrss-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "progrss-first", startDate: "2023년 6월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
+            Goal(title: "progrss-second", startDate: "2023년 6월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true),
-            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: true)
-        ]
+            Goal(title: "finished-first", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
+            Goal(title: "finished-second", startDate: Date(), grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
+        ].sorted(by: { $0.startDate < $1.startDate })
     }
     
-    func fetch(isfinished: Bool) -> [Goal] {
-        return goalList.filter { $0.isFinished == isfinished }
+    func fetchInprogress() -> [Goal] {
+        return goalList.filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
+    }
+    
+    func fetchInprogress(index: Int) -> Goal {
+        return fetchInprogress()[index]
+    }
+    
+    func fetchFinished() -> [Goal] {
+        return goalList.filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
+    }
+    
+    func fetchFinished(index: Int) -> Goal {
+        return fetchFinished()[index]
     }
     
     func add(_ goal: Goal) {
         goalList.append(goal)
+    }
+    
+    func delete(deleteGoal: Goal, index: Int) {
+        goalList.remove(at: index)
+    }
+    
+    func update(goal: Goal, index: Int) {
+        goalList[index] = goal
+    }
+    
+    func updateGoal(newCheckDays: [Date], index: Int) {
+        goalList[index].checkDays = newCheckDays
     }
 }

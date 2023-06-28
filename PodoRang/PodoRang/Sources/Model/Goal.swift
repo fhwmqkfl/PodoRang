@@ -7,8 +7,13 @@
 
 import Foundation
 
+enum GoalStatus: Int {
+    case inProgress = 0
+    case finished
+}
+
 enum Grape: Int, CaseIterable {
-    case purple
+    case purple = 0
     case red
     case green
 }
@@ -25,6 +30,6 @@ struct Goal {
     var grainCount: GrainCount
     var grapeType: Grape
     var checkDays: [Date] = []
-    var isFinished: Bool = false
+    var isFinished: GoalStatus = .inProgress
     var isSuccessed: Bool = false
 }

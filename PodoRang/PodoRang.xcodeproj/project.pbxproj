@@ -21,6 +21,9 @@
 		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
 		CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
+		CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */; };
+		CCADCBD12A4B4F4B00BADEFE /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */; };
+		CCADCBD32A4C032800BADEFE /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBD22A4C032800BADEFE /* UILabel+.swift */; };
 		CCB582842A22606B00B5924A /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582832A22606B00B5924A /* Goal.swift */; };
 		CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB582872A2327BA00B5924A /* GoalManager.swift */; };
 		CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */; };
@@ -29,6 +32,7 @@
 		CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */; };
 		CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */; };
 		CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC625602A38A8A8003E37ED /* DetailViewController.swift */; };
+		CCC625652A3F5C89003E37ED /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */; };
 		CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */; };
 		CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85802A359E05001FD6C7 /* Date+.swift */; };
 		CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85822A359E1D001FD6C7 /* String+.swift */; };
@@ -50,6 +54,9 @@
 		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		CCADCBD22A4C032800BADEFE /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		CCB582832A22606B00B5924A /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		CCB582872A2327BA00B5924A /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
 		CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +65,7 @@
 		CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		CCC625602A38A8A8003E37ED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
 		CCFE85802A359E05001FD6C7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		CCFE85822A359E1D001FD6C7 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +141,7 @@
 				CC8141B02A23B4AA00188B72 /* SettingViewController.swift */,
 				CCBA10CD2A2DD25700456AA9 /* AddGoalViewController.swift */,
 				CCC625602A38A8A8003E37ED /* DetailViewController.swift */,
+				CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,6 +154,8 @@
 				CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */,
 				CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */,
 				CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */,
+				CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */,
+				CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 				CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */,
 				CCFE85802A359E05001FD6C7 /* Date+.swift */,
 				CCFE85822A359E1D001FD6C7 /* String+.swift */,
+				CCADCBD22A4C032800BADEFE /* UILabel+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,15 +272,19 @@
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
+				CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */,
 				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
+				CCC625652A3F5C89003E37ED /* DaysTableViewCell.swift in Sources */,
 				CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */,
 				CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */,
+				CCADCBD32A4C032800BADEFE /* UILabel+.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */,
 				CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */,
 				CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */,
+				CCADCBD12A4B4F4B00BADEFE /* PopupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

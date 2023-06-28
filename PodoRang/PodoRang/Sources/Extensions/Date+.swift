@@ -8,12 +8,17 @@
 import Foundation
 
 extension Date {
-    func toString() -> String {
+    func toStringWithTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY/MM/dd(E) HH:mm"
+        formatter.locale = Locale(identifier: "en_US")
+        return formatter.string(from: self)
+    }
+    
+    func toStringWithoutTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/MM/dd"
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        
         return formatter.string(from: self)
     }
 }

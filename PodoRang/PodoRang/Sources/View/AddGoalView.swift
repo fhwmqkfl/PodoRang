@@ -41,7 +41,7 @@ class AddGoalView: UIView {
     let colorHorizontalStackView = UIStackView()
     let warningLabel: UILabel = {
         let label = UILabel()
-        label.text = "포도알 갯수와 포도 종류는 설정하면 변경할 수 없어요!"
+        label.text = "Count & Type cannot be changed!!"
         label.textColor = CustomColor.warningRed
         label.font = .boldSystemFont(ofSize: 12)
         label.textAlignment = .center
@@ -70,18 +70,18 @@ class AddGoalView: UIView {
     func setupUI() {
         lineView.backgroundColor = .systemGray5
         
-        setLabel(goalLabel, text: "목표")
-        setLabel(startDayLabel, text: "시작하는 날을 선택해 주세요")
+        setLabel(goalLabel, text: "Goal")
+        setLabel(startDayLabel, text: "Select a start date")
         
         setTextField(goalTextField)
         setTextField(startDayTextField)
         setupDatePicker()
         startDayTextField.inputView = datePicker
         
-        setLabel(weekLabel, text: "포도알 갯수")
-        setButton(oneWeekButton, title: "7일", tag: 7)
-        setButton(twoWeeksButton, title: "14일", tag: 14)
-        setButton(threeWeeksButton, title: "21일", tag: 21)
+        setLabel(weekLabel, text: "Count of Grape")
+        setButton(oneWeekButton, title: "7days", tag: GrainCount.oneWeek.rawValue)
+        setButton(twoWeeksButton, title: "14days", tag: GrainCount.twoWeeks.rawValue)
+        setButton(threeWeeksButton, title: "21days", tag: GrainCount.threeWeeks.rawValue)
         buttonArray.append(oneWeekButton)
         buttonArray.append(twoWeeksButton)
         buttonArray.append(threeWeeksButton)
@@ -90,10 +90,10 @@ class AddGoalView: UIView {
         threeWeeksButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
         setHorizontalStackView(dayHorizontalStackView)
         
-        setLabel(selectColorLabel, text: "포도 종류")
-        setButtonImage(purpleButton, tag: 0)
-        setButtonImage(redButton, tag: 1)
-        setButtonImage(greenButton, tag: 2)
+        setLabel(selectColorLabel, text: "Type of Grape")
+        setButtonImage(purpleButton, tag: Grape.purple.rawValue)
+        setButtonImage(redButton, tag: Grape.red.rawValue)
+        setButtonImage(greenButton, tag: Grape.green.rawValue)
         grapeTypeArray.append(purpleButton)
         grapeTypeArray.append(redButton)
         grapeTypeArray.append(greenButton)
@@ -125,7 +125,7 @@ class AddGoalView: UIView {
     
     func setupConstraints() {
         let contentViewArea = contentView.safeAreaLayoutGuide
-        let layout = 40
+        let spacing: Int = 40
         
         contentScrollView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
@@ -143,27 +143,27 @@ class AddGoalView: UIView {
         
         goalLabel.snp.makeConstraints {
             $0.top.greaterThanOrEqualTo(lineView.snp.bottom).offset(40)
-            $0.leading.equalTo(contentViewArea).offset(layout)
+            $0.leading.equalTo(contentViewArea).offset(spacing)
         }
         
         goalTextField.snp.makeConstraints {
             $0.top.equalTo(goalLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         startDayLabel.snp.makeConstraints {
             $0.top.equalTo(goalTextField.snp.bottom).offset(40)
-            $0.leading.equalTo(contentViewArea).offset(layout)
+            $0.leading.equalTo(contentViewArea).offset(spacing)
         }
         
         startDayTextField.snp.makeConstraints {
             $0.top.equalTo(startDayLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         weekLabel.snp.makeConstraints {
             $0.top.equalTo(startDayTextField.snp.bottom).offset(40)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         dayHorizontalStackView.snp.makeConstraints {
@@ -173,12 +173,12 @@ class AddGoalView: UIView {
         
         alartLabel.snp.makeConstraints {
             $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(15)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         selectColorLabel.snp.makeConstraints {
             $0.top.equalTo(alartLabel.snp.bottom).offset(30)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         purpleButton.snp.makeConstraints {
@@ -187,12 +187,12 @@ class AddGoalView: UIView {
         
         colorHorizontalStackView.snp.makeConstraints {
             $0.top.equalTo(selectColorLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         warningLabel.snp.makeConstraints {
             $0.top.equalTo(colorHorizontalStackView.snp.bottom).offset(90)
-            $0.leading.trailing.equalTo(contentViewArea).inset(layout)
+            $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         saveButton.snp.makeConstraints {
@@ -253,7 +253,7 @@ class AddGoalView: UIView {
     }
     
     @objc func purpleButtonClicked() {
-        if redButton.isEnabled == false {
+        if !redButton.isEnabled {
             purpleButton.isSelected = false
             redButton.isEnabled = true
             greenButton.isEnabled = true
@@ -265,7 +265,7 @@ class AddGoalView: UIView {
     }
     
     @objc func redButtonClicked() {
-        if greenButton.isEnabled == false {
+        if !greenButton.isEnabled{
             redButton.isSelected = false
             purpleButton.isEnabled = true
             greenButton.isEnabled = true
@@ -277,7 +277,7 @@ class AddGoalView: UIView {
     }
     
     @objc func greenButtonClicked() {
-        if purpleButton.isEnabled == false {
+        if !purpleButton.isEnabled {
             greenButton.isSelected = false
             redButton.isEnabled = true
             purpleButton.isEnabled = true

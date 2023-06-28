@@ -16,7 +16,7 @@ class SettingViewController: UIViewController {
         case appstoreReview
     }
     
-    let menuList: [String] = ["알림설정", "프로필 수정", "리뷰남기기"]
+    let menuList: [String] = ["Alarm", "Modify Profile", "Review"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

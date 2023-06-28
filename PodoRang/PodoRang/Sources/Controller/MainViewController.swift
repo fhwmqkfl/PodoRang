@@ -13,22 +13,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var statusSementedControl: UISegmentedControl!
     
-    enum SegmentIndex: Int {
-        case inProgress
-        case finish
-    }
-    
-    let goalManager = GoalManager.shared
+    var inProgressList: [Goal] = []
+    var finishedList: [Goal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainTableView.dataSource = self
         mainTableView.delegate = self
-        
         setUI()
-        getUserData()
-        goalManager.setupData()
+        GoalManager.shared.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +30,7 @@ class MainViewController: UIViewController {
         
         getUserData()
         tabBarController?.tabBar.isHidden = false
+        refreshGoalLists()
         mainTableView.reloadData()
     }
     
@@ -51,21 +46,29 @@ class MainViewController: UIViewController {
     
     func getUserData() {
         if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
-            mainLabel.text = "안녕하세요 \(userName)님"
+            mainLabel.text = "Hello, \(userName)"
             loadImage(UIImage: userImage)
         } else {
-            print("데이터를 가져오는데 실패했습니다")
+            let alertController = UIAlertController(title: "", message: "Please set up your profile and access again", preferredStyle: UIAlertController.Style.alert)
+            let checked = UIAlertAction(title: "OK", style: .default) { _ in
+                guard let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+                profileVC.modalPresentationStyle = .fullScreen
+                self.present(profileVC, animated: true)
+            }
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         }
+    }
+    
+    func refreshGoalLists() {
+        finishedList = GoalManager.shared.fetchFinished()
+        inProgressList = GoalManager.shared.fetchInprogress()
     }
     
     func loadImage(UIImage value: Data) {
         let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
         let image = UIImage(data: decoded)
         mainImageView.image = image
-    }
-    
-    func isFinished() -> Bool {
-        return statusSementedControl.selectedSegmentIndex == SegmentIndex.finish.rawValue
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
@@ -81,22 +84,50 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
+        detailVC.goalStatus = GoalStatus(rawValue: statusSementedControl.selectedSegmentIndex)
         detailVC.index = indexPath.row
-        detailVC.isFinished = isFinished()
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goalManager.fetch(isfinished: isFinished()).count
+        if statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue {
+            return inProgressList.count
+        } else {
+            return finishedList.count
+        }
     }
     
+    // TODO: 원인 check
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
-        cell.ddayLabel.layer.isHidden = isFinished()
-        cell.titleLabel.text = "test {\(indexPath.row)}"
+        let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
+        var goal: Goal
+
+        if isFinished {
+            goal = finishedList[indexPath.row]
+        } else {
+            goal = inProgressList[indexPath.row]
+            
+            let today = Date()
+            let grainCount = Double(goal.grainCount.rawValue)
+            let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
+            let dday = Calendar.current.dateComponents([.day], from: today, to: enddate).day!
+            
+            if dday >= 0, today >= goal.startDate {
+                cell.ddayLabel.text = "D-\(dday)"
+            } else if today < goal.startDate {
+                cell.ddayLabel.text = "Unstarted"
+            } else {
+                cell.ddayLabel.text = "Finished"
+            }
+        }
+        
+        cell.titleLabel.text = goal.title
+        cell.ddayLabel.isHidden = isFinished
         cell.selectionStyle = .none
         return cell
     }
+
 }
