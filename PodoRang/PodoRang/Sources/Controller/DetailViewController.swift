@@ -9,9 +9,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
     let detailView = DetailView()
-    var grainCount: Int = 7
+    var grainCount: GrainCount = .oneWeek
     var index: Int?
-    var isFinished: Int?
+    var goalStatus: GoalStatus? = .finished
     var selectedGoal: (goal: Goal, index: Int)?
     var checkDays: [Date] = []
     
@@ -43,11 +43,10 @@ class DetailViewController: UIViewController {
     
     /// find the Goal from the goalList
     func findGoal() {
-        guard let index = index, let isFinished = isFinished else { return }
+        guard let index = index, let goalStatus = goalStatus else { return }
         
         var goal: Goal
-        
-        if isFinished == 0 {
+        if goalStatus.rawValue == 0 {
             goal = GoalManager.shared.fetchInprogress()[index]
         } else {
             goal = GoalManager.shared.fetchFinished()[index]
@@ -82,7 +81,7 @@ class DetailViewController: UIViewController {
         
         guard let index = selectedGoal?.index else { return }
         self.navigationItem.title = selectedGoal?.goal.title
-        grainCount = GoalManager.shared.goalList[index].grainCount.rawValue
+        grainCount = GoalManager.shared.goalList[index].grainCount
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
@@ -95,7 +94,7 @@ class DetailViewController: UIViewController {
     }
     
     func calculateRemainCount(_ checkDaysCount: Int) {
-        let remainCount = grainCount - checkDaysCount
+        let remainCount = grainCount.rawValue - checkDaysCount
         detailView.mainLabel.text = "Only \(remainCount) grapes to achieve"
     }
     

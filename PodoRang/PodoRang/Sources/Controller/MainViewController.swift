@@ -84,7 +84,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
-        detailVC.isFinished = statusSementedControl.selectedSegmentIndex
+        detailVC.goalStatus = GoalStatus(rawValue: statusSementedControl.selectedSegmentIndex)
         detailVC.index = indexPath.row
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
