@@ -44,12 +44,12 @@ class DetailViewController: UIViewController {
     /// find the Goal from the goalList
     func findGoal() {
         guard let index = index, let goalStatus = goalStatus else { return }
-        
+        let inProgressSegmentIndex = GoalStatus.inProgress.rawValue
         var goal: Goal
-        if goalStatus.rawValue == 0 {
-            goal = GoalManager.shared.fetchInprogress()[index]
+        if goalStatus.rawValue == inProgressSegmentIndex {
+            goal = GoalManager.shared.fetchInprogress(index: index)
         } else {
-            goal = GoalManager.shared.fetchFinished()[index]
+            goal = GoalManager.shared.fetchFinished(index: index)
         }
         
         let startDate = goal.startDate
@@ -116,6 +116,7 @@ class DetailViewController: UIViewController {
         if stringCheckDays.contains(stringToday) {
             presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
                 self.checkDays.remove(at: 0)
+                
                 DispatchQueue.main.async {
                     self.calculateRemainCount(self.checkDays.count)
                     self.detailView.detailTableView.reloadData()
@@ -124,6 +125,7 @@ class DetailViewController: UIViewController {
         } else {
             presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
                 self.checkDays.insert(date, at: 0)
+                
                 DispatchQueue.main.async {
                     self.calculateRemainCount(self.checkDays.count)
                     self.detailView.detailTableView.reloadData()
@@ -132,18 +134,16 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func presentAlert(title: String, message: String, buttonTitle: String, completion: @escaping () -> Void) {
+    func presentAlert(title: String, message: String, buttonTitle: String, preferredStyle: UIAlertController.Style = .alert , completion: @escaping () -> Void) {
         let text: String = title
         let attributeString = NSMutableAttributedString(string: text)
         let font = UIFont.boldSystemFont(ofSize: 18)
         attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text))
         attributeString.addAttribute(.foregroundColor, value: CustomColor.textGreen, range: (text as NSString).range(of: text))
         
-        let alertController = UIAlertController(title: text, message: message, preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: text, message: message, preferredStyle: preferredStyle)
         alertController.setValue(attributeString, forKey: "attributedTitle")
-        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in
-            completion()
-        }
+        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in completion() }
         let cancel = UIAlertAction(title: "Cancel", style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
@@ -159,16 +159,11 @@ class DetailViewController: UIViewController {
     }
     
     @objc func deleteButtonClicked() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure to delete this goal?", preferredStyle: .actionSheet)
-        let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
+        presentAlert(title: "", message: "Are you sure to delete this goal?", buttonTitle: "Delete", preferredStyle: .actionSheet) {
             guard let selectedGoal = self.selectedGoal else { return }
             GoalManager.shared.delete(deleteGoal: selectedGoal.goal, index: selectedGoal.index)
             self.navigationController?.popViewController(animated: true)
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .default)
-        alertController.addAction(delete)
-        alertController.addAction(cancel)
-        present(alertController, animated: true)
     }
     
     @objc func infoButtonTapped() {

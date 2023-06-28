@@ -30,8 +30,16 @@ final class GoalManager {
         return goalList.filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
     }
     
+    func fetchInprogress(index: Int) -> Goal {
+        return fetchInprogress()[index]
+    }
+    
     func fetchFinished() -> [Goal] {
         return goalList.filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
+    }
+    
+    func fetchFinished(index: Int) -> Goal {
+        return fetchFinished()[index]
     }
     
     func add(_ goal: Goal) {
