@@ -99,6 +99,7 @@ extension MainViewController: UITableViewDataSource {
         }
     }
     
+    // TODO: 원인 check
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
@@ -108,22 +109,19 @@ extension MainViewController: UITableViewDataSource {
             goal = finishedList[indexPath.row]
         } else {
             goal = inProgressList[indexPath.row]
-        }
-        
-        let today = Date()
-        let grainCount = Double(goal.grainCount.rawValue)
-        let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
-        let calendar = Calendar.current
-        let dday = calendar.dateComponents([.day], from: today, to: enddate).day!
-        
-        if dday >= 0, today >= goal.startDate {
-            cell.ddayLabel.text = "D-\(dday)"
-        } else if today < goal.startDate {
-            cell.ddayLabel.text = "Unstarted"
-            cell.isUserInteractionEnabled = false
-        } else {
-            cell.ddayLabel.text = "Finished"
-            cell.isUserInteractionEnabled = false
+            
+            let today = Date()
+            let grainCount = Double(goal.grainCount.rawValue)
+            let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
+            let dday = Calendar.current.dateComponents([.day], from: today, to: enddate).day!
+            
+            if dday >= 0, today >= goal.startDate {
+                cell.ddayLabel.text = "D-\(dday)"
+            } else if today < goal.startDate {
+                cell.ddayLabel.text = "Unstarted"
+            } else {
+                cell.ddayLabel.text = "Finished"
+            }
         }
         
         cell.titleLabel.text = goal.title
