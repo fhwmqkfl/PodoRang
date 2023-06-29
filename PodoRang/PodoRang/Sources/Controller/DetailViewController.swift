@@ -85,7 +85,6 @@ class DetailViewController: UIViewController {
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
-        detailView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
         
     func saveGoal() {
@@ -156,14 +155,6 @@ class DetailViewController: UIViewController {
         addGoalVC.setupType = .modify
         addGoalVC.index = index
         self.navigationController?.pushViewController(addGoalVC, animated: true)
-    }
-    
-    @objc func deleteButtonClicked() {
-        presentAlert(title: "", message: "Are you sure to delete this goal?", buttonTitle: "Delete", preferredStyle: .actionSheet) {
-            guard let selectedGoal = self.selectedGoal else { return }
-            GoalManager.shared.delete(deleteGoal: selectedGoal.goal, index: selectedGoal.index)
-            self.navigationController?.popViewController(animated: true)
-        }
     }
     
     @objc func infoButtonTapped() {

@@ -41,13 +41,14 @@ class AddGoalView: UIView {
     let colorHorizontalStackView = UIStackView()
     let warningLabel: UILabel = {
         let label = UILabel()
-        label.text = "Count & Type cannot be changed!!"
+        label.text = "Count & StartDate can't be changed!!"
         label.textColor = CustomColor.warningRed
         label.font = .boldSystemFont(ofSize: 12)
         label.textAlignment = .center
         return label
     }()
     let saveButton = UIButton()
+    let deleteButton = UIButton()
     
     var diaryDate: Date?
     var buttonArray = [UIButton]()
@@ -109,6 +110,13 @@ class AddGoalView: UIView {
         saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 15
         
+        deleteButton.setTitle("DELETE", for: .normal)
+        deleteButton.backgroundColor = CustomColor.buttonRed
+        deleteButton.tintColor = .white
+        deleteButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = 15
+        deleteButton.isHidden = true
+        
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.touch))
         recognizer.numberOfTapsRequired = 1
         recognizer.numberOfTouchesRequired = 1
@@ -118,7 +126,7 @@ class AddGoalView: UIView {
     func addSubviews() {
         addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, alartLabel, colorHorizontalStackView, warningLabel, saveButton])
+        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, alartLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
         dayHorizontalStackView.addArragnedSubViews([oneWeekButton, twoWeeksButton, threeWeeksButton])
         colorHorizontalStackView.addArragnedSubViews([purpleButton, redButton, greenButton])
     }
@@ -197,6 +205,12 @@ class AddGoalView: UIView {
         
         saveButton.snp.makeConstraints {
             $0.top.equalTo(warningLabel.snp.bottom).offset(15)
+            $0.leading.trailing.equalTo(contentViewArea).inset(25)
+            $0.height.equalTo(50)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.top.equalTo(saveButton.snp.bottom).offset(15)
             $0.leading.trailing.equalTo(contentViewArea).inset(25)
             $0.height.equalTo(50)
             $0.bottom.equalToSuperview().offset(-10)
