@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
         
         getUserData()
         tabBarController?.tabBar.isHidden = false
+        GoalManager.shared.updateGoalStatus()
         refreshGoalLists()
         mainTableView.reloadData()
     }
