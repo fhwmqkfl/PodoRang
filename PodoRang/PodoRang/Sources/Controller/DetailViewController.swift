@@ -70,7 +70,7 @@ class DetailViewController: UIViewController {
     func setupUI() {
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
-
+        
         let infoButton = UIButton(type: .infoLight)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: infoButton)
@@ -86,7 +86,7 @@ class DetailViewController: UIViewController {
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
     }
-        
+    
     func saveGoal() {
         guard let index = selectedGoal?.index else { return }
         GoalManager.shared.updateGoal(newCheckDays: checkDays, index: index)
@@ -104,32 +104,56 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
+        guard let goalStatus = goalStatus, let goal = selectedGoal?.goal else { return }
         let date = Date()
-        let stringToday = date.toStringWithoutTime()
-        var stringCheckDays: [String] = []
         
-        for day in checkDays {
-            stringCheckDays.append(day.toStringWithoutTime())
-        }
-        
-        if stringCheckDays.contains(stringToday) {
-            presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
-                self.checkDays.remove(at: 0)
-                
-                DispatchQueue.main.async {
-                    self.calculateRemainCount(self.checkDays.count)
-                    self.detailView.detailTableView.reloadData()
-                }
-            }
+        if goalStatus == GoalStatus.finished {
+            let alertController = UIAlertController(title: "", message: "It's a finished Goal", preferredStyle: .alert)
+            let checked = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         } else {
-            presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
-                self.checkDays.insert(date, at: 0)
+            if checkStartDate(targetDate: date, startDate: goal.startDate) {
+                let stringToday = date.toStringWithoutTime()
+                var stringCheckDays: [String] = []
                 
-                DispatchQueue.main.async {
-                    self.calculateRemainCount(self.checkDays.count)
-                    self.detailView.detailTableView.reloadData()
+                for day in checkDays {
+                    stringCheckDays.append(day.toStringWithoutTime())
                 }
+                
+                if stringCheckDays.contains(stringToday) {
+                    presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
+                        self.checkDays.remove(at: 0)
+                        
+                        DispatchQueue.main.async {
+                            self.calculateRemainCount(self.checkDays.count)
+                            self.detailView.detailTableView.reloadData()
+                        }
+                    }
+                } else {
+                    presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
+                        self.checkDays.insert(date, at: 0)
+                        
+                        DispatchQueue.main.async {
+                            self.calculateRemainCount(self.checkDays.count)
+                            self.detailView.detailTableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                let alertController = UIAlertController(title: "", message: "It hasn't started yet", preferredStyle: .alert)
+                let checked = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(checked)
+                present(alertController, animated: true)
             }
+        }
+    }
+    
+    func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
+        if targetDate >= startDate {
+            return true
+        } else {
+            return false
         }
     }
     

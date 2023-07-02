@@ -123,8 +123,9 @@ extension MainViewController: UITableViewDataSource {
             goal = finishedList[indexPath.row]
         } else {
             goal = inProgressList[indexPath.row]
-            let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: Date())
-            let ddayText = makeDdayText(dday: dday, targetDate: Date(), startDate: goal.startDate)
+            let date = Date()
+            let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: date)
+            let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
             cell.ddayLabel.text = ddayText
         }
         
