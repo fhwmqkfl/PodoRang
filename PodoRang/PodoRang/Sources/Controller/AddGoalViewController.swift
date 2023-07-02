@@ -75,7 +75,6 @@ class AddGoalViewController: UIViewController {
         }
     }
     
-    // TODO: update type of grape
     @objc func saveButtonClicked() {
         if setupType == .add {
             guard let title = addGoalView.goalTextField.text, let startDate = addGoalView.startDayTextField.text else { return }
@@ -105,9 +104,15 @@ class AddGoalViewController: UIViewController {
             }
         } else {
             guard let title = addGoalView.goalTextField.text, let index = index else { return }
-            
+
             if var goal = goal, !title.isEmpty {
+                guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else {
+                    addGoalView.alartLabel.text = "Check Type of Grape"
+                    return
+                }
+                let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
                 goal.title = title
+                goal.grapeType = grapeType
                 GoalManager.shared.update(goal: goal, index: index)
                 self.navigationController?.popViewController(animated: true)
             } else {
