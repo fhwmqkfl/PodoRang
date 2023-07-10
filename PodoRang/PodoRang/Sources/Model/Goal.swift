@@ -6,30 +6,45 @@
 //
 
 import Foundation
+import RealmSwift
 
-enum GoalStatus: Int {
+enum GoalStatus: Int, PersistableEnum {
     case inProgress = 0
     case finished
 }
 
-enum Grape: Int, CaseIterable {
+enum Grape: Int, CaseIterable, PersistableEnum {
     case purple = 0
     case red
     case green
 }
 
-enum GrainCount: Int, CaseIterable {
+enum GrainCount: Int, CaseIterable, PersistableEnum {
     case oneWeek = 7
     case twoWeeks = 14
     case threeWeeks = 21
 }
 
-struct Goal {
-    var title: String
-    var startDate: Date
-    var grainCount: GrainCount
-    var grapeType: Grape
-    var checkDays: [Date] = []
-    var isFinished: GoalStatus = .inProgress
-    var isSuccessed: Bool = false
+class CheckDays: Object {
+    @Persisted var checkDay: Date
+}
+
+// TODO: CheckDays
+class Goal: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var title: String
+    @Persisted var startDate: Date
+    @Persisted var grainCount: GrainCount
+    @Persisted var grapeType: Grape
+    //    @Persisted var checkDays: List<CheckDays> = List()
+    @Persisted var isFinished: GoalStatus = .inProgress
+    @Persisted var isSuccessed: Bool = false
+    
+    convenience init(title: String, startDate: Date, grainCount: GrainCount, grapeType: Grape?) {
+        self.init()
+        self.title = title
+        self.startDate = startDate
+        self.grainCount = grainCount
+        self.grapeType = grapeType ?? .purple
+    }
 }

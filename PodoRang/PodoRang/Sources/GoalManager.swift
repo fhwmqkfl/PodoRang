@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import RealmSwift
+
+// TODO: DELETE 'goalList' & UPDATE 'updateGoal' method
 
 /// Manage `Goal` instances.
 final class GoalManager {
@@ -13,21 +16,15 @@ final class GoalManager {
     
     private init() {}
     
-    var goalList: [Goal] = []
+    let realm = try! Realm()
     
     func setupData() {
-        goalList = [
-            Goal(title: "매일 아침 차가운 물 한잔 마시기", startDate: "2023년 6월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
-            Goal(title: "저녁 11시 전에 잠들기", startDate: "2023년 7월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
-            Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "매일 아침 차가운 물 한잔 마시기", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "finished-first", startDate: "2023년 5월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
-            Goal(title: "finished-second", startDate: "2023년 5월 10일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
-        ].sorted(by: { $0.startDate < $1.startDate })
+        /// realm local file url
+        // print("file url: \(realm.configuration.fileURL)")
     }
     
     func fetchInprogress() -> [Goal] {
-        return goalList.filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
+        return realm.objects(Goal.self).filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func fetchInprogress(index: Int) -> Goal {
@@ -35,7 +32,7 @@ final class GoalManager {
     }
     
     func fetchFinished() -> [Goal] {
-        return goalList.filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
+        return realm.objects(Goal.self).filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func fetchFinished(index: Int) -> Goal {
@@ -43,19 +40,25 @@ final class GoalManager {
     }
     
     func add(_ goal: Goal) {
-        goalList.append(goal)
+        try! realm.write {
+            realm.add(goal)
+        }
     }
     
-    func delete(deleteGoal: Goal, index: Int) {
-        goalList.remove(at: index)
+    func delete(deleteGoal: Goal) {
+        try! realm.write {
+            realm.delete(deleteGoal)
+        }
     }
     
-    func update(goal: Goal, index: Int) {
-        goalList[index] = goal
+    func update(goal: Goal, title: String, grapeType: Grape) {
+        try! realm.write{
+            goal.title = title
+            goal.grapeType = grapeType
+        }
     }
     
     func updateGoal(newCheckDays: [Date], index: Int) {
-        goalList[index].checkDays = newCheckDays
     }
     
     func calculateDday(goal: Goal, targetDate: Date) -> Int {
@@ -66,14 +69,19 @@ final class GoalManager {
     }
     
     func updateGoalStatus() {
+        let goalList = realm.objects(Goal.self)
         let today = Date()
         
         for index in 0..<goalList.count {
-            let dday = calculateDday(goal: goalList[index] , targetDate: today)
+            let dday = calculateDday(goal: goalList[index], targetDate: today)
             if dday >= 0 {
-                goalList[index].isFinished = .inProgress
+                try! realm.write {
+                    goalList[index].isFinished = .inProgress
+                }
             } else {
-                goalList[index].isFinished = .finished
+                try! realm.write {
+                    goalList[index].isFinished = .finished
+                }
             }
         }
     }
