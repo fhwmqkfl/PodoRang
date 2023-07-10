@@ -17,10 +17,10 @@ final class GoalManager {
     
     func setupData() {
         goalList = [
-            Goal(title: "progrss-first", startDate: "2023년 6월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
-            Goal(title: "progrss-second", startDate: "2023년 7월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
+            Goal(title: "매일 아침 차가운 물 한잔 마시기", startDate: "2023년 6월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, checkDays: ["2023년 6월 20일".toDate()!, "2023년 5월 30일".toDate()!]),
+            Goal(title: "저녁 11시 전에 잠들기", startDate: "2023년 7월 30일".toDate()!, grainCount: .twoWeeks, grapeType: .purple, checkDays: ["2023년 6월 23일".toDate()!, "2023년 5월 29일".toDate()!]),
             Goal(title: "progrss-third", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
-            Goal(title: "progrss-fourth", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
+            Goal(title: "매일 아침 차가운 물 한잔 마시기", startDate: Date(), grainCount: .oneWeek, grapeType: .purple),
             Goal(title: "finished-first", startDate: "2023년 5월 19일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished),
             Goal(title: "finished-second", startDate: "2023년 5월 10일".toDate()!, grainCount: .oneWeek, grapeType: .purple, isFinished: .finished)
         ].sorted(by: { $0.startDate < $1.startDate })

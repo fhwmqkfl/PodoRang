@@ -8,6 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    @IBOutlet weak var alarmButton: UIBarButtonItem!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var mainTableView: UITableView!
@@ -36,6 +37,9 @@ class MainViewController: UIViewController {
     }
     
     func setUI() {
+        alarmButton.isHidden = true
+        mainTableView.separatorInset.left = 30
+        mainTableView.separatorInset.right = 30
         mainLabel.font = .boldSystemFont(ofSize: 20)
         mainImageView.layer.cornerRadius = mainImageView.frame.width / 2
         mainImageView.layer.borderWidth = 1

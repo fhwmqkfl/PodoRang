@@ -23,6 +23,9 @@ class SettingViewController: UIViewController {
         
         settingTableView.delegate = self
         settingTableView.dataSource = self
+        
+        settingTableView.separatorInset.left = 30
+        settingTableView.separatorInset.right = 30
     }
 }
 

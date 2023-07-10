@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
         guard let index = index, let goalStatus = goalStatus else { return }
         let inProgressSegmentIndex = GoalStatus.inProgress.rawValue
         var goal: Goal
+        
         if goalStatus.rawValue == inProgressSegmentIndex {
             goal = GoalManager.shared.fetchInprogress(index: index)
         } else {
@@ -63,6 +64,7 @@ class DetailViewController: UIViewController {
                 break
             }
         }
+        
         selectedGoal = (goalList[goalListIndex], goalListIndex)
         checkDays = selectedGoal?.goal.checkDays ?? []
     }
@@ -150,11 +152,7 @@ class DetailViewController: UIViewController {
     }
     
     func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
-        if targetDate >= startDate {
-            return true
-        } else {
-            return false
-        }
+        return targetDate >= startDate ? true : false
     }
     
     func presentAlert(title: String, message: String, buttonTitle: String, preferredStyle: UIAlertController.Style = .alert , completion: @escaping () -> Void) {
