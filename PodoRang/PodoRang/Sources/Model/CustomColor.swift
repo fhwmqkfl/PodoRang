@@ -16,5 +16,6 @@ struct CustomColor {
     static let infoGreen = UIColor(hexCode: "008000")
     static let button = UIColor(hexCode: "DADADA")
     static let warningRed = UIColor(hexCode: "EB3535")
+    static let buttonRed = UIColor(hexCode: "EB3535", alpha: 0.62)
     static let textGreen = UIColor(hexCode: "8BB14C")
 }

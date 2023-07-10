@@ -28,6 +28,7 @@ class AddGoalViewController: UIViewController {
         setupGoal()
         setupUI()
         addGoalView.saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
+        addGoalView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
     
     func setupGoal() {
@@ -43,11 +44,9 @@ class AddGoalViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor: CustomColor.navigationTitle]
         view.backgroundColor = .white
         
-        // TODO: change UI/UX
         if  setupType == .modify {
             guard let goal = goal else { return }
             addGoalView.goalTextField.text = goal.title
-            addGoalView.alartLabel.text = "You can only modify Goal title!"
             addGoalView.startDayTextField.text = goal.startDate.toStringWithoutTime()
             addGoalView.startDayTextField.isUserInteractionEnabled = false
             addGoalView.startDayTextField.textColor = .systemGray2
@@ -57,9 +56,22 @@ class AddGoalViewController: UIViewController {
             addGoalView.twoWeeksButton.backgroundColor = .systemGray5
             addGoalView.threeWeeksButton.isEnabled = false
             addGoalView.threeWeeksButton.backgroundColor = .systemGray5
-            addGoalView.redButton.isEnabled = false
-            addGoalView.greenButton.isEnabled = false
-            addGoalView.purpleButton.isEnabled = false
+            addGoalView.deleteButton.isHidden = false
+            let colorButton = addGoalView.grapeTypeArray[goal.grapeType.rawValue]
+        
+            if colorButton == addGoalView.purpleButton {
+                addGoalView.purpleButton.isSelected = true
+                addGoalView.redButton.isEnabled = false
+                addGoalView.greenButton.isEnabled = false
+            } else if colorButton == addGoalView.redButton {
+                addGoalView.redButton.isSelected = true
+                addGoalView.purpleButton.isEnabled = false
+                addGoalView.greenButton.isEnabled = false
+            } else {
+                addGoalView.greenButton.isSelected = true
+                addGoalView.redButton.isEnabled = false
+                addGoalView.purpleButton.isEnabled = false
+            }
         }
     }
     
@@ -92,9 +104,15 @@ class AddGoalViewController: UIViewController {
             }
         } else {
             guard let title = addGoalView.goalTextField.text, let index = index else { return }
-            
+
             if var goal = goal, !title.isEmpty {
+                guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else {
+                    addGoalView.alartLabel.text = "Check Type of Grape"
+                    return
+                }
+                let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
                 goal.title = title
+                goal.grapeType = grapeType
                 GoalManager.shared.update(goal: goal, index: index)
                 self.navigationController?.popViewController(animated: true)
             } else {
@@ -102,5 +120,18 @@ class AddGoalViewController: UIViewController {
                 addGoalView.goalTextField.inactiveColor = CustomColor.mainPurple
             }
         }
+    }
+    
+    @objc func deleteButtonClicked() {
+        guard let goal = goal, let index = index else { return }
+        let alertController = UIAlertController(title: "", message: "Are you sure to delete this goal?", preferredStyle: .actionSheet)
+        let deleteGoal = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            GoalManager.shared.delete(deleteGoal: goal, index: index)
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .default)
+        alertController.addAction(deleteGoal)
+        alertController.addAction(cancel)
+        present(alertController, animated: true)
     }
 }

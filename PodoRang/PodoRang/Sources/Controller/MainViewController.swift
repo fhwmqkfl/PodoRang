@@ -8,6 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    @IBOutlet weak var alarmButton: UIBarButtonItem!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var mainTableView: UITableView!
@@ -30,11 +31,15 @@ class MainViewController: UIViewController {
         
         getUserData()
         tabBarController?.tabBar.isHidden = false
+        GoalManager.shared.updateGoalStatus()
         refreshGoalLists()
         mainTableView.reloadData()
     }
     
     func setUI() {
+        alarmButton.isHidden = true
+        mainTableView.separatorInset.left = 30
+        mainTableView.separatorInset.right = 30
         mainLabel.font = .boldSystemFont(ofSize: 20)
         mainImageView.layer.cornerRadius = mainImageView.frame.width / 2
         mainImageView.layer.borderWidth = 1
@@ -72,12 +77,26 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
+        GoalManager.shared.updateGoalStatus()
+        refreshGoalLists()
         mainTableView.reloadData()
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         let setupVC = AddGoalViewController()
         self.navigationController?.pushViewController(setupVC, animated: true)
+    }
+    
+    func makeDdayText(dday: Int, targetDate: Date, startDate: Date) -> String {
+        if dday >= 0 {
+            if targetDate >= startDate {
+                return "D-\(dday)"
+            } else {
+                return "UnStarted"
+            }
+        } else {
+            return "Finished"
+        }
     }
 }
 
@@ -99,7 +118,6 @@ extension MainViewController: UITableViewDataSource {
         }
     }
     
-    // TODO: 원인 check
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
@@ -109,19 +127,10 @@ extension MainViewController: UITableViewDataSource {
             goal = finishedList[indexPath.row]
         } else {
             goal = inProgressList[indexPath.row]
-            
-            let today = Date()
-            let grainCount = Double(goal.grainCount.rawValue)
-            let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
-            let dday = Calendar.current.dateComponents([.day], from: today, to: enddate).day!
-            
-            if dday >= 0, today >= goal.startDate {
-                cell.ddayLabel.text = "D-\(dday)"
-            } else if today < goal.startDate {
-                cell.ddayLabel.text = "Unstarted"
-            } else {
-                cell.ddayLabel.text = "Finished"
-            }
+            let date = Date()
+            let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: date)
+            let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
+            cell.ddayLabel.text = ddayText
         }
         
         cell.titleLabel.text = goal.title
@@ -129,5 +138,4 @@ extension MainViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-
 }

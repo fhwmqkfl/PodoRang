@@ -12,8 +12,6 @@ class DetailView: UIView {
     let mainLabel = UILabel()
     let mainImageView = UIImageView()
     let modifyButton = UIButton()
-    let deleteButton = UIButton()
-    let horizontalStackView = UIStackView()
     let historyLabel = UILabel()
     let detailTableView: UITableView = {
         let tableView = UITableView()
@@ -38,8 +36,7 @@ class DetailView: UIView {
     }
     
     func setupUI() {
-        self.addSubviews([mainLabel,mainImageView,horizontalStackView, historyLabel, detailTableView])
-        horizontalStackView.addArragnedSubViews([modifyButton,deleteButton])
+        self.addSubviews([mainLabel,mainImageView, modifyButton, historyLabel, detailTableView])
         
         mainLabel.backgroundColor = CustomColor.mainPurple
         mainLabel.font = .boldSystemFont(ofSize: 15)
@@ -53,11 +50,6 @@ class DetailView: UIView {
         setLabel(historyLabel, title: "date of painting grapes")
         
         setButton(modifyButton, title: "Modify Goal")
-        setButton(deleteButton, title: "Delete Goal")
-        
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.spacing = 10
-        horizontalStackView.distribution = .fillEqually
     }
     
     func setupConstraints() {
@@ -77,15 +69,15 @@ class DetailView: UIView {
             $0.centerX.equalToSuperview()
         }
         
-        horizontalStackView.snp.makeConstraints {
+        modifyButton.snp.makeConstraints {
             $0.top.equalTo(mainImageView.snp.bottom).offset(15)
-            $0.leading.trailing.equalTo(safeArea).inset(25)
+            $0.leading.trailing.equalTo(safeArea).inset(100)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
         }
         
         historyLabel.snp.makeConstraints {
-            $0.top.equalTo(horizontalStackView.snp.bottom).offset(15)
+            $0.top.equalTo(modifyButton.snp.bottom).offset(15)
             $0.centerX.equalToSuperview()
         }
         

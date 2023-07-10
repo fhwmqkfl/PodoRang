@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
         guard let index = index, let goalStatus = goalStatus else { return }
         let inProgressSegmentIndex = GoalStatus.inProgress.rawValue
         var goal: Goal
+        
         if goalStatus.rawValue == inProgressSegmentIndex {
             goal = GoalManager.shared.fetchInprogress(index: index)
         } else {
@@ -63,6 +64,7 @@ class DetailViewController: UIViewController {
                 break
             }
         }
+        
         selectedGoal = (goalList[goalListIndex], goalListIndex)
         checkDays = selectedGoal?.goal.checkDays ?? []
     }
@@ -70,7 +72,7 @@ class DetailViewController: UIViewController {
     func setupUI() {
         tabBarController?.tabBar.isHidden = true
         view.backgroundColor = .white
-
+        
         let infoButton = UIButton(type: .infoLight)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: infoButton)
@@ -85,9 +87,8 @@ class DetailViewController: UIViewController {
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
-        detailView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
-        
+    
     func saveGoal() {
         guard let index = selectedGoal?.index else { return }
         GoalManager.shared.updateGoal(newCheckDays: checkDays, index: index)
@@ -105,33 +106,53 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
+        guard let goalStatus = goalStatus, let goal = selectedGoal?.goal else { return }
         let date = Date()
-        let stringToday = date.toStringWithoutTime()
-        var stringCheckDays: [String] = []
         
-        for day in checkDays {
-            stringCheckDays.append(day.toStringWithoutTime())
-        }
-        
-        if stringCheckDays.contains(stringToday) {
-            presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
-                self.checkDays.remove(at: 0)
-                
-                DispatchQueue.main.async {
-                    self.calculateRemainCount(self.checkDays.count)
-                    self.detailView.detailTableView.reloadData()
-                }
-            }
+        if goalStatus == GoalStatus.finished {
+            let alertController = UIAlertController(title: "", message: "It's a finished Goal", preferredStyle: .alert)
+            let checked = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(checked)
+            present(alertController, animated: true)
         } else {
-            presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
-                self.checkDays.insert(date, at: 0)
+            if checkStartDate(targetDate: date, startDate: goal.startDate) {
+                let stringToday = date.toStringWithoutTime()
+                var stringCheckDays: [String] = []
                 
-                DispatchQueue.main.async {
-                    self.calculateRemainCount(self.checkDays.count)
-                    self.detailView.detailTableView.reloadData()
+                for day in checkDays {
+                    stringCheckDays.append(day.toStringWithoutTime())
                 }
+                
+                if stringCheckDays.contains(stringToday) {
+                    presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
+                        self.checkDays.remove(at: 0)
+                        
+                        DispatchQueue.main.async {
+                            self.calculateRemainCount(self.checkDays.count)
+                            self.detailView.detailTableView.reloadData()
+                        }
+                    }
+                } else {
+                    presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
+                        self.checkDays.insert(date, at: 0)
+                        
+                        DispatchQueue.main.async {
+                            self.calculateRemainCount(self.checkDays.count)
+                            self.detailView.detailTableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                let alertController = UIAlertController(title: "", message: "It hasn't started yet", preferredStyle: .alert)
+                let checked = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(checked)
+                present(alertController, animated: true)
             }
         }
+    }
+    
+    func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
+        return targetDate >= startDate ? true : false
     }
     
     func presentAlert(title: String, message: String, buttonTitle: String, preferredStyle: UIAlertController.Style = .alert , completion: @escaping () -> Void) {
@@ -156,14 +177,6 @@ class DetailViewController: UIViewController {
         addGoalVC.setupType = .modify
         addGoalVC.index = index
         self.navigationController?.pushViewController(addGoalVC, animated: true)
-    }
-    
-    @objc func deleteButtonClicked() {
-        presentAlert(title: "", message: "Are you sure to delete this goal?", buttonTitle: "Delete", preferredStyle: .actionSheet) {
-            guard let selectedGoal = self.selectedGoal else { return }
-            GoalManager.shared.delete(deleteGoal: selectedGoal.goal, index: selectedGoal.index)
-            self.navigationController?.popViewController(animated: true)
-        }
     }
     
     @objc func infoButtonTapped() {
