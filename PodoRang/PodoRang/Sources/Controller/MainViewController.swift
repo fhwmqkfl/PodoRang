@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUI()
-        GoalManager.shared.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,7 +121,7 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
         var goal: Goal
-
+        
         if isFinished {
             goal = finishedList[indexPath.row]
         } else {

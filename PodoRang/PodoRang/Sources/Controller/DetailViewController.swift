@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailViewController: UIViewController {
     let detailView = DetailView()
+    let realm = try! Realm()
     var grainCount: GrainCount = .oneWeek
     var index: Int?
     var goalStatus: GoalStatus? = .finished
@@ -55,7 +57,7 @@ class DetailViewController: UIViewController {
         
         let startDate = goal.startDate
         let title = goal.title
-        let goalList = GoalManager.shared.goalList
+        let goalList = realm.objects(Goal.self)
         var goalListIndex: Int = 0
         
         for i in 0..<goalList.count {
@@ -66,7 +68,7 @@ class DetailViewController: UIViewController {
         }
         
         selectedGoal = (goalList[goalListIndex], goalListIndex)
-        checkDays = selectedGoal?.goal.checkDays ?? []
+        checkDays = Array(selectedGoal?.goal.checkDays ?? List())
     }
     
     func setupUI() {
@@ -81,17 +83,17 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
         
-        guard let index = selectedGoal?.index else { return }
-        self.navigationItem.title = selectedGoal?.goal.title
-        grainCount = GoalManager.shared.goalList[index].grainCount
+        guard let selectedGoal = selectedGoal else { return }
+        self.navigationItem.title = selectedGoal.goal.title
+        grainCount = selectedGoal.goal.grainCount
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
     }
     
     func saveGoal() {
-        guard let index = selectedGoal?.index else { return }
-        GoalManager.shared.updateGoal(newCheckDays: checkDays, index: index)
+        guard let goal = selectedGoal?.goal else { return }
+        GoalManager.shared.updateGoal(newCheckDays: checkDays, goal: goal)
     }
     
     func calculateRemainCount(_ checkDaysCount: Int) {

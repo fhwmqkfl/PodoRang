@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddGoalViewController: UIViewController {
     enum SetupType: String {
@@ -14,6 +15,7 @@ class AddGoalViewController: UIViewController {
     }
     
     let addGoalView = AddGoalView()
+    let realm = try! Realm()
     var goal: Goal?
     var index: Int?
     var setupType: SetupType = .add
@@ -33,7 +35,7 @@ class AddGoalViewController: UIViewController {
     
     func setupGoal() {
         guard let index = index else { return }
-        goal = GoalManager.shared.goalList[index]
+        goal = realm.objects(Goal.self)[index]
     }
     
     func setupUI() {
@@ -58,7 +60,7 @@ class AddGoalViewController: UIViewController {
             addGoalView.threeWeeksButton.backgroundColor = .systemGray5
             addGoalView.deleteButton.isHidden = false
             let colorButton = addGoalView.grapeTypeArray[goal.grapeType.rawValue]
-        
+            
             if colorButton == addGoalView.purpleButton {
                 addGoalView.purpleButton.isSelected = true
                 addGoalView.redButton.isEnabled = false
@@ -89,8 +91,8 @@ class AddGoalViewController: UIViewController {
                 }
                 let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .oneWeek
                 let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
-                let newgoal = Goal(title: title, startDate: startDate.toDate() ?? Date(), grainCount: grainCount, grapeType: grapeType)
-                GoalManager.shared.add(newgoal)
+                let newGoal = Goal(title: title, startDate: startDate.toDate() ?? Date(), grainCount: grainCount, grapeType: grapeType)
+                GoalManager.shared.add(newGoal)
                 self.navigationController?.popViewController(animated: true)
             } else {
                 if title.isEmpty {
@@ -103,17 +105,15 @@ class AddGoalViewController: UIViewController {
                 }
             }
         } else {
-            guard let title = addGoalView.goalTextField.text, let index = index else { return }
-
-            if var goal = goal, !title.isEmpty {
+            guard let title = addGoalView.goalTextField.text else { return }
+            
+            if let goal = goal, !title.isEmpty {
                 guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else {
                     addGoalView.alartLabel.text = "Check Type of Grape"
                     return
                 }
                 let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
-                goal.title = title
-                goal.grapeType = grapeType
-                GoalManager.shared.update(goal: goal, index: index)
+                GoalManager.shared.update(goal: goal, title: title, grapeType: grapeType)
                 self.navigationController?.popViewController(animated: true)
             } else {
                 addGoalView.goalTextField.placeholder = "Enter Goal"
@@ -123,10 +123,10 @@ class AddGoalViewController: UIViewController {
     }
     
     @objc func deleteButtonClicked() {
-        guard let goal = goal, let index = index else { return }
+        guard let goal = goal else { return }
         let alertController = UIAlertController(title: "", message: "Are you sure to delete this goal?", preferredStyle: .actionSheet)
         let deleteGoal = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            GoalManager.shared.delete(deleteGoal: goal, index: index)
+            GoalManager.shared.delete(deleteGoal: goal)
             self.navigationController?.popToRootViewController(animated: true)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .default)
