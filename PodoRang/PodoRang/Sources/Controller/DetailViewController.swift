@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-         saveGoal()
+        saveGoal()
     }
     
     /// find the Goal from the goalList
