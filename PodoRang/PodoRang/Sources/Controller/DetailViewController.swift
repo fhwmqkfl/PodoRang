@@ -37,11 +37,10 @@ class DetailViewController: UIViewController {
         setupUI()
     }
     
-    // TODO: UPDATE 'saveGoal'
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // saveGoal()
+         saveGoal()
     }
     
     /// find the Goal from the goalList
@@ -69,7 +68,7 @@ class DetailViewController: UIViewController {
         }
         
         selectedGoal = (goalList[goalListIndex], goalListIndex)
-        checkDays = []
+        checkDays = Array(selectedGoal?.goal.checkDays ?? List())
     }
     
     func setupUI() {
@@ -93,8 +92,8 @@ class DetailViewController: UIViewController {
     }
     
     func saveGoal() {
-        guard let index = selectedGoal?.index else { return }
-        GoalManager.shared.updateGoal(newCheckDays: checkDays, index: index)
+        guard let goal = selectedGoal?.goal else { return }
+        GoalManager.shared.updateGoal(newCheckDays: checkDays, goal: goal)
     }
     
     func calculateRemainCount(_ checkDaysCount: Int) {

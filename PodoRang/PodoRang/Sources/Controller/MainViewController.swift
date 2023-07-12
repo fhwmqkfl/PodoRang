@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUI()
-        GoalManager.shared.setupData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -8,8 +8,6 @@
 import Foundation
 import RealmSwift
 
-// TODO: DELETE 'goalList' & UPDATE 'updateGoal' method
-
 /// Manage `Goal` instances.
 final class GoalManager {
     static let shared = GoalManager()
@@ -18,13 +16,8 @@ final class GoalManager {
     
     let realm = try! Realm()
     
-    func setupData() {
-        /// realm local file url
-        // print("file url: \(realm.configuration.fileURL)")
-    }
-    
     func fetchInprogress() -> [Goal] {
-        return realm.objects(Goal.self).filter { $0.isFinished == .inProgress}.sorted(by: { $0.startDate < $1.startDate })
+        return realm.objects(Goal.self).filter { $0.isFinished == .inProgress }.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func fetchInprogress(index: Int) -> Goal {
@@ -32,7 +25,7 @@ final class GoalManager {
     }
     
     func fetchFinished() -> [Goal] {
-        return realm.objects(Goal.self).filter { $0.isFinished == .finished}.sorted(by: { $0.startDate < $1.startDate })
+        return realm.objects(Goal.self).filter { $0.isFinished == .finished }.sorted(by: { $0.startDate < $1.startDate })
     }
     
     func fetchFinished(index: Int) -> Goal {
@@ -58,7 +51,12 @@ final class GoalManager {
         }
     }
     
-    func updateGoal(newCheckDays: [Date], index: Int) {
+    func updateGoal(newCheckDays: [Date], goal: Goal) {
+        try! realm.write {
+            let realmList = List<Date>()
+            realmList.append(objectsIn: newCheckDays)
+            goal.checkDays = realmList
+        }
     }
     
     func calculateDday(goal: Goal, targetDate: Date) -> Int {

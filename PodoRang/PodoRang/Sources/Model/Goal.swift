@@ -25,18 +25,13 @@ enum GrainCount: Int, CaseIterable, PersistableEnum {
     case threeWeeks = 21
 }
 
-class CheckDays: Object {
-    @Persisted var checkDay: Date
-}
-
-// TODO: CheckDays
 class Goal: Object {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var title: String
     @Persisted var startDate: Date
     @Persisted var grainCount: GrainCount
     @Persisted var grapeType: Grape
-    //    @Persisted var checkDays: List<CheckDays> = List()
+    @Persisted var checkDays: List<Date> = List()
     @Persisted var isFinished: GoalStatus = .inProgress
     @Persisted var isSuccessed: Bool = false
     
