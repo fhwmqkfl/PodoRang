@@ -40,9 +40,9 @@ class PopupView: UIView {
         mainLabel.setLineSpacing(spacing: 2)
         mainLabel.textAlignment = .center
         
-        mainImage.image = UIImage(named: "podo")
+        mainImage.image = UIImage(named: "purpleButton")
         
-        infoLabel.text = "하루 한번 목표를 달성해 \n 포도를 채워주세요."
+        infoLabel.text = "achieve goal once a day \n and draw a grain"
         infoLabel.font = .systemFont(ofSize: 14)
         infoLabel.numberOfLines = 2
         infoLabel.setLineSpacing(spacing: 5)

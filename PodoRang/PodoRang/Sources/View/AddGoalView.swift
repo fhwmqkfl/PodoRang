@@ -128,7 +128,7 @@ class AddGoalView: UIView {
         contentScrollView.addSubview(contentView)
         contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, alartLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
         dayHorizontalStackView.addArragnedSubViews([oneWeekButton, twoWeeksButton, threeWeeksButton])
-        colorHorizontalStackView.addArragnedSubViews([purpleButton, redButton, greenButton])
+        colorHorizontalStackView.addArragnedSubViews([purpleButton, greenButton, redButton])
     }
     
     func setupConstraints() {
@@ -240,10 +240,16 @@ class AddGoalView: UIView {
     }
     
     func setButtonImage(_ button: UIButton, tag: Int) {
-        button.setImage(UIImage(named: "grape"), for: .normal)
+        if tag == Grape.purple.rawValue {
+            button.setImage(UIImage(named: "purpleButton"), for: .normal)
+        } else if tag == Grape.red.rawValue {
+            button.setImage(UIImage(named: "redButton"), for: .normal)
+        } else {
+            button.setImage(UIImage(named: "greenButton"), for: .normal)
+        }
+        
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
-        button.setImage(UIImage(named: "grayGrape"), for: .disabled)
         button.tag = tag
     }
     
