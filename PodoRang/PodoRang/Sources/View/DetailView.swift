@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class DetailView: UIView {
+    let lineView = UIView()
     let mainLabel = UILabel()
     let mainImageView = UIImageView()
     let modifyButton = UIButton()
@@ -36,7 +37,9 @@ class DetailView: UIView {
     }
     
     func setupUI() {
-        self.addSubviews([mainLabel,mainImageView, modifyButton, historyLabel, detailTableView])
+        self.addSubviews([lineView, mainLabel,mainImageView, modifyButton, historyLabel, detailTableView])
+        
+        lineView.backgroundColor = .systemGray5
         
         mainLabel.backgroundColor = CustomColor.mainPurple
         mainLabel.font = .boldSystemFont(ofSize: 15)
@@ -44,8 +47,6 @@ class DetailView: UIView {
         mainLabel.textColor = .white
         mainLabel.clipsToBounds = true
         mainLabel.layer.cornerRadius = 20
-        
-        mainImageView.backgroundColor = CustomColor.mainPurple
         
         setLabel(historyLabel, title: "date of painting grapes")
         
@@ -55,23 +56,28 @@ class DetailView: UIView {
     func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
         
+        lineView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(safeArea)
+            $0.height.equalTo(1)
+        }
+        
         mainLabel.snp.makeConstraints {
+            $0.top.equalTo(lineView.snp.bottom).offset(15)
             $0.leading.equalTo(safeArea).offset(25)
-            $0.top.equalTo(safeArea).offset(40)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
         }
         
         mainImageView.snp.makeConstraints {
-            $0.top.equalTo(mainLabel.snp.bottom).offset(30)
-            $0.width.equalTo(200)
-            $0.height.equalTo(mainImageView.snp.width)
+            $0.top.equalTo(mainLabel.snp.bottom).offset(15)
+            $0.width.equalTo(240)
+            $0.height.equalTo(mainImageView.snp.width).multipliedBy(1.3)
             $0.centerX.equalToSuperview()
         }
         
         modifyButton.snp.makeConstraints {
             $0.top.equalTo(mainImageView.snp.bottom).offset(15)
-            $0.leading.trailing.equalTo(safeArea).inset(100)
+            $0.leading.trailing.equalTo(safeArea).inset(25)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(35)
         }

@@ -89,6 +89,7 @@ class DetailViewController: UIViewController {
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
+        detailView.mainImageView.image = UIImage(named: "\(selectedGoal.goal.grapeType)_\(grainCount)_\(checkDays.count)")
     }
     
     func saveGoal() {
@@ -132,6 +133,7 @@ class DetailViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.calculateRemainCount(self.checkDays.count)
                             self.detailView.detailTableView.reloadData()
+                            self.detailView.mainImageView.image = UIImage(named: "\(goal.grapeType)_\(goal.grainCount)_\(self.checkDays.count)")
                         }
                     }
                 } else {
@@ -141,6 +143,7 @@ class DetailViewController: UIViewController {
                         DispatchQueue.main.async {
                             self.calculateRemainCount(self.checkDays.count)
                             self.detailView.detailTableView.reloadData()
+                            self.detailView.mainImageView.image = UIImage(named: "\(goal.grapeType)_\(goal.grainCount)_\(self.checkDays.count)")
                         }
                     }
                 }
