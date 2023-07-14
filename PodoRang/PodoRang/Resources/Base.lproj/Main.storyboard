@@ -131,7 +131,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test(0)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-dy-4Qq">
-                                                    <rect key="frame" x="30" y="24" width="66" height="52"/>
+                                                    <rect key="frame" x="30" y="38" width="66" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -144,13 +144,9 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="nextpageButton"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j">
-                                                    <rect key="frame" x="233" y="24" width="70" height="52"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j" customClass="PaddingLabel" customModule="PodoRang" customModuleProvider="target">
+                                                    <rect key="frame" x="269.33333333333331" y="41" width="33.666666666666686" height="18"/>
                                                     <color key="backgroundColor" red="0.6470588235294118" green="0.34509803921568627" blue="0.88627450980392153" alpha="0.44" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Msl-TQ-xgZ"/>
-                                                        <constraint firstAttribute="height" constant="33" id="WQa-pR-Aa6"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -164,20 +160,18 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Wyc-dy-4Qq" firstAttribute="leading" secondItem="peS-ke-Mxa" secondAttribute="leading" constant="30" id="7Uh-50-Xh9"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Wyc-dy-4Qq" secondAttribute="bottom" constant="24" id="KEY-SD-dmP"/>
-                                                <constraint firstItem="Wyc-dy-4Qq" firstAttribute="top" relation="lessThanOrEqual" secondItem="peS-ke-Mxa" secondAttribute="top" constant="24" id="Rtt-mh-m4m"/>
-                                                <constraint firstAttribute="bottom" secondItem="QaS-Rc-E6j" secondAttribute="bottom" constant="24" id="Txm-Az-oMx"/>
+                                                <constraint firstItem="QaS-Rc-E6j" firstAttribute="centerY" secondItem="peS-ke-Mxa" secondAttribute="centerY" id="Pa2-LG-5zi"/>
+                                                <constraint firstItem="Wyc-dy-4Qq" firstAttribute="centerY" secondItem="peS-ke-Mxa" secondAttribute="centerY" id="Zi9-OQ-nzJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="Abf-Ue-uXt" secondAttribute="bottom" constant="25" id="crv-Fl-Rgp"/>
                                                 <constraint firstItem="Abf-Ue-uXt" firstAttribute="leading" secondItem="QaS-Rc-E6j" secondAttribute="trailing" constant="15" id="lzc-xm-KDN"/>
                                                 <constraint firstItem="Abf-Ue-uXt" firstAttribute="top" secondItem="peS-ke-Mxa" secondAttribute="top" constant="25" id="pUh-YK-9e5"/>
                                                 <constraint firstAttribute="trailing" secondItem="Abf-Ue-uXt" secondAttribute="trailing" constant="25" id="qKA-gt-4E8"/>
                                                 <constraint firstItem="QaS-Rc-E6j" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wyc-dy-4Qq" secondAttribute="trailing" constant="10" id="tOJ-2g-Emf"/>
-                                                <constraint firstItem="QaS-Rc-E6j" firstAttribute="top" secondItem="peS-ke-Mxa" secondAttribute="top" constant="24" id="xMg-9f-wJA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="ddayLabel" destination="QaS-Rc-E6j" id="1E0-px-83V"/>
-                                            <outlet property="titleLabel" destination="Wyc-dy-4Qq" id="alN-6n-6Lf"/>
+                                            <outlet property="ddayLabel" destination="QaS-Rc-E6j" id="gM4-7z-lFW"/>
+                                            <outlet property="titleLabel" destination="Wyc-dy-4Qq" id="tAn-ur-Mgc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
