@@ -138,7 +138,7 @@ class AddGoalViewController: UIViewController {
     }
     
     @objc func checkValidation() {
-        if !(addGoalView.goalTextField.text?.isEmpty ?? true) && !(addGoalView.startDayTextField.text?.isEmpty ?? true) && (addGoalView.redButton.isSelected || addGoalView.purpleButton.isSelected || addGoalView.greenButton.isSelected) {
+        if !(addGoalView.goalTextField.text?.isEmpty ?? true) && !(addGoalView.startDayTextField.text?.isEmpty ?? true) {
             setSaveButton(isOn: true)
         } else {
             setSaveButton(isOn: false)
