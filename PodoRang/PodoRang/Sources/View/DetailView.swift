@@ -89,7 +89,7 @@ class DetailView: UIView {
         
         detailTableView.snp.makeConstraints {
             $0.top.equalTo(historyLabel.snp.bottom).offset(15)
-            $0.bottom.equalTo(safeArea).offset(-20)
+            $0.bottom.equalTo(safeArea).offset(-15)
             $0.leading.trailing.equalTo(safeArea).inset(25)
         }
     }
@@ -101,7 +101,7 @@ class DetailView: UIView {
     }
     
     func setButton(_ button: UIButton, title: String) {
-        button.backgroundColor = CustomColor.button
+        button.backgroundColor = CustomColor.buttonGreen
         button.setTitle(title, for: .normal)
         button.tintColor = .white
         button.clipsToBounds = true
