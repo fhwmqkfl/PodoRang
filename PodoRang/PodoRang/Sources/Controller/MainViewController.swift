@@ -91,7 +91,7 @@ class MainViewController: UIViewController {
             if targetDate >= startDate {
                 return "D-\(dday)"
             } else {
-                return "UnStarted"
+                return "Unstarted"
             }
         } else {
             return "Finished"
@@ -130,6 +130,7 @@ extension MainViewController: UITableViewDataSource {
             let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: date)
             let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
             cell.ddayLabel.text = ddayText
+            
         }
         
         cell.titleLabel.text = goal.title

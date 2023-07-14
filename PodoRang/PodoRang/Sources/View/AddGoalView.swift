@@ -106,9 +106,9 @@ class AddGoalView: UIView {
         saveButton.setTitle("SAVE", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
-        saveButton.layer.borderColor = CustomColor.mainPurple.cgColor
-        saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 15
+        saveButton.isEnabled = false
+        saveButton.backgroundColor = .systemGray2
         
         deleteButton.setTitle("DELETE", for: .normal)
         deleteButton.backgroundColor = CustomColor.buttonRed
@@ -343,4 +343,3 @@ extension AddGoalView: UITextFieldDelegate {
         return true
     }
 }
-
