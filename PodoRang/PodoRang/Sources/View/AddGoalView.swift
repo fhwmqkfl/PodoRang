@@ -50,9 +50,10 @@ class AddGoalView: UIView {
     let saveButton = UIButton()
     let deleteButton = UIButton()
     
-    var diaryDate: Date?
+    var startDate: Date?
     var buttonArray = [UIButton]()
     var grapeTypeArray = [UIButton]()
+    var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -272,16 +273,46 @@ class AddGoalView: UIView {
         startDayTextField.inputAccessoryView = toolBar
     }
     
+    func setSaveButton(isOn: Bool) {
+        switch isOn {
+        case true:
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = CustomColor.buttonGreen
+        case false:
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = .systemGray2
+        }
+    }
+    
+    func checkValidation() {
+        let isTitleExist = !newGoal.title.isEmpty
+        let isStartDateExist = newGoal.startDate >= Date()
+        let isGrainCountExist = newGoal.grainCount != .none
+        let isGrapeTypeExist = newGoal.grapeType != .none
+        
+        if isTitleExist, isStartDateExist, isGrainCountExist, isGrapeTypeExist {
+            setSaveButton(isOn: true)
+        } else {
+            setSaveButton(isOn: false)
+        }
+    }
+    
     @objc func purpleButtonClicked() {
         if !redButton.isEnabled {
             purpleButton.isSelected = false
             redButton.isEnabled = true
             greenButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             purpleButton.isSelected = true
             redButton.isEnabled = false
             greenButton.isEnabled = false
+            
+            newGoal.grapeType = .purple
         }
+        
+        checkValidation()
     }
     
     @objc func redButtonClicked() {
@@ -289,11 +320,17 @@ class AddGoalView: UIView {
             redButton.isSelected = false
             purpleButton.isEnabled = true
             greenButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             redButton.isSelected = true
             purpleButton.isEnabled = false
             greenButton.isEnabled = false
+        
+            newGoal.grapeType = .red
         }
+        
+        checkValidation()
     }
     
     @objc func greenButtonClicked() {
@@ -301,19 +338,28 @@ class AddGoalView: UIView {
             greenButton.isSelected = false
             redButton.isEnabled = true
             purpleButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             greenButton.isSelected = true
             redButton.isEnabled = false
             purpleButton.isEnabled = false
+            
+            newGoal.grapeType = .green
         }
+        
+        checkValidation()
     }
     
     @objc func dateChange(_ datePicker: UIDatePicker) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MM월 dd일"
         formatter.locale = Locale(identifier: "ko_KR")
-        diaryDate = datePicker.date
+        startDate = datePicker.date
         startDayTextField.text = formatter.string(from: datePicker.date)
+        
+        newGoal.startDate = datePicker.date
+        checkValidation()
     }
     
     @objc func donePressed() {
@@ -329,6 +375,9 @@ class AddGoalView: UIView {
             if button == sender {
                 button.isSelected = true
                 button.backgroundColor = CustomColor.lightPurple
+                
+                newGoal.grainCount = GrainCount.allCases.filter { $0.rawValue == button.tag }.first ?? .none
+                checkValidation()
             } else {
                 button.isSelected = false
                 button.backgroundColor = .white
@@ -341,5 +390,10 @@ extension AddGoalView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        newGoal.title = textField.text ?? ""
+        checkValidation()
     }
 }

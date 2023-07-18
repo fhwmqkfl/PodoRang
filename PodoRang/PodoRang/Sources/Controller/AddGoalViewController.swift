@@ -29,9 +29,7 @@ class AddGoalViewController: UIViewController {
         
         setupGoal()
         setupUI()
-        
-        addGoalView.goalTextField.addTarget(self, action: #selector(checkValidation), for: .editingChanged)
-        addGoalView.datePicker.addTarget(self, action: #selector(checkValidation), for: .valueChanged)
+
         addGoalView.saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
         addGoalView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
@@ -80,17 +78,6 @@ class AddGoalViewController: UIViewController {
         }
     }
     
-    func setSaveButton(isOn: Bool) {
-        switch isOn {
-        case true:
-            addGoalView.saveButton.isEnabled = true
-            addGoalView.saveButton.backgroundColor = CustomColor.buttonGreen
-        case false:
-            addGoalView.saveButton.isEnabled = false
-            addGoalView.saveButton.backgroundColor = .systemGray2
-        }
-    }
-    
     @objc func saveButtonClicked() {
         if setupType == .add {
             guard let title = addGoalView.goalTextField.text, let startDate = addGoalView.startDayTextField.text else { return }
@@ -103,8 +90,8 @@ class AddGoalViewController: UIViewController {
                     addGoalView.alartLabel.text = "Check Count or Type of Grape"
                     return
                 }
-                let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .oneWeek
-                let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
+                let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .none
+                let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .none
                 let newGoal = Goal(title: title, startDate: startDate.toDate() ?? Date(), grainCount: grainCount, grapeType: grapeType)
                 GoalManager.shared.add(newGoal)
                 self.navigationController?.popViewController(animated: true)
@@ -135,15 +122,5 @@ class AddGoalViewController: UIViewController {
         alertController.addAction(deleteGoal)
         alertController.addAction(cancel)
         present(alertController, animated: true)
-    }
-    
-    @objc func checkValidation() {
-        if let isGoalTextEmpty = addGoalView.goalTextField.text?.isEmpty,
-           let isStartDayTextEmpty = addGoalView.startDayTextField.text?.isEmpty,
-           isGoalTextEmpty || isStartDayTextEmpty {
-            setSaveButton(isOn: false)
-        } else {
-            setSaveButton(isOn: true)
-        }
     }
 }

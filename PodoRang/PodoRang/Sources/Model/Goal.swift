@@ -17,12 +17,14 @@ enum Grape: Int, CaseIterable, PersistableEnum {
     case purple = 0
     case red
     case green
+    case none
 }
 
 enum GrainCount: Int, CaseIterable, PersistableEnum {
     case oneWeek = 7
     case twoWeeks = 14
     case threeWeeks = 21
+    case none
 }
 
 class Goal: Object {
