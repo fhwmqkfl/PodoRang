@@ -24,10 +24,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        detailView.detailTableView.delegate = self
-        detailView.detailTableView.dataSource = self
-        
-        setupImageGesture()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +38,12 @@ class DetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         saveGoal()
+    }
+    
+    func setup() {
+        detailView.detailTableView.delegate = self
+        detailView.detailTableView.dataSource = self
+        setupImageGesture()
     }
     
     /// find the Goal from the goalList
@@ -67,8 +70,10 @@ class DetailViewController: UIViewController {
             }
         }
         
-        selectedGoal = (goalList[goalListIndex], goalListIndex)
-        checkDays = Array(selectedGoal?.goal.checkDays ?? List())
+        // TODO: realm적용이후 불필요한 코드 정리필요
+        let foundGoal = goalList[goalListIndex]
+        selectedGoal = (foundGoal, goalListIndex)
+        checkDays = foundGoal.checkDaysToArray()
     }
     
     func setupUI() {
@@ -77,6 +82,7 @@ class DetailViewController: UIViewController {
         
         let infoButton = UIButton(type: .infoLight)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
         let barButton = UIBarButtonItem(customView: infoButton)
         self.navigationItem.rightBarButtonItem = barButton
         navigationController?.navigationBar.topItem?.title = ""
@@ -89,7 +95,13 @@ class DetailViewController: UIViewController {
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
-        detailView.mainImageView.image = UIImage(named: "\(selectedGoal.goal.grapeType)_\(grainCount)_\(checkDays.count)")
+        
+        let imageName = makeImageNameText(type: selectedGoal.goal.grapeType, count: grainCount, checkDaysCount: checkDays.count)
+        detailView.mainImageView.image = UIImage(named: imageName)
+    }
+    
+    func makeImageNameText(type: Grape, count: GrainCount, checkDaysCount: Int) -> String {
+        return "\(type)_\(count)_\(checkDaysCount)"
     }
     
     func saveGoal() {
@@ -110,7 +122,7 @@ class DetailViewController: UIViewController {
     
     @objc func tapGrapeImage() {
         guard let goalStatus = goalStatus, let goal = selectedGoal?.goal else { return }
-        let date = Date()
+        let today = Date()
         
         if goalStatus == GoalStatus.finished {
             let alertController = UIAlertController(title: "", message: "It's a finished Goal", preferredStyle: .alert)
@@ -118,8 +130,8 @@ class DetailViewController: UIViewController {
             alertController.addAction(checked)
             present(alertController, animated: true)
         } else {
-            if checkStartDate(targetDate: date, startDate: goal.startDate) {
-                let stringToday = date.toStringWithoutTime()
+            if checkStartDate(targetDate: today, startDate: goal.startDate) {
+                let stringToday = today.toStringWithoutTime()
                 var stringCheckDays: [String] = []
                 
                 for day in checkDays {
@@ -127,23 +139,25 @@ class DetailViewController: UIViewController {
                 }
                 
                 if stringCheckDays.contains(stringToday) {
-                    presentAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
+                    presentChoiceAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
                         self.checkDays.remove(at: 0)
                         
                         DispatchQueue.main.async {
+                            let imageName = self.makeImageNameText(type: goal.grapeType, count: goal.grainCount, checkDaysCount: self.checkDays.count)
                             self.calculateRemainCount(self.checkDays.count)
                             self.detailView.detailTableView.reloadData()
-                            self.detailView.mainImageView.image = UIImage(named: "\(goal.grapeType)_\(goal.grainCount)_\(self.checkDays.count)")
+                            self.detailView.mainImageView.image = UIImage(named: imageName)
                         }
                     }
                 } else {
-                    presentAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
-                        self.checkDays.insert(date, at: 0)
+                    presentChoiceAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
+                        self.checkDays.insert(today, at: 0)
                         
                         DispatchQueue.main.async {
+                            let imageName = self.makeImageNameText(type: goal.grapeType, count: goal.grainCount, checkDaysCount: self.checkDays.count)
                             self.calculateRemainCount(self.checkDays.count)
                             self.detailView.detailTableView.reloadData()
-                            self.detailView.mainImageView.image = UIImage(named: "\(goal.grapeType)_\(goal.grainCount)_\(self.checkDays.count)")
+                            self.detailView.mainImageView.image = UIImage(named: imageName)
                         }
                     }
                 }
@@ -158,22 +172,6 @@ class DetailViewController: UIViewController {
     
     func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
         return targetDate >= startDate ? true : false
-    }
-    
-    func presentAlert(title: String, message: String, buttonTitle: String, preferredStyle: UIAlertController.Style = .alert , completion: @escaping () -> Void) {
-        let text: String = title
-        let attributeString = NSMutableAttributedString(string: text)
-        let font = UIFont.boldSystemFont(ofSize: 18)
-        attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text))
-        attributeString.addAttribute(.foregroundColor, value: CustomColor.textGreen, range: (text as NSString).range(of: text))
-        
-        let alertController = UIAlertController(title: text, message: message, preferredStyle: preferredStyle)
-        alertController.setValue(attributeString, forKey: "attributedTitle")
-        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in completion() }
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
-        alertController.addAction(addDate)
-        alertController.addAction(cancel)
-        present(alertController, animated: true)
     }
     
     @objc func modifyButtonClicked() {

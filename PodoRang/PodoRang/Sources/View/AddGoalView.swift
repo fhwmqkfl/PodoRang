@@ -49,17 +49,14 @@ class AddGoalView: UIView {
     }()
     let saveButton = UIButton()
     let deleteButton = UIButton()
-    
-    var startDate: Date?
+    var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     var buttonArray = [UIButton]()
     var grapeTypeArray = [UIButton]()
-    var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         goalTextField.delegate = self
-        
         setupUI()
         addSubviews()
         setupConstraints()
@@ -286,7 +283,7 @@ class AddGoalView: UIView {
     
     func checkValidation() {
         let isTitleExist = !newGoal.title.isEmpty
-        let isStartDateExist = newGoal.startDate >= Date()
+        let isStartDateExist = newGoal.startDate.toStringWithoutTime() >= Date().toStringWithoutTime() && !startDayTextField.text!.isEmpty
         let isGrainCountExist = newGoal.grainCount != .none
         let isGrapeTypeExist = newGoal.grapeType != .none
         
@@ -352,12 +349,7 @@ class AddGoalView: UIView {
     }
     
     @objc func dateChange(_ datePicker: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        formatter.locale = Locale(identifier: "ko_KR")
-        startDate = datePicker.date
-        startDayTextField.text = formatter.string(from: datePicker.date)
-        
+        startDayTextField.text = datePicker.date.toStringWithoutTime()
         newGoal.startDate = datePicker.date
         checkValidation()
     }
@@ -377,12 +369,13 @@ class AddGoalView: UIView {
                 button.backgroundColor = CustomColor.lightPurple
                 
                 newGoal.grainCount = GrainCount.allCases.filter { $0.rawValue == button.tag }.first ?? .none
-                checkValidation()
             } else {
                 button.isSelected = false
                 button.backgroundColor = .white
             }
         }
+        
+        checkValidation()
     }
 }
 

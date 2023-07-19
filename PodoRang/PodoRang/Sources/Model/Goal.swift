@@ -42,6 +42,10 @@ class Goal: Object {
         self.title = title
         self.startDate = startDate
         self.grainCount = grainCount
-        self.grapeType = grapeType ?? .purple
+        self.grapeType = grapeType ?? .none
+    }
+    
+    func checkDaysToArray() -> [Date] {
+        return Array(self.checkDays)
     }
 }

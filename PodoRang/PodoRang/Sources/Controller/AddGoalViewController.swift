@@ -27,9 +27,12 @@ class AddGoalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+    }
+    
+    func setup() {
         setupGoal()
         setupUI()
-
         addGoalView.saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
         addGoalView.deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
     }
@@ -60,6 +63,7 @@ class AddGoalViewController: UIViewController {
             addGoalView.threeWeeksButton.isEnabled = false
             addGoalView.threeWeeksButton.backgroundColor = .systemGray5
             addGoalView.deleteButton.isHidden = false
+            
             let colorButton = addGoalView.grapeTypeArray[goal.grapeType.rawValue]
             
             if colorButton == addGoalView.purpleButton {
@@ -78,18 +82,19 @@ class AddGoalViewController: UIViewController {
         }
     }
     
+    // TODO: 기존 validation 로직 정리 필요
     @objc func saveButtonClicked() {
+        guard let title = addGoalView.goalTextField.text, let startDate = addGoalView.startDayTextField.text else { return }
+        
         if setupType == .add {
-            guard let title = addGoalView.goalTextField.text, let startDate = addGoalView.startDayTextField.text else { return }
-            
             if !title.isEmpty, !startDate.isEmpty {
-                guard
-                    let grainCountButton = addGoalView.buttonArray.filter ({ $0.isSelected }).first,
-                    let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first
+                guard let grainCountButton = addGoalView.buttonArray.filter ({ $0.isSelected }).first,
+                      let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first
                 else {
                     addGoalView.alartLabel.text = "Check Count or Type of Grape"
                     return
                 }
+                
                 let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .none
                 let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .none
                 let newGoal = Goal(title: title, startDate: startDate.toDate() ?? Date(), grainCount: grainCount, grapeType: grapeType)
@@ -97,8 +102,6 @@ class AddGoalViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         } else {
-            guard let title = addGoalView.goalTextField.text else { return }
-            
             if let goal = goal, !title.isEmpty {
                 guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else {
                     addGoalView.alartLabel.text = "Check Type of Grape"
@@ -118,6 +121,7 @@ class AddGoalViewController: UIViewController {
             GoalManager.shared.delete(deleteGoal: goal)
             self.navigationController?.popToRootViewController(animated: true)
         }
+        
         let cancel = UIAlertAction(title: "Cancel", style: .default)
         alertController.addAction(deleteGoal)
         alertController.addAction(cancel)

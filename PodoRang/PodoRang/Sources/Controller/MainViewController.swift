@@ -20,16 +20,24 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainTableView.dataSource = self
-        mainTableView.delegate = self
-        setUI()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getUserData()
+        refresh()
+    }
+    
+    func setup() {
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
         tabBarController?.tabBar.isHidden = false
+        setUI()
+    }
+    
+    func refresh() {
+        getUserData()
         GoalManager.shared.updateGoalStatus()
         refreshGoalLists()
         mainTableView.reloadData()
@@ -49,9 +57,9 @@ class MainViewController: UIViewController {
     }
     
     func getUserData() {
-        if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
+        if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
             mainLabel.text = "Hello, \(userName)"
-            loadImage(UIImage: userImage)
+            loadImage(UIImage: userThumbnail)
         } else {
             let alertController = UIAlertController(title: "", message: "Please set up your profile and access again", preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default) { _ in
@@ -76,9 +84,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
-        GoalManager.shared.updateGoalStatus()
-        refreshGoalLists()
-        mainTableView.reloadData()
+        refresh()
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
@@ -88,14 +94,11 @@ class MainViewController: UIViewController {
     
     func makeDdayText(dday: Int, targetDate: Date, startDate: Date) -> String {
         if dday >= 0 {
-            if targetDate >= startDate {
-                return "D-\(dday)"
-            } else {
-                return "Unstarted"
-            }
-        } else {
-            return "Finished"
+            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
+            return text
         }
+        
+        return "Finished"
     }
 }
 
@@ -110,11 +113,8 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue {
-            return inProgressList.count
-        } else {
-            return finishedList.count
-        }
+        let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue ? inProgressList.count : finishedList.count
+        return isFinished
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,7 +130,6 @@ extension MainViewController: UITableViewDataSource {
             let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: date)
             let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
             cell.ddayLabel.text = ddayText
-            
         }
         
         cell.titleLabel.text = goal.title

@@ -8,6 +8,7 @@
 import UIKit
 
 extension UILabel {
+    /// customize Label line spacing
     func setLineSpacing(spacing: CGFloat) {
         guard let text = text else { return }
         let attributeString = NSMutableAttributedString(string: text)

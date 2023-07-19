@@ -9,35 +9,39 @@ import UIKit
 import PhotosUI
 
 class ProfileViewController: UIViewController {
-    @IBOutlet weak var mainLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
-    
     enum Status: String {
         case create = "Account Setup"
         case modify = "Modify Account"
     }
     
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var status: Status = .create
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameTextField.delegate = self
-        
-        setupUI()
-        setupImageView()
+        setup()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
           view.endEditing(true)
     }
     
+    func setup() {
+        nameTextField.delegate = self
+        setupUI()
+        setupImageView()
+    }
+    
     func setupUI() {
-        if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
+        if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
             nameTextField.text = userName
-            loadImage(UIImage: userImage)
+            profileImageView.image = loadImage(data: userThumbnail)
             mainLabel.text = Status.modify.rawValue
-            saveButton.setTitle("MODIFTY", for: .normal)
         }
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
@@ -57,11 +61,6 @@ class ProfileViewController: UIViewController {
         saveButton.setTitleColor(.white, for: .normal)
     }
     
-    func loadImage(UIImage value: Data) {
-        let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
-        let image = UIImage(data: decoded)
-        profileImageView.image = image
-    }
     
     func setupImageView() {
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePickerPage))
@@ -79,21 +78,19 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-        if let userimage = profileImageView.image, nameTextField.text != "" {
+        if let userThumbnail = profileImageView.image, nameTextField.text != "" {
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
-            saveImage(UIImage: userimage, forKey:"userImage")
-            if mainLabel.text == Status.modify.rawValue {
+            saveImage(UIImage: userThumbnail, forKey:"userThumbnail")
+            
+            if status == .modify {
                 dismiss(animated: true)
             } else {
                 guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else { return }
                 mainVC.modalPresentationStyle = .fullScreen
-                present(mainVC, animated: true)
+                self.present(mainVC, animated: true)
             }
         } else {
-            let alertController = UIAlertController(title: "", message: "Check user name and image", preferredStyle: UIAlertController.Style.alert)
-            let checked = UIAlertAction(title: "OK", style: .default)
-            alertController.addAction(checked)
-            present(alertController, animated: true)
+            presentAlert(message: "Check user name and image")
         }
     }
     
@@ -112,16 +109,12 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
         
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                
                 DispatchQueue.main.async {
                     self.profileImageView.image = image as? UIImage
                 }
             }
         } else {
-            let alertController = UIAlertController(title: "", message: "Image not found", preferredStyle: UIAlertController.Style.alert)
-            let checked = UIAlertAction(title: "OK", style: .default)
-            alertController.addAction(checked)
-            present(alertController, animated: true)
+            presentAlert(message: "Image not found")
         }
     }
 }

@@ -37,7 +37,7 @@ class DetailView: UIView {
     }
     
     func setupUI() {
-        self.addSubviews([lineView, mainLabel,mainImageView, modifyButton, historyLabel, detailTableView])
+        self.addSubviews([lineView, mainLabel, mainImageView, modifyButton, historyLabel, detailTableView])
         
         lineView.backgroundColor = .systemGray5
         
