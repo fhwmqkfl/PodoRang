@@ -81,8 +81,7 @@ class AddGoalViewController: UIViewController {
             }
         }
     }
-    
-    // TODO: 기존 validation 로직 정리 필요
+
     @objc func saveButtonClicked() {
         guard let title = addGoalView.goalTextField.text, let startDate = addGoalView.startDayTextField.text else { return }
         
@@ -90,10 +89,7 @@ class AddGoalViewController: UIViewController {
             if !title.isEmpty, !startDate.isEmpty {
                 guard let grainCountButton = addGoalView.buttonArray.filter ({ $0.isSelected }).first,
                       let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first
-                else {
-                    addGoalView.alartLabel.text = "Check Count or Type of Grape"
-                    return
-                }
+                else { return }
                 
                 let grainCount = GrainCount.allCases.filter { $0.rawValue == grainCountButton.tag }.first ?? .none
                 let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .none
@@ -103,10 +99,7 @@ class AddGoalViewController: UIViewController {
             }
         } else {
             if let goal = goal, !title.isEmpty {
-                guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else {
-                    addGoalView.alartLabel.text = "Check Type of Grape"
-                    return
-                }
+                guard let grapeTypeButton = addGoalView.grapeTypeArray.filter ({ $0.isSelected }).first else { return }
                 let grapeType = Grape.allCases.filter { $0.rawValue == grapeTypeButton.tag }.first ?? .purple
                 GoalManager.shared.update(goal: goal, title: title, grapeType: grapeType)
                 self.navigationController?.popViewController(animated: true)

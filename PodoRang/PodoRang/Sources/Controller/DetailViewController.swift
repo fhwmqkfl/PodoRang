@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     var grainCount: GrainCount = .oneWeek
     var index: Int?
     var goalStatus: GoalStatus? = .finished
-    var selectedGoal: (goal: Goal, index: Int)?
+    var selectedGoal: (goal: Goal, goalIndex: Int)?
     var checkDays: [Date] = []
     
     override func loadView() {
@@ -70,7 +70,6 @@ class DetailViewController: UIViewController {
             }
         }
         
-        // TODO: realm적용이후 불필요한 코드 정리필요
         let foundGoal = goalList[goalListIndex]
         selectedGoal = (foundGoal, goalListIndex)
         checkDays = foundGoal.checkDaysToArray()
@@ -175,7 +174,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc func modifyButtonClicked() {
-        guard let index = selectedGoal?.index else { return }
+        guard let index = selectedGoal?.goalIndex else { return }
         let addGoalVC = AddGoalViewController()
         addGoalVC.setupType = .modify
         addGoalVC.index = index
