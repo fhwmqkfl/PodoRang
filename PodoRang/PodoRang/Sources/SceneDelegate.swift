@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     private func setRootViewController(_ scene: UIScene) {
-        if UserDefaults.standard.string(forKey: "userName") != nil, UserDefaults.standard.data(forKey: "userImage") != nil {
+        if UserDefaults.standard.string(forKey: "userName") != nil, UserDefaults.standard.data(forKey: "userThumbnail") != nil {
             setRootViewController(scene, name: "Main", identifier: "TabBarController")
         } else {
             setRootViewController(scene, name: "Main", identifier: "ProfileViewController")

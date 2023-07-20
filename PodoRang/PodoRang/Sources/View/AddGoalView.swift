@@ -49,16 +49,15 @@ class AddGoalView: UIView {
     }()
     let saveButton = UIButton()
     let deleteButton = UIButton()
-    
-    var diaryDate: Date?
+    var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     var buttonArray = [UIButton]()
     var grapeTypeArray = [UIButton]()
+    var setupType: SetupType?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         goalTextField.delegate = self
-        
         setupUI()
         addSubviews()
         setupConstraints()
@@ -106,9 +105,8 @@ class AddGoalView: UIView {
         saveButton.setTitle("SAVE", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
-        saveButton.layer.borderColor = CustomColor.mainPurple.cgColor
-        saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 15
+        saveButton.backgroundColor = .systemGray2
         
         deleteButton.setTitle("DELETE", for: .normal)
         deleteButton.backgroundColor = CustomColor.buttonRed
@@ -272,16 +270,56 @@ class AddGoalView: UIView {
         startDayTextField.inputAccessoryView = toolBar
     }
     
+    func setSaveButton(isOn: Bool) {
+        switch isOn {
+        case true:
+            saveButton.isEnabled = true
+            saveButton.backgroundColor = CustomColor.buttonGreen
+        case false:
+            saveButton.isEnabled = false
+            saveButton.backgroundColor = .systemGray2
+        }
+    }
+    
+    func checkValidation() {
+        guard let setupType = setupType else { return }
+        let isTitleExist = !newGoal.title.isEmpty
+        let isGrapeTypeExist = newGoal.grapeType != .none
+        
+        if setupType == .modify {
+            if isTitleExist, isGrapeTypeExist {
+                setSaveButton(isOn: true)
+            } else {
+                setSaveButton(isOn: false)
+            }
+        } else {
+            let isStartDateExist = newGoal.startDate.toStringWithoutTime() >= Date().toStringWithoutTime() && !startDayTextField.text!.isEmpty
+            let isGrainCountExist = newGoal.grainCount != .none
+            
+            if isTitleExist, isStartDateExist, isGrainCountExist, isGrapeTypeExist {
+                setSaveButton(isOn: true)
+            } else {
+                setSaveButton(isOn: false)
+            }
+        }
+    }
+    
     @objc func purpleButtonClicked() {
         if !redButton.isEnabled {
             purpleButton.isSelected = false
             redButton.isEnabled = true
             greenButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             purpleButton.isSelected = true
             redButton.isEnabled = false
             greenButton.isEnabled = false
+            
+            newGoal.grapeType = .purple
         }
+        
+        checkValidation()
     }
     
     @objc func redButtonClicked() {
@@ -289,11 +327,17 @@ class AddGoalView: UIView {
             redButton.isSelected = false
             purpleButton.isEnabled = true
             greenButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             redButton.isSelected = true
             purpleButton.isEnabled = false
             greenButton.isEnabled = false
+        
+            newGoal.grapeType = .red
         }
+        
+        checkValidation()
     }
     
     @objc func greenButtonClicked() {
@@ -301,19 +345,23 @@ class AddGoalView: UIView {
             greenButton.isSelected = false
             redButton.isEnabled = true
             purpleButton.isEnabled = true
+            
+            newGoal.grapeType = .none
         } else {
             greenButton.isSelected = true
             redButton.isEnabled = false
             purpleButton.isEnabled = false
+            
+            newGoal.grapeType = .green
         }
+        
+        checkValidation()
     }
     
     @objc func dateChange(_ datePicker: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        formatter.locale = Locale(identifier: "ko_KR")
-        diaryDate = datePicker.date
-        startDayTextField.text = formatter.string(from: datePicker.date)
+        startDayTextField.text = datePicker.date.toStringWithoutTime()
+        newGoal.startDate = datePicker.date
+        checkValidation()
     }
     
     @objc func donePressed() {
@@ -329,11 +377,15 @@ class AddGoalView: UIView {
             if button == sender {
                 button.isSelected = true
                 button.backgroundColor = CustomColor.lightPurple
+                
+                newGoal.grainCount = GrainCount.allCases.filter { $0.rawValue == button.tag }.first ?? .none
             } else {
                 button.isSelected = false
                 button.backgroundColor = .white
             }
         }
+        
+        checkValidation()
     }
 }
 
@@ -342,5 +394,9 @@ extension AddGoalView: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        newGoal.title = textField.text!
+        checkValidation()
+    }
 }
-

@@ -16,10 +16,13 @@
 		CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */; };
 		CC66BB172A5BCC6600A217DD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CC66BB162A5BCC6600A217DD /* Realm */; };
 		CC66BB192A5BCC6600A217DD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC66BB182A5BCC6600A217DD /* RealmSwift */; };
+		CC7150B92A610668000B32D1 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7150B82A610668000B32D1 /* PaddingLabel.swift */; };
 		CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CC8141A92A2345E400188B72 /* SnapKit */; };
 		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
 		CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B02A23B4AA00188B72 /* SettingViewController.swift */; };
 		CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */; };
+		CC87472F2A66724E0045CCD2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87472E2A66724E0045CCD2 /* UIViewController.swift */; };
+		CC8747322A667B080045CCD2 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */; };
 		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
 		CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
@@ -50,9 +53,12 @@
 		CC5468B12A1A88570092B04C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC5468B42A1A88570092B04C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5468B62A1A88570092B04C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC7150B82A610668000B32D1 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8141B02A23B4AA00188B72 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		CC87472E2A66724E0045CCD2 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 				CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */,
 				CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */,
 				CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */,
+				CC7150B82A610668000B32D1 /* PaddingLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +176,7 @@
 			children = (
 				CC8A43242A1F7AFD0063697F /* CustomColor.swift */,
 				CCB582832A22606B00B5924A /* Goal.swift */,
+				CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 				CCFE85802A359E05001FD6C7 /* Date+.swift */,
 				CCFE85822A359E1D001FD6C7 /* String+.swift */,
 				CCADCBD22A4C032800BADEFE /* UILabel+.swift */,
+				CC87472E2A66724E0045CCD2 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,8 +286,10 @@
 				CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */,
 				CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
+				CC8747322A667B080045CCD2 /* UserDefaultsKey.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
+				CC7150B92A610668000B32D1 /* PaddingLabel.swift in Sources */,
 				CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */,
 				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
@@ -287,6 +298,7 @@
 				CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */,
 				CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */,
 				CCADCBD32A4C032800BADEFE /* UILabel+.swift in Sources */,
+				CC87472F2A66724E0045CCD2 /* UIViewController.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */,
 				CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */,

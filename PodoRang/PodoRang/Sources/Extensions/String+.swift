@@ -8,11 +8,11 @@
 import Foundation
 
 extension String {
+    /// convert String object to Date
     func toDate() -> Date? {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY년 MM월 dd일"
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "YYYY/MM/dd"
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.date(from: self)
     }
 }

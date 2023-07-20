@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
     @IBOutlet weak var alarmButton: UIBarButtonItem!
@@ -14,25 +15,36 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var statusSementedControl: UISegmentedControl!
     
+    let realm = try! Realm()
+    var goalManager: GoalManager?
     var inProgressList: [Goal] = []
     var finishedList: [Goal] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainTableView.dataSource = self
-        mainTableView.delegate = self
-        setUI()
+        setup()
+        goalManager = GoalManager(realm: realm)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        refresh()
+    }
+    
+    func setup() {
+        mainTableView.dataSource = self
+        mainTableView.delegate = self
+        setUI()
+    }
+    
+    func refresh() {
+        guard let goalManager = goalManager else { return }
         getUserData()
-        tabBarController?.tabBar.isHidden = false
-        GoalManager.shared.updateGoalStatus()
+        goalManager.updateGoalStatus()
         refreshGoalLists()
         mainTableView.reloadData()
+        tabBarController?.tabBar.isHidden = false
     }
     
     func setUI() {
@@ -49,9 +61,9 @@ class MainViewController: UIViewController {
     }
     
     func getUserData() {
-        if let userName = UserDefaults.standard.string(forKey: "userName"), let userImage = UserDefaults.standard.data(forKey: "userImage") {
+        if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
             mainLabel.text = "Hello, \(userName)"
-            loadImage(UIImage: userImage)
+            loadImage(UIImage: userThumbnail)
         } else {
             let alertController = UIAlertController(title: "", message: "Please set up your profile and access again", preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default) { _ in
@@ -65,8 +77,9 @@ class MainViewController: UIViewController {
     }
     
     func refreshGoalLists() {
-        finishedList = GoalManager.shared.fetchFinished()
-        inProgressList = GoalManager.shared.fetchInprogress()
+        guard let goalManager = goalManager else { return }
+        finishedList = goalManager.fetchFinished()
+        inProgressList = goalManager.fetchInprogress()
     }
     
     func loadImage(UIImage value: Data) {
@@ -76,32 +89,29 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
-        GoalManager.shared.updateGoalStatus()
-        refreshGoalLists()
-        mainTableView.reloadData()
+        refresh()
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
         let setupVC = AddGoalViewController()
+        setupVC.goalManger = goalManager
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
     
     func makeDdayText(dday: Int, targetDate: Date, startDate: Date) -> String {
         if dday >= 0 {
-            if targetDate >= startDate {
-                return "D-\(dday)"
-            } else {
-                return "UnStarted"
-            }
-        } else {
-            return "Finished"
+            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
+            return text
         }
+        
+        return "Finished"
     }
 }
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
+        detailVC.goalManager = goalManager
         detailVC.goalStatus = GoalStatus(rawValue: statusSementedControl.selectedSegmentIndex)
         detailVC.index = indexPath.row
         self.navigationController?.pushViewController(detailVC, animated: true)
@@ -110,15 +120,15 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue {
-            return inProgressList.count
-        } else {
-            return finishedList.count
-        }
+        let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue ? inProgressList.count : finishedList.count
+        return isFinished
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell,
+              let goalManager = goalManager
+        else { return UITableViewCell() }
+        
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
         var goal: Goal
         
@@ -127,7 +137,7 @@ extension MainViewController: UITableViewDataSource {
         } else {
             goal = inProgressList[indexPath.row]
             let date = Date()
-            let dday = GoalManager.shared.calculateDday(goal: goal, targetDate: date)
+            let dday = goalManager.calculateDday(goal: goal, targetDate: date)
             let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
             cell.ddayLabel.text = ddayText
         }

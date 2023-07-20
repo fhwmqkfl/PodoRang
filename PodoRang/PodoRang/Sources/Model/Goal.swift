@@ -17,12 +17,14 @@ enum Grape: Int, CaseIterable, PersistableEnum {
     case purple = 0
     case red
     case green
+    case none
 }
 
 enum GrainCount: Int, CaseIterable, PersistableEnum {
     case oneWeek = 7
     case twoWeeks = 14
     case threeWeeks = 21
+    case none
 }
 
 class Goal: Object {
@@ -40,6 +42,10 @@ class Goal: Object {
         self.title = title
         self.startDate = startDate
         self.grainCount = grainCount
-        self.grapeType = grapeType ?? .purple
+        self.grapeType = grapeType ?? .none
+    }
+    
+    func checkDaysToArray() -> [Date] {
+        return Array(self.checkDays)
     }
 }

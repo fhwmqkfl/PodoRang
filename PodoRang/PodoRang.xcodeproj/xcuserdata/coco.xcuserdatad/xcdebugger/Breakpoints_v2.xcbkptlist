@@ -138,8 +138,8 @@
             filePath = "PodoRang/Sources/View/AddGoalView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,9 +170,9 @@
             filePath = "PodoRang/Sources/View/AddGoalView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
-            landmarkName = "setTextField(_:)"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "setupDatePicker()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -186,8 +186,8 @@
             filePath = "PodoRang/Sources/View/AddGoalView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "setupConstraints()"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,9 +202,165 @@
             filePath = "PodoRang/Sources/View/AddGoalView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
             landmarkName = "weekButtonClicked(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03244FFF-97BB-487C-8EE0-C09C265DB0F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodoRang/Sources/Controller/DetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "modifyButtonClicked()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodoRang/Sources/View/AddGoalView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "AddGoalView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - 9d6d032e72fdbaf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.newGoal.getter : PodoRang.Goal"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - 670c039d24e4df93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.newGoal.setter : PodoRang.Goal"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - 24502bc45470b4ac"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.newGoal.modify : PodoRang.Goal"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - abc3461c8e9fbe93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.newGoal.modify : PodoRang.Goal with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - ba5af4543dfedb58"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.init(frame: __C.CGRect) -&gt; PodoRang.AddGoalView"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1764">
+               </Location>
+               <Location
+                  uuid = "90F8A3FB-5FB9-4274-B2B6-E61B82D28FE5 - c54b15cbaf116504"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PodoRang.AddGoalView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;PodoRang.AddGoalView&gt;"
+                  moduleName = "PodoRang"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/coco/PodoRang/PodoRang/PodoRang/Sources/View/AddGoalView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1336">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBDA15BD-A4BF-48C2-A7C4-99EA7A1902A3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodoRang/Sources/Controller/AddGoalViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "saveButtonClicked()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "42D670B7-9A43-4624-81D2-7DE989D2826A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PodoRang/Sources/Controller/AddGoalViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "saveButtonClicked()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

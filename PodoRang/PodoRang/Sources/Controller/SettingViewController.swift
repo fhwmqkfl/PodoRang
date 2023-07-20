@@ -10,29 +10,37 @@ import UIKit
 class SettingViewController: UIViewController {
     @IBOutlet weak var settingTableView: UITableView!
     
-    enum Menu: Int {
-        case alarmSetting
-        case modifyProfile
-        case appstoreReview
+    enum Menu: String {
+        case alarm = "Alarm"
+        case modifyProfile = "Modify Profile"
+        case review = "Review"
     }
     
-    let menuList: [String] = ["Alarm", "Modify Profile", "Review"]
+    var menuList: [Menu] = []
+    var hideAlarmMenu: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+    }
+    
+    func setup() {
+        title = "Setting"
         settingTableView.delegate = self
         settingTableView.dataSource = self
-        
         settingTableView.separatorInset.left = 30
         settingTableView.separatorInset.right = 30
+        
+        menuList = hideAlarmMenu ? [.modifyProfile, .review] : [.alarm, .modifyProfile, .review]
     }
 }
 
 extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == Menu.modifyProfile.rawValue {
+        if menuList[indexPath.row] == .modifyProfile {
             guard let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+            profileVC.status = .modify
             profileVC.modalPresentationStyle = .fullScreen
             self.present(profileVC, animated: true)
         }
@@ -45,14 +53,16 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == Menu.alarmSetting.rawValue {
+        let menu = menuList[indexPath.row]
+        
+        if menu == .alarm {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier) as? AlarmTableViewCell else { return UITableViewCell() }
-            cell.titleLabel.text = menuList[indexPath.row]
+            cell.titleLabel.text = menu.rawValue
             cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:  SettingTableViewCell.identifier) as? SettingTableViewCell else { return UITableViewCell() }
-            cell.titleLabel.text = menuList[indexPath.row]
+            cell.titleLabel.text = menu.rawValue
             cell.selectionStyle = .none
             return cell
         }
