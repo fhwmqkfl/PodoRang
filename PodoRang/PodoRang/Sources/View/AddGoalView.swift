@@ -52,6 +52,7 @@ class AddGoalView: UIView {
     var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     var buttonArray = [UIButton]()
     var grapeTypeArray = [UIButton]()
+    var setupType: SetupType?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,7 +106,6 @@ class AddGoalView: UIView {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 15
-        saveButton.isEnabled = false
         saveButton.backgroundColor = .systemGray2
         
         deleteButton.setTitle("DELETE", for: .normal)
@@ -282,15 +282,25 @@ class AddGoalView: UIView {
     }
     
     func checkValidation() {
+        guard let setupType = setupType else { return }
         let isTitleExist = !newGoal.title.isEmpty
-        let isStartDateExist = newGoal.startDate.toStringWithoutTime() >= Date().toStringWithoutTime() && !startDayTextField.text!.isEmpty
-        let isGrainCountExist = newGoal.grainCount != .none
         let isGrapeTypeExist = newGoal.grapeType != .none
         
-        if isTitleExist, isStartDateExist, isGrainCountExist, isGrapeTypeExist {
-            setSaveButton(isOn: true)
+        if setupType == .modify {
+            if isTitleExist, isGrapeTypeExist {
+                setSaveButton(isOn: true)
+            } else {
+                setSaveButton(isOn: false)
+            }
         } else {
-            setSaveButton(isOn: false)
+            let isStartDateExist = newGoal.startDate.toStringWithoutTime() >= Date().toStringWithoutTime() && !startDayTextField.text!.isEmpty
+            let isGrainCountExist = newGoal.grainCount != .none
+            
+            if isTitleExist, isStartDateExist, isGrainCountExist, isGrapeTypeExist {
+                setSaveButton(isOn: true)
+            } else {
+                setSaveButton(isOn: false)
+            }
         }
     }
     
@@ -386,7 +396,7 @@ extension AddGoalView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        newGoal.title = textField.text ?? ""
+        newGoal.title = textField.text!
         checkValidation()
     }
 }

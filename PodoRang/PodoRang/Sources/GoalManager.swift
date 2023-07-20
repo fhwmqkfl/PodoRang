@@ -10,11 +10,20 @@ import RealmSwift
 
 /// Manage `Goal` instances.
 final class GoalManager {
-    static let shared = GoalManager()
+    private let realm: Realm
     
-    private init() {}
+    init(realm: Realm) {
+        self.realm = realm
+    }
     
-    let realm = try! Realm()
+    func fetch() -> [Goal] {
+        let goalList = realm.objects(Goal.self)
+        return Array(goalList)
+    }
+    
+    func fetchGoal(index: Int) -> Goal {
+        return realm.objects(Goal.self)[index]
+    }
     
     func fetchInprogress() -> [Goal] {
         return realm.objects(Goal.self).filter { $0.isFinished == .inProgress }.sorted(by: { $0.startDate < $1.startDate })
