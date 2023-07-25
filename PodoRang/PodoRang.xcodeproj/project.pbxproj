@@ -38,6 +38,7 @@
 		CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */; };
 		CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC625602A38A8A8003E37ED /* DetailViewController.swift */; };
 		CCC625652A3F5C89003E37ED /* DaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */; };
+		CCFE52C42A6A7BB600DB6BAA /* FinishedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE52C32A6A7BB600DB6BAA /* FinishedCell.swift */; };
 		CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */; };
 		CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85802A359E05001FD6C7 /* Date+.swift */; };
 		CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE85822A359E1D001FD6C7 /* String+.swift */; };
@@ -74,6 +75,7 @@
 		CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 		CCC625602A38A8A8003E37ED /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CCC625642A3F5C89003E37ED /* DaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysTableViewCell.swift; sourceTree = "<group>"; };
+		CCFE52C32A6A7BB600DB6BAA /* FinishedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedCell.swift; sourceTree = "<group>"; };
 		CCFE85802A359E05001FD6C7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		CCFE85822A359E1D001FD6C7 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 			children = (
 				CC8141AB2A23A0D000188B72 /* DetailView.swift */,
 				CCBFC2712A20B51F0022FEAD /* MainTableViewCell.swift */,
+				CCFE52C32A6A7BB600DB6BAA /* FinishedCell.swift */,
 				CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */,
 				CCBA10CF2A2DD28A00456AA9 /* AddGoalView.swift */,
 				CCC6255C2A38A82A003E37ED /* AlarmTableViewCell.swift */,
@@ -292,6 +295,7 @@
 				CC7150B92A610668000B32D1 /* PaddingLabel.swift in Sources */,
 				CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */,
 				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
+				CCFE52C42A6A7BB600DB6BAA /* FinishedCell.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,
 				CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */,
 				CCC625652A3F5C89003E37ED /* DaysTableViewCell.swift in Sources */,

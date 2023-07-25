@@ -144,7 +144,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="nextpageButton"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j" customClass="PaddingLabel" customModule="PodoRang" customModuleProvider="target">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="D-17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QaS-Rc-E6j" customClass="PaddingLabel" customModule="PodoRang" customModuleProvider="target">
                                                     <rect key="frame" x="269.33333333333331" y="41" width="33.666666666666686" height="18"/>
                                                     <color key="backgroundColor" red="0.6470588235294118" green="0.34509803921568627" blue="0.88627450980392153" alpha="0.44" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -172,6 +172,52 @@
                                         <connections>
                                             <outlet property="ddayLabel" destination="QaS-Rc-E6j" id="gM4-7z-lFW"/>
                                             <outlet property="titleLabel" destination="Wyc-dy-4Qq" id="tAn-ur-Mgc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="FinishedCell" rowHeight="100" id="pTh-PO-Oh3" customClass="FinishedCell" customModule="PodoRang" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="150" width="393" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pTh-PO-Oh3" id="Tkw-JT-Aog">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test(0)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFT-za-rv4">
+                                                    <rect key="frame" x="30" y="38" width="66" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-Rk-z0k">
+                                                    <rect key="frame" x="239.66666666666666" y="15" width="58.333333333333343" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="dOa-Rk-z0k" secondAttribute="height" multiplier="5:6" id="UEm-Eh-cjm"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4Q-Fe-1Og">
+                                                    <rect key="frame" x="318" y="25" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="G4Q-Fe-1Og" secondAttribute="height" multiplier="1:1" id="IO1-kL-tup"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="nextpageButton"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="G4Q-Fe-1Og" firstAttribute="leading" secondItem="dOa-Rk-z0k" secondAttribute="trailing" constant="20" id="1Lw-ib-DaS"/>
+                                                <constraint firstItem="dOa-Rk-z0k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NFT-za-rv4" secondAttribute="trailing" constant="10" id="Err-aZ-sZI"/>
+                                                <constraint firstItem="NFT-za-rv4" firstAttribute="centerY" secondItem="Tkw-JT-Aog" secondAttribute="centerY" id="SOm-Zq-Xvc"/>
+                                                <constraint firstItem="dOa-Rk-z0k" firstAttribute="centerY" secondItem="Tkw-JT-Aog" secondAttribute="centerY" id="Zxb-pC-Rjn"/>
+                                                <constraint firstAttribute="bottom" secondItem="G4Q-Fe-1Og" secondAttribute="bottom" constant="25" id="ciY-1o-MtP"/>
+                                                <constraint firstAttribute="bottom" secondItem="dOa-Rk-z0k" secondAttribute="bottom" constant="15" id="iHk-8T-qMY"/>
+                                                <constraint firstItem="G4Q-Fe-1Og" firstAttribute="top" secondItem="Tkw-JT-Aog" secondAttribute="top" constant="25" id="rgQ-IX-jU7"/>
+                                                <constraint firstItem="dOa-Rk-z0k" firstAttribute="top" secondItem="Tkw-JT-Aog" secondAttribute="top" constant="15" id="sRE-tZ-YKc"/>
+                                                <constraint firstItem="NFT-za-rv4" firstAttribute="leading" secondItem="Tkw-JT-Aog" secondAttribute="leading" constant="30" id="wLU-lL-yWh"/>
+                                                <constraint firstAttribute="trailing" secondItem="G4Q-Fe-1Og" secondAttribute="trailing" constant="25" id="yr5-NU-8dC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="isSuccessImage" destination="dOa-Rk-z0k" id="SQU-Dx-htV"/>
+                                            <outlet property="titleLabel" destination="NFT-za-rv4" id="Aw6-me-VsW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -217,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="-289"/>
+            <point key="canvasLocation" x="2096.9465648854962" y="-289.43661971830988"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="ECc-oU-QcZ">
@@ -273,7 +319,7 @@
                                             <outlet property="titleLabel" destination="toX-Zq-A8D" id="seL-ee-wuo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" rowHeight="75" id="zf5-g9-UoK" customClass="AlarmTableViewCell" customModule="PodoRang" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlarmCell" rowHeight="75" id="zf5-g9-UoK" customClass="AlarmTableViewCell" customModule="PodoRang" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="125" width="393" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zf5-g9-UoK" id="8of-gA-1Gz">

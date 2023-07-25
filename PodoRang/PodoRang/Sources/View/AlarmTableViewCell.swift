@@ -8,7 +8,7 @@
 import UIKit
 
 class AlarmTableViewCell: UITableViewCell {
-    static let identifier = "alarmCell"
+    static let identifier = "AlarmCell"
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!

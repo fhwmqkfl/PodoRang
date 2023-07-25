@@ -80,16 +80,25 @@ final class GoalManager {
         let today = Date()
         
         for index in 0..<goalList.count {
-            let dday = calculateDday(goal: goalList[index], targetDate: today)
-            if dday >= 0 {
-                try! realm.write {
-                    goalList[index].isFinished = .inProgress
+            let goal = goalList[index]
+            let dday = calculateDday(goal: goal, targetDate: today)
+            try! realm.write {
+                if dday >= 0 {
+                    goal.isFinished = .inProgress
+                } else {
+                    goal.isFinished = .finished
                 }
-            } else {
-                try! realm.write {
-                    goalList[index].isFinished = .finished
-                }
+                
+                updateGoalSuccessed(goal: goal)
             }
+        }
+    }
+    
+    func updateGoalSuccessed(goal: Goal) {
+        if goal.grainCount.rawValue == goal.checkDays.count {
+            goal.isSuccessed = true
+        } else {
+            goal.isSuccessed = false
         }
     }
 }
