@@ -68,6 +68,7 @@ final class GoalManager {
         }
     }
     
+    // TODO: change dday calculate -> check hour,min
     func calculateDday(goal: Goal, targetDate: Date) -> Int {
         let grainCount = Double(goal.grainCount.rawValue)
         let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)

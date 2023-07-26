@@ -117,7 +117,7 @@ class DetailViewController: UIViewController {
     
     func calculateRemainCount(_ checkDaysCount: Int) {
         let remainCount = grainCount.rawValue - checkDaysCount
-        detailView.mainLabel.text = "Only \(remainCount) grapes to achieve"
+        detailView.mainLabel.text = "Only \(remainCount) Grains to achieve"
     }
     
     func setupImageGesture() {
@@ -131,7 +131,7 @@ class DetailViewController: UIViewController {
         let today = Date()
         
         if goalStatus == GoalStatus.finished {
-            let alertController = UIAlertController(title: "", message: "It's a finished Goal", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "", message: "It's a finished Grape!!", preferredStyle: .alert)
             let checked = UIAlertAction(title: "OK", style: .default)
             alertController.addAction(checked)
             present(alertController, animated: true)
@@ -145,7 +145,7 @@ class DetailViewController: UIViewController {
                 }
                 
                 if stringCheckDays.contains(stringToday) {
-                    presentChoiceAlert(title: "remove grape", message: "remove the painted grape?", buttonTitle: "Remove") {
+                    presentChoiceAlert(title: "Remove Grain", message: "remove the painted Grain?", buttonTitle: "Remove") {
                         self.checkDays.remove(at: 0)
                         
                         DispatchQueue.main.async {
@@ -156,7 +156,7 @@ class DetailViewController: UIViewController {
                         }
                     }
                 } else {
-                    presentChoiceAlert(title: "paint grape", message: "paint today's grape?", buttonTitle: "Paint") {
+                    presentChoiceAlert(title: "Paint Grain", message: "paint today's Grain?", buttonTitle: "Paint") {
                         self.checkDays.insert(today, at: 0)
                         
                         DispatchQueue.main.async {

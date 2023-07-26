@@ -188,7 +188,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dOa-Rk-z0k">
-                                                    <rect key="frame" x="239.66666666666666" y="15" width="58.333333333333343" height="70"/>
+                                                    <rect key="frame" x="248" y="20" width="50" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="dOa-Rk-z0k" secondAttribute="height" multiplier="5:6" id="UEm-Eh-cjm"/>
                                                     </constraints>
@@ -208,9 +208,9 @@
                                                 <constraint firstItem="NFT-za-rv4" firstAttribute="centerY" secondItem="Tkw-JT-Aog" secondAttribute="centerY" id="SOm-Zq-Xvc"/>
                                                 <constraint firstItem="dOa-Rk-z0k" firstAttribute="centerY" secondItem="Tkw-JT-Aog" secondAttribute="centerY" id="Zxb-pC-Rjn"/>
                                                 <constraint firstAttribute="bottom" secondItem="G4Q-Fe-1Og" secondAttribute="bottom" constant="25" id="ciY-1o-MtP"/>
-                                                <constraint firstAttribute="bottom" secondItem="dOa-Rk-z0k" secondAttribute="bottom" constant="15" id="iHk-8T-qMY"/>
+                                                <constraint firstAttribute="bottom" secondItem="dOa-Rk-z0k" secondAttribute="bottom" constant="20" id="iHk-8T-qMY"/>
                                                 <constraint firstItem="G4Q-Fe-1Og" firstAttribute="top" secondItem="Tkw-JT-Aog" secondAttribute="top" constant="25" id="rgQ-IX-jU7"/>
-                                                <constraint firstItem="dOa-Rk-z0k" firstAttribute="top" secondItem="Tkw-JT-Aog" secondAttribute="top" constant="15" id="sRE-tZ-YKc"/>
+                                                <constraint firstItem="dOa-Rk-z0k" firstAttribute="top" secondItem="Tkw-JT-Aog" secondAttribute="top" constant="20" id="sRE-tZ-YKc"/>
                                                 <constraint firstItem="NFT-za-rv4" firstAttribute="leading" secondItem="Tkw-JT-Aog" secondAttribute="leading" constant="30" id="wLU-lL-yWh"/>
                                                 <constraint firstAttribute="trailing" secondItem="G4Q-Fe-1Og" secondAttribute="trailing" constant="25" id="yr5-NU-8dC"/>
                                             </constraints>

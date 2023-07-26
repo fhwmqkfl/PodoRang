@@ -52,7 +52,7 @@ class AddGoalViewController: UIViewController {
     }
     
     func setupUI() {
-        title = "\(setupType.rawValue) Goal"
+        title = "\(setupType.rawValue) Grape"
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
