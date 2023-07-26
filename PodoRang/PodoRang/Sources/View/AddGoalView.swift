@@ -27,10 +27,11 @@ class AddGoalView: UIView {
     let twoWeeksButton = UIButton()
     let threeWeeksButton = UIButton()
     let dayHorizontalStackView = UIStackView()
-    let alartLabel: UILabel = {
+    let infomationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = CustomColor.warningRed
-        label.font = .boldSystemFont(ofSize: 14)
+        label.text = "Selected number will be set as the period"
+        label.textColor = CustomColor.infoGreen
+        label.font = .boldSystemFont(ofSize: 13)
         label.textAlignment = .center
         return label
     }()
@@ -41,9 +42,9 @@ class AddGoalView: UIView {
     let colorHorizontalStackView = UIStackView()
     let warningLabel: UILabel = {
         let label = UILabel()
-        label.text = "Count & StartDate can't be changed!!"
-        label.textColor = CustomColor.warningRed
-        label.font = .boldSystemFont(ofSize: 12)
+        label.text = "⚠️ Count & StartDate can't be changed!!"
+        label.textColor = CustomColor.infoGreen
+        label.font = .boldSystemFont(ofSize: 13)
         label.textAlignment = .center
         return label
     }()
@@ -70,7 +71,7 @@ class AddGoalView: UIView {
     func setupUI() {
         lineView.backgroundColor = .systemGray5
         
-        setLabel(goalLabel, text: "Goal")
+        setLabel(goalLabel, text: "Title")
         setLabel(startDayLabel, text: "Select a start date")
         
         setTextField(goalTextField)
@@ -78,10 +79,10 @@ class AddGoalView: UIView {
         setupDatePicker()
         startDayTextField.inputView = datePicker
         
-        setLabel(weekLabel, text: "Count of Grape")
-        setButton(oneWeekButton, title: "7days", tag: GrainCount.oneWeek.rawValue)
-        setButton(twoWeeksButton, title: "14days", tag: GrainCount.twoWeeks.rawValue)
-        setButton(threeWeeksButton, title: "21days", tag: GrainCount.threeWeeks.rawValue)
+        setLabel(weekLabel, text: "Count of Grains")
+        setButton(oneWeekButton, title: "7", tag: GrainCount.oneWeek.rawValue)
+        setButton(twoWeeksButton, title: "14", tag: GrainCount.twoWeeks.rawValue)
+        setButton(threeWeeksButton, title: "21", tag: GrainCount.threeWeeks.rawValue)
         buttonArray.append(oneWeekButton)
         buttonArray.append(twoWeeksButton)
         buttonArray.append(threeWeeksButton)
@@ -90,7 +91,7 @@ class AddGoalView: UIView {
         threeWeeksButton.addTarget(self, action: #selector(weekButtonClicked), for: .touchUpInside)
         setHorizontalStackView(dayHorizontalStackView)
         
-        setLabel(selectColorLabel, text: "Type of Grape")
+        setLabel(selectColorLabel, text: "Color of Grape")
         setButtonImage(purpleButton, tag: Grape.purple.rawValue)
         setButtonImage(redButton, tag: Grape.red.rawValue)
         setButtonImage(greenButton, tag: Grape.green.rawValue)
@@ -124,7 +125,7 @@ class AddGoalView: UIView {
     func addSubviews() {
         addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, alartLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
+        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, infomationLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
         dayHorizontalStackView.addArragnedSubViews([oneWeekButton, twoWeeksButton, threeWeeksButton])
         colorHorizontalStackView.addArragnedSubViews([purpleButton, greenButton, redButton])
     }
@@ -177,13 +178,13 @@ class AddGoalView: UIView {
             $0.leading.trailing.equalTo(contentViewArea).inset(30)
         }
         
-        alartLabel.snp.makeConstraints {
-            $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(15)
+        infomationLabel.snp.makeConstraints {
+            $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         selectColorLabel.snp.makeConstraints {
-            $0.top.equalTo(alartLabel.snp.bottom).offset(30)
+            $0.top.equalTo(infomationLabel.snp.bottom).offset(30)
             $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         

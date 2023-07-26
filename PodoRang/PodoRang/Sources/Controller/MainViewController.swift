@@ -49,6 +49,7 @@ class MainViewController: UIViewController {
     
     func setUI() {
         alarmButton.isHidden = true
+        mainTableView.rowHeight = 100
         mainTableView.separatorInset.left = 30
         mainTableView.separatorInset.right = 30
         mainLabel.font = .boldSystemFont(ofSize: 20)
@@ -98,8 +99,8 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
     
-    func makeDdayText(dday: Int, targetDate: Date, startDate: Date) -> String {
-        if dday >= 0 {
+    func makeDdayText(dday: Int?, targetDate: Date, startDate: Date) -> String {
+        if let dday = dday {
             let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
             return text
         }
@@ -125,26 +126,34 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell,
-              let goalManager = goalManager
-        else { return UITableViewCell() }
-        
+        guard let goalManager = goalManager else { return UITableViewCell() }
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.finished.rawValue
         var goal: Goal
         
         if isFinished {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FinishedCell.identifier) as? FinishedCell else { return UITableViewCell() }
             goal = finishedList[indexPath.row]
+            cell.selectionStyle = .none
+            cell.titleLabel.text = goal.title
+            
+            if goal.isSuccessed {
+                cell.isSuccessImage.image = UIImage(named: "success")
+            } else {
+                cell.isSuccessImage.image = UIImage(named: "failed")
+            }
+            
+            return cell
         } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier) as? MainTableViewCell else { return UITableViewCell() }
             goal = inProgressList[indexPath.row]
             let date = Date()
             let dday = goalManager.calculateDday(goal: goal, targetDate: date)
             let ddayText = makeDdayText(dday: dday, targetDate: date, startDate: goal.startDate)
+            cell.selectionStyle = .none
             cell.ddayLabel.text = ddayText
+            cell.titleLabel.text = goal.title
+            cell.ddayLabel.isHidden = isFinished
+            return cell
         }
-        
-        cell.titleLabel.text = goal.title
-        cell.ddayLabel.isHidden = isFinished
-        cell.selectionStyle = .none
-        return cell
     }
 }

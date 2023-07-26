@@ -48,9 +48,9 @@ class DetailView: UIView {
         mainLabel.clipsToBounds = true
         mainLabel.layer.cornerRadius = 20
         
-        setLabel(historyLabel, title: "date of painting grapes")
+        setLabel(historyLabel, title: "date of painting Grains")
         
-        setButton(modifyButton, title: "Modify Goal")
+        setButton(modifyButton, title: "Modify Grape")
     }
     
     func setupConstraints() {

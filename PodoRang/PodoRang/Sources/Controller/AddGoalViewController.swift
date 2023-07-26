@@ -52,7 +52,7 @@ class AddGoalViewController: UIViewController {
     }
     
     func setupUI() {
-        title = "\(setupType.rawValue) Goal"
+        title = "\(setupType.rawValue) Grape"
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
@@ -65,12 +65,22 @@ class AddGoalViewController: UIViewController {
             addGoalView.startDayTextField.text = goal.startDate.toStringWithoutTime()
             addGoalView.startDayTextField.isUserInteractionEnabled = false
             addGoalView.startDayTextField.textColor = .systemGray2
+            let grainCount = goal.grainCount
+            
+            if grainCount == GrainCount.oneWeek {
+                addGoalView.oneWeekButton.isSelected = true
+                addGoalView.oneWeekButton.backgroundColor = CustomColor.lightPurple
+            } else if grainCount == GrainCount.twoWeeks {
+                addGoalView.twoWeeksButton.isSelected = true
+                addGoalView.twoWeeksButton.backgroundColor = CustomColor.lightPurple
+            } else {
+                addGoalView.threeWeeksButton.isSelected = true
+                addGoalView.threeWeeksButton.backgroundColor = CustomColor.lightPurple
+            }
+            
             addGoalView.oneWeekButton.isEnabled = false
-            addGoalView.oneWeekButton.backgroundColor = .systemGray5
             addGoalView.twoWeeksButton.isEnabled = false
-            addGoalView.twoWeeksButton.backgroundColor = .systemGray5
             addGoalView.threeWeeksButton.isEnabled = false
-            addGoalView.threeWeeksButton.backgroundColor = .systemGray5
             addGoalView.deleteButton.isHidden = false
             
             let colorButton = addGoalView.grapeTypeArray[goal.grapeType.rawValue]
