@@ -68,12 +68,16 @@ final class GoalManager {
         }
     }
     
-    // TODO: change dday calculate -> check hour,min
-    func calculateDday(goal: Goal, targetDate: Date) -> Int {
+    func calculateDday(goal: Goal, targetDate: Date) -> Int? {
         let grainCount = Double(goal.grainCount.rawValue)
         let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
-        let dday = Calendar.current.dateComponents([.day], from: targetDate, to: enddate).day!
-        return dday
+        let dday = Calendar.current.dateComponents([.day, .hour, .minute], from: targetDate, to: enddate)
+        
+        if dday.day! >= 0, dday.hour! >= 0, dday.minute! >= 0 {
+            return dday.day!
+        } else {
+            return nil
+        }
     }
     
     func updateGoalStatus() {
@@ -84,7 +88,7 @@ final class GoalManager {
             let goal = goalList[index]
             let dday = calculateDday(goal: goal, targetDate: today)
             try! realm.write {
-                if dday >= 0 {
+                if dday != nil {
                     goal.isFinished = .inProgress
                 } else {
                     goal.isFinished = .finished

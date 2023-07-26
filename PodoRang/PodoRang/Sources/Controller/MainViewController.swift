@@ -99,8 +99,8 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
     
-    func makeDdayText(dday: Int, targetDate: Date, startDate: Date) -> String {
-        if dday >= 0 {
+    func makeDdayText(dday: Int?, targetDate: Date, startDate: Date) -> String {
+        if let dday = dday {
             let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
             return text
         }
