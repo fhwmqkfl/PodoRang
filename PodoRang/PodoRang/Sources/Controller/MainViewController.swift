@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
     }
     
     func setUI() {
+        statusSementedControl.backgroundColor = CustomColor.lightPurple
         alarmButton.isHidden = true
         mainTableView.rowHeight = 100
         mainTableView.separatorInset.left = 30
