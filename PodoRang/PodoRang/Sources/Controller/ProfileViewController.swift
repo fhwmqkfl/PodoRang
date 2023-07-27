@@ -27,10 +27,6 @@ class ProfileViewController: UIViewController {
         setup()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-          view.endEditing(true)
-    }
-    
     func setup() {
         nameTextField.delegate = self
         setupUI()
@@ -50,17 +46,14 @@ class ProfileViewController: UIViewController {
         profileImageView.backgroundColor = CustomColor.mainPurple
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
-        
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.borderColor = CustomColor.mainPurple.cgColor
         nameTextField.layer.cornerRadius = 10
-        
         saveButton.setTitle("SAVE", for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
     }
-    
     
     func setupImageView() {
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePickerPage))
@@ -71,10 +64,19 @@ class ProfileViewController: UIViewController {
     @objc func showImagePickerPage() {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
-        
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         self.present(picker, animated: true)
+    }
+    
+    func saveImage(UIImage value: UIImage, forKey key: String) {
+        guard let data = value.jpegData(compressionQuality: 0.5) else { return }
+        let encoded = try! PropertyListEncoder().encode(data)
+        UserDefaults.standard.set(encoded, forKey: key)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          view.endEditing(true)
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
@@ -92,12 +94,6 @@ class ProfileViewController: UIViewController {
         } else {
             presentAlert(message: "Check user name and image")
         }
-    }
-    
-    func saveImage(UIImage value: UIImage, forKey key: String) {
-        guard let data = value.jpegData(compressionQuality: 0.5) else { return }
-        let encoded = try! PropertyListEncoder().encode(data)
-        UserDefaults.standard.set(encoded, forKey: key)
     }
 }
 

@@ -19,11 +19,11 @@ class MainViewController: UIViewController {
     var goalManager: GoalManager?
     var inProgressList: [Goal] = []
     var finishedList: [Goal] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
-        goalManager = GoalManager(realm: realm)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,15 +36,7 @@ class MainViewController: UIViewController {
         mainTableView.dataSource = self
         mainTableView.delegate = self
         setUI()
-    }
-    
-    func refresh() {
-        guard let goalManager = goalManager else { return }
-        getUserData()
-        goalManager.updateGoalStatus()
-        refreshGoalLists()
-        mainTableView.reloadData()
-        tabBarController?.tabBar.isHidden = false
+        goalManager = GoalManager(realm: realm)
     }
     
     func setUI() {
@@ -61,6 +53,15 @@ class MainViewController: UIViewController {
         mainImageView.clipsToBounds = true
     }
     
+    func refresh() {
+        guard let goalManager = goalManager else { return }
+        getUserData()
+        goalManager.updateGoalStatus()
+        refreshGoalLists()
+        mainTableView.reloadData()
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     func getUserData() {
         if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
             mainLabel.text = "Hello, \(userName)"
@@ -72,9 +73,16 @@ class MainViewController: UIViewController {
                 profileVC.modalPresentationStyle = .fullScreen
                 self.present(profileVC, animated: true)
             }
+            
             alertController.addAction(checked)
             present(alertController, animated: true)
         }
+    }
+    
+    func loadImage(UIImage value: Data) {
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
+        let image = UIImage(data: decoded)
+        mainImageView.image = image
     }
     
     func refreshGoalLists() {
@@ -83,10 +91,13 @@ class MainViewController: UIViewController {
         inProgressList = goalManager.fetchInprogress()
     }
     
-    func loadImage(UIImage value: Data) {
-        let decoded = try! PropertyListDecoder().decode(Data.self, from: value)
-        let image = UIImage(data: decoded)
-        mainImageView.image = image
+    func makeDdayText(dday: Int?, targetDate: Date, startDate: Date) -> String {
+        if let dday = dday {
+            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
+            return text
+        }
+        
+        return "Finished"
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
@@ -99,14 +110,6 @@ class MainViewController: UIViewController {
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
     
-    func makeDdayText(dday: Int?, targetDate: Date, startDate: Date) -> String {
-        if let dday = dday {
-            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
-            return text
-        }
-        
-        return "Finished"
-    }
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -122,6 +125,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue ? inProgressList.count : finishedList.count
+        
         return isFinished
     }
     
@@ -153,6 +157,7 @@ extension MainViewController: UITableViewDataSource {
             cell.ddayLabel.text = ddayText
             cell.titleLabel.text = goal.title
             cell.ddayLabel.isHidden = isFinished
+            
             return cell
         }
     }

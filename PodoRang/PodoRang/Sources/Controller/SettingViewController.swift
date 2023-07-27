@@ -31,7 +31,6 @@ class SettingViewController: UIViewController {
         settingTableView.dataSource = self
         settingTableView.separatorInset.left = 30
         settingTableView.separatorInset.right = 30
-        
         menuList = hideAlarmMenu ? [.modifyProfile, .review] : [.alarm, .modifyProfile, .review]
     }
 }
@@ -59,11 +58,13 @@ extension SettingViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier) as? AlarmTableViewCell else { return UITableViewCell() }
             cell.titleLabel.text = menu.rawValue
             cell.selectionStyle = .none
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:  SettingTableViewCell.identifier) as? SettingTableViewCell else { return UITableViewCell() }
             cell.titleLabel.text = menu.rawValue
             cell.selectionStyle = .none
+            
             return cell
         }
     }

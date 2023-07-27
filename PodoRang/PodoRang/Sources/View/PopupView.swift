@@ -49,6 +49,7 @@ class PopupView: UIView {
         infoLabel.textAlignment = .center
         
         closeButton.setTitle("CLOSE", for: .normal)
+        closeButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
         closeButton.tintColor = .white
         closeButton.backgroundColor = CustomColor.mainPurple
         closeButton.clipsToBounds = true
@@ -77,7 +78,7 @@ class PopupView: UIView {
         }
         
         infoLabel.snp.makeConstraints {
-            $0.top.equalTo(mainImage.snp.bottom).offset(15)
+            $0.top.equalTo(mainImage.snp.bottom).offset(20)
             $0.leading.trailing.equalTo(infoView).inset(35)
         }
         

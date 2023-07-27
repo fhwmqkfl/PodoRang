@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
     var grainCount: GrainCount = .oneWeek
     var index: Int?
     var goalStatus: GoalStatus? = .finished
-    var selectedGoal: (goal: Goal, goalIndex: Int)?
+    var selectedGoal: Goal?
     var checkDays: [Date] = []
     
     override func loadView() {
@@ -75,7 +75,7 @@ class DetailViewController: UIViewController {
         }
         
         let foundGoal = goalList[goalListIndex]
-        selectedGoal = (foundGoal, goalListIndex)
+        selectedGoal = foundGoal
         checkDays = foundGoal.checkDaysToArray()
     }
     
@@ -93,13 +93,13 @@ class DetailViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
         
         guard let selectedGoal = selectedGoal else { return }
-        self.navigationItem.title = selectedGoal.goal.title
-        grainCount = selectedGoal.goal.grainCount
+        self.navigationItem.title = selectedGoal.title
+        grainCount = selectedGoal.grainCount
         calculateRemainCount(checkDays.count)
         
         detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         
-        let imageName = makeImageNameText(type: selectedGoal.goal.grapeType, count: grainCount, checkDaysCount: checkDays.count)
+        let imageName = makeImageNameText(type: selectedGoal.grapeType, count: grainCount, checkDaysCount: checkDays.count)
         detailView.mainImageView.image = UIImage(named: imageName)
     }
     
@@ -108,7 +108,7 @@ class DetailViewController: UIViewController {
     }
     
     func saveGoal() {
-        guard let goal = selectedGoal?.goal,
+        guard let goal = selectedGoal,
               let goalManager = goalManager
         else { return }
         
@@ -127,7 +127,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc func tapGrapeImage() {
-        guard let goalStatus = goalStatus, let goal = selectedGoal?.goal else { return }
+        guard let goalStatus = goalStatus,
+              let goal = selectedGoal
+        else { return }
+        
         let today = Date()
         
         if goalStatus == GoalStatus.finished {
@@ -181,11 +184,10 @@ class DetailViewController: UIViewController {
     }
     
     @objc func modifyButtonClicked() {
-        guard let index = selectedGoal?.goalIndex else { return }
         let addGoalVC = AddGoalViewController()
         addGoalVC.goalManger = goalManager
         addGoalVC.setupType = .modify
-        addGoalVC.index = index
+        addGoalVC.goal = selectedGoal!
         self.navigationController?.pushViewController(addGoalVC, animated: true)
     }
     
@@ -208,6 +210,7 @@ extension DetailViewController: UITableViewDataSource {
         let checkDay = checkDays[indexPath.row].toStringWithTime()
         cell.mainLabel.text = checkDay
         cell.selectionStyle = .none
+        
         return cell
     }
 }

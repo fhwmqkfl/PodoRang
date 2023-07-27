@@ -27,38 +27,23 @@ class AddGoalView: UIView {
     let twoWeeksButton = UIButton()
     let threeWeeksButton = UIButton()
     let dayHorizontalStackView = UIStackView()
-    let infomationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Selected number will be set as the period"
-        label.textColor = CustomColor.infoGreen
-        label.font = .boldSystemFont(ofSize: 13)
-        label.textAlignment = .center
-        return label
-    }()
+    let infomationLabel = UILabel()
     let selectColorLabel = UILabel()
     let purpleButton = UIButton()
     let redButton = UIButton()
     let greenButton = UIButton()
     let colorHorizontalStackView = UIStackView()
-    let warningLabel: UILabel = {
-        let label = UILabel()
-        label.text = "⚠️ Count & StartDate can't be changed!!"
-        label.textColor = CustomColor.infoGreen
-        label.font = .boldSystemFont(ofSize: 13)
-        label.textAlignment = .center
-        return label
-    }()
+    let warningLabel = UILabel()
     let saveButton = UIButton()
     let deleteButton = UIButton()
     var newGoal: Goal = Goal(title: "", startDate: Date(), grainCount: .none, grapeType: Grape.none)
     var buttonArray = [UIButton]()
     var grapeTypeArray = [UIButton]()
-    var setupType: SetupType?
+    var setupType: SetupType = .add
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        goalTextField.delegate = self
         setupUI()
         addSubviews()
         setupConstraints()
@@ -69,10 +54,13 @@ class AddGoalView: UIView {
     }
     
     func setupUI() {
+        backgroundColor = .white
         lineView.backgroundColor = .systemGray5
         
         setLabel(goalLabel, text: "Title")
         setLabel(startDayLabel, text: "Select a start date")
+        setInfoLabel(infomationLabel, text: "Selected number will be set as the period")
+        setInfoLabel(warningLabel, text: "⚠️ Count & StartDate can't be changed!!")
         
         setTextField(goalTextField)
         setTextField(startDayTextField)
@@ -222,6 +210,13 @@ class AddGoalView: UIView {
         label.textColor = CustomColor.textPurple
     }
     
+    func setInfoLabel(_ label: UILabel, text: String) {
+        label.text = text
+        label.textColor = CustomColor.infoGreen
+        label.font = .boldSystemFont(ofSize: 13)
+        label.textAlignment = .center
+    }
+    
     func setButton(_ button: UIButton, title: String, tag: Int) {
         button.setTitle(title, for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -283,7 +278,6 @@ class AddGoalView: UIView {
     }
     
     func checkValidation() {
-        guard let setupType = setupType else { return }
         let isTitleExist = !newGoal.title.isEmpty
         let isGrapeTypeExist = newGoal.grapeType != .none
         
@@ -305,18 +299,64 @@ class AddGoalView: UIView {
         }
     }
     
+    func setupModifyUI(goal: Goal) {
+        warningLabel.snp.updateConstraints {
+            $0.top.equalTo(colorHorizontalStackView.snp.bottom).offset(45)
+        }
+        
+        setupType = .modify
+        goalTextField.text = goal.title
+        startDayTextField.text = goal.startDate.toStringWithoutTime()
+        startDayTextField.isUserInteractionEnabled = false
+        startDayTextField.textColor = .systemGray2
+        newGoal.grapeType = goal.grapeType
+        newGoal.title = goal.title
+        
+        let grainCount = goal.grainCount
+        
+        if grainCount == GrainCount.oneWeek {
+            oneWeekButton.isSelected = true
+            oneWeekButton.backgroundColor = CustomColor.lightPurple
+        } else if grainCount == GrainCount.twoWeeks {
+            twoWeeksButton.isSelected = true
+            twoWeeksButton.backgroundColor = CustomColor.lightPurple
+        } else {
+            threeWeeksButton.isSelected = true
+            threeWeeksButton.backgroundColor = CustomColor.lightPurple
+        }
+        
+        oneWeekButton.isEnabled = false
+        twoWeeksButton.isEnabled = false
+        threeWeeksButton.isEnabled = false
+        deleteButton.isHidden = false
+        
+        let colorButton = grapeTypeArray[goal.grapeType.rawValue]
+        
+        if colorButton == purpleButton {
+            purpleButton.isSelected = true
+            redButton.isEnabled = false
+            greenButton.isEnabled = false
+        } else if colorButton == redButton {
+            redButton.isSelected = true
+            purpleButton.isEnabled = false
+            greenButton.isEnabled = false
+        } else {
+            greenButton.isSelected = true
+            redButton.isEnabled = false
+            purpleButton.isEnabled = false
+        }
+    }
+    
     @objc func purpleButtonClicked() {
         if !redButton.isEnabled {
             purpleButton.isSelected = false
             redButton.isEnabled = true
             greenButton.isEnabled = true
-            
             newGoal.grapeType = .none
         } else {
             purpleButton.isSelected = true
             redButton.isEnabled = false
             greenButton.isEnabled = false
-            
             newGoal.grapeType = .purple
         }
         
@@ -328,13 +368,11 @@ class AddGoalView: UIView {
             redButton.isSelected = false
             purpleButton.isEnabled = true
             greenButton.isEnabled = true
-            
             newGoal.grapeType = .none
         } else {
             redButton.isSelected = true
             purpleButton.isEnabled = false
             greenButton.isEnabled = false
-        
             newGoal.grapeType = .red
         }
         
@@ -346,13 +384,11 @@ class AddGoalView: UIView {
             greenButton.isSelected = false
             redButton.isEnabled = true
             purpleButton.isEnabled = true
-            
             newGoal.grapeType = .none
         } else {
             greenButton.isSelected = true
             redButton.isEnabled = false
             purpleButton.isEnabled = false
-            
             newGoal.grapeType = .green
         }
         
@@ -378,7 +414,6 @@ class AddGoalView: UIView {
             if button == sender {
                 button.isSelected = true
                 button.backgroundColor = CustomColor.lightPurple
-                
                 newGoal.grainCount = GrainCount.allCases.filter { $0.rawValue == button.tag }.first ?? .none
             } else {
                 button.isSelected = false
@@ -386,18 +421,6 @@ class AddGoalView: UIView {
             }
         }
         
-        checkValidation()
-    }
-}
-
-extension AddGoalView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        newGoal.title = textField.text!
         checkValidation()
     }
 }
