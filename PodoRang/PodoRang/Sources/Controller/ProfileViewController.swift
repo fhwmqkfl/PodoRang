@@ -27,6 +27,10 @@ class ProfileViewController: UIViewController {
         setup()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          view.endEditing(true)
+    }
+    
     func setup() {
         nameTextField.delegate = self
         setupUI()
@@ -61,22 +65,18 @@ class ProfileViewController: UIViewController {
         profileImageView.isUserInteractionEnabled = true
     }
     
-    @objc func showImagePickerPage() {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        self.present(picker, animated: true)
-    }
-    
     func saveImage(UIImage value: UIImage, forKey key: String) {
         guard let data = value.jpegData(compressionQuality: 0.5) else { return }
         let encoded = try! PropertyListEncoder().encode(data)
         UserDefaults.standard.set(encoded, forKey: key)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-          view.endEditing(true)
+    @objc func showImagePickerPage() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        self.present(picker, animated: true)
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {

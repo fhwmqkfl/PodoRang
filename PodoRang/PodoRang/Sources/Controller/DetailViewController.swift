@@ -46,6 +46,36 @@ class DetailViewController: UIViewController {
         setupImageGesture()
     }
     
+    func setupUI() {
+        tabBarController?.tabBar.isHidden = true
+        view.backgroundColor = .white
+        
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        
+        let barButton = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = barButton
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
+        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
+        
+        guard let selectedGoal = selectedGoal else { return }
+        self.navigationItem.title = selectedGoal.title
+        grainCount = selectedGoal.grainCount
+        calculateRemainCount(checkDays.count)
+        
+        detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
+        
+        let imageName = makeImageNameText(type: selectedGoal.grapeType, count: grainCount, checkDaysCount: checkDays.count)
+        detailView.mainImageView.image = UIImage(named: imageName)
+    }
+    
+    func setupImageGesture() {
+        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(tapGrapeImage))
+        detailView.mainImageView.addGestureRecognizer(tabGesture)
+        detailView.mainImageView.isUserInteractionEnabled = true
+    }
+    
     /// find the Goal from the goalList
     func findGoal() {
         guard let index = index,
@@ -79,34 +109,6 @@ class DetailViewController: UIViewController {
         checkDays = foundGoal.checkDaysToArray()
     }
     
-    func setupUI() {
-        tabBarController?.tabBar.isHidden = true
-        view.backgroundColor = .white
-        
-        let infoButton = UIButton(type: .infoLight)
-        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-        
-        let barButton = UIBarButtonItem(customView: infoButton)
-        self.navigationItem.rightBarButtonItem = barButton
-        navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = CustomColor.navigationTitle
-        navigationController?.navigationBar.titleTextAttributes =  [.foregroundColor : CustomColor.navigationTitle]
-        
-        guard let selectedGoal = selectedGoal else { return }
-        self.navigationItem.title = selectedGoal.title
-        grainCount = selectedGoal.grainCount
-        calculateRemainCount(checkDays.count)
-        
-        detailView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
-        
-        let imageName = makeImageNameText(type: selectedGoal.grapeType, count: grainCount, checkDaysCount: checkDays.count)
-        detailView.mainImageView.image = UIImage(named: imageName)
-    }
-    
-    func makeImageNameText(type: Grape, count: GrainCount, checkDaysCount: Int) -> String {
-        return "\(type)_\(count)_\(checkDaysCount)"
-    }
-    
     func saveGoal() {
         guard let goal = selectedGoal,
               let goalManager = goalManager
@@ -114,16 +116,18 @@ class DetailViewController: UIViewController {
         
         goalManager.updateGoal(newCheckDays: checkDays, goal: goal)
     }
+
+    func makeImageNameText(type: Grape, count: GrainCount, checkDaysCount: Int) -> String {
+        return "\(type)_\(count)_\(checkDaysCount)"
+    }
+    
+    func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
+        return targetDate >= startDate ? true : false
+    }
     
     func calculateRemainCount(_ checkDaysCount: Int) {
         let remainCount = grainCount.rawValue - checkDaysCount
         detailView.mainLabel.text = "Only \(remainCount) Grains to achieve"
-    }
-    
-    func setupImageGesture() {
-        let tabGesture = UITapGestureRecognizer(target: self, action: #selector(tapGrapeImage))
-        detailView.mainImageView.addGestureRecognizer(tabGesture)
-        detailView.mainImageView.isUserInteractionEnabled = true
     }
     
     @objc func tapGrapeImage() {
@@ -177,10 +181,6 @@ class DetailViewController: UIViewController {
                 present(alertController, animated: true)
             }
         }
-    }
-    
-    func checkStartDate(targetDate: Date, startDate: Date) -> Bool {
-        return targetDate >= startDate ? true : false
     }
     
     @objc func modifyButtonClicked() {

@@ -27,7 +27,7 @@ class AddGoalView: UIView {
     let twoWeeksButton = UIButton()
     let threeWeeksButton = UIButton()
     let dayHorizontalStackView = UIStackView()
-    let infomationLabel = UILabel()
+    let informationLabel = UILabel()
     let selectColorLabel = UILabel()
     let purpleButton = UIButton()
     let redButton = UIButton()
@@ -59,7 +59,7 @@ class AddGoalView: UIView {
         
         setLabel(goalLabel, text: "Title")
         setLabel(startDayLabel, text: "Select a start date")
-        setInfoLabel(infomationLabel, text: "Selected number will be set as the period")
+        setInfoLabel(informationLabel, text: "Selected number will be set as the period")
         setInfoLabel(warningLabel, text: "⚠️ Count & StartDate can't be changed!!")
         
         setTextField(goalTextField)
@@ -113,7 +113,7 @@ class AddGoalView: UIView {
     func addSubviews() {
         addSubview(contentScrollView)
         contentScrollView.addSubview(contentView)
-        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, infomationLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
+        contentView.addSubviews([lineView, goalLabel, goalTextField, startDayLabel, weekLabel, startDayTextField, selectColorLabel, dayHorizontalStackView, informationLabel, colorHorizontalStackView, warningLabel, saveButton, deleteButton])
         dayHorizontalStackView.addArragnedSubViews([oneWeekButton, twoWeeksButton, threeWeeksButton])
         colorHorizontalStackView.addArragnedSubViews([purpleButton, greenButton, redButton])
     }
@@ -166,13 +166,13 @@ class AddGoalView: UIView {
             $0.leading.trailing.equalTo(contentViewArea).inset(30)
         }
         
-        infomationLabel.snp.makeConstraints {
+        informationLabel.snp.makeConstraints {
             $0.top.equalTo(dayHorizontalStackView.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
         selectColorLabel.snp.makeConstraints {
-            $0.top.equalTo(infomationLabel.snp.bottom).offset(30)
+            $0.top.equalTo(informationLabel.snp.bottom).offset(30)
             $0.leading.trailing.equalTo(contentViewArea).inset(spacing)
         }
         
