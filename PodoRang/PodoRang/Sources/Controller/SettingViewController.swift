@@ -31,7 +31,6 @@ class SettingViewController: UIViewController {
         settingTableView.dataSource = self
         settingTableView.separatorInset.left = 30
         settingTableView.separatorInset.right = 30
-        
         menuList = hideAlarmMenu ? [.modifyProfile, .review] : [.alarm, .modifyProfile, .review]
     }
 }

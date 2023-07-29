@@ -23,7 +23,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.90588235859999999" green="0.87058818339999999" blue="0.94509804249999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.87058823529411766" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Wcf-is-6pt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0uS-LB-ifT"/>
                             <constraint firstItem="Wcf-is-6pt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="85" id="2we-dd-Wbf"/>

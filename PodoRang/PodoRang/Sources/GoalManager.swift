@@ -16,13 +16,15 @@ final class GoalManager {
         self.realm = realm
     }
     
+    func add(_ goal: Goal) {
+        try! realm.write {
+            realm.add(goal)
+        }
+    }
+    
     func fetch() -> [Goal] {
         let goalList = realm.objects(Goal.self)
         return Array(goalList)
-    }
-    
-    func fetchGoal(index: Int) -> Goal {
-        return realm.objects(Goal.self)[index]
     }
     
     func fetchInprogress() -> [Goal] {
@@ -41,18 +43,6 @@ final class GoalManager {
         return fetchFinished()[index]
     }
     
-    func add(_ goal: Goal) {
-        try! realm.write {
-            realm.add(goal)
-        }
-    }
-    
-    func delete(deleteGoal: Goal) {
-        try! realm.write {
-            realm.delete(deleteGoal)
-        }
-    }
-    
     func update(goal: Goal, title: String, grapeType: Grape) {
         try! realm.write{
             goal.title = title
@@ -68,27 +58,14 @@ final class GoalManager {
         }
     }
     
-    func calculateDday(goal: Goal, targetDate: Date) -> Int? {
-        let grainCount = Double(goal.grainCount.rawValue)
-        let enddate = goal.startDate.addingTimeInterval(60 * 60 * 24 * grainCount)
-        let dday = Calendar.current.dateComponents([.day, .hour, .minute], from: targetDate, to: enddate)
-        
-        if dday.day! >= 0, dday.hour! >= 0, dday.minute! >= 0 {
-            return dday.day!
-        } else {
-            return nil
-        }
-    }
-    
     func updateGoalStatus() {
         let goalList = realm.objects(Goal.self)
-        let today = Date()
         
         for index in 0..<goalList.count {
             let goal = goalList[index]
-            let dday = calculateDday(goal: goal, targetDate: today)
+            
             try! realm.write {
-                if dday != nil {
+                if ddayExist(goal: goal) {
                     goal.isFinished = .inProgress
                 } else {
                     goal.isFinished = .finished
@@ -105,5 +82,40 @@ final class GoalManager {
         } else {
             goal.isSuccessed = false
         }
+    }
+    
+    func delete(deleteGoal: Goal) {
+        try! realm.write {
+            realm.delete(deleteGoal)
+        }
+    }
+    
+    func calculateDday(goal: Goal, targetDate: Date) -> Int? {
+        let secondUnit: Double = 60
+        let minuteUnit: Double = 60
+        let hourUnit: Double = 24
+        let grainCount = Double(goal.grainCount.rawValue)
+        let enddate = goal.startDate.addingTimeInterval(secondUnit * minuteUnit * hourUnit * grainCount)
+        let dday = Calendar.current.dateComponents([.day, .hour, .minute], from: targetDate, to: enddate)
+        
+        guard let day = dday.day,
+              let hour = dday.hour,
+              let minute = dday.minute
+        else { return nil }
+    
+        if day >= 0, hour >= 0, minute >= 0 {
+            return dday.day
+        } else {
+            return nil
+        }
+    }
+    
+    func ddayExist(goal: Goal) -> Bool {
+        let today = Date()
+        if calculateDday(goal: goal, targetDate: today) != nil {
+            return true
+        }
+        
+        return false
     }
 }
