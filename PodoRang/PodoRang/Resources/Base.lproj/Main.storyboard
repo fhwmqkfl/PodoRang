@@ -120,7 +120,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vkh-KT-cry">
-                                <rect key="frame" x="0.0" y="249" width="393" height="520"/>
+                                <rect key="frame" x="0.0" y="264" width="393" height="505"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="MainTableViewCell" rowHeight="100" id="3B1-fC-gGn" customClass="MainTableViewCell" customModule="PodoRang" customModuleProvider="target">
@@ -230,7 +230,7 @@
                             <constraint firstItem="vkh-KT-cry" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Yf-z2-ND3"/>
                             <constraint firstItem="fXh-zB-ZjE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Nsp-sU-SwV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fXh-zB-ZjE" secondAttribute="trailing" constant="30" id="Q5l-KZ-VkR"/>
-                            <constraint firstItem="vkh-KT-cry" firstAttribute="top" secondItem="fXh-zB-ZjE" secondAttribute="bottom" id="W9v-pc-MPq"/>
+                            <constraint firstItem="vkh-KT-cry" firstAttribute="top" secondItem="fXh-zB-ZjE" secondAttribute="bottom" constant="15" id="W9v-pc-MPq"/>
                             <constraint firstItem="fXh-zB-ZjE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xxf-WE-FZ0"/>
                             <constraint firstItem="5Ps-bz-gS6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dR6-fd-OQk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vkh-KT-cry" secondAttribute="trailing" id="fEl-9A-KdN"/>
@@ -258,7 +258,7 @@
                         <outlet property="mainImageView" destination="X92-QL-ZF9" id="tOa-fv-MQ7"/>
                         <outlet property="mainLabel" destination="B71-YN-Qpa" id="bmJ-pq-zP3"/>
                         <outlet property="mainTableView" destination="vkh-KT-cry" id="Ena-3e-kdW"/>
-                        <outlet property="statusSementedControl" destination="fXh-zB-ZjE" id="XbJ-Y3-gWk"/>
+                        <outlet property="statusSementedControl" destination="fXh-zB-ZjE" id="o1g-ri-jZJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -12,4 +12,3 @@ enum GoalStatus: Int, PersistableEnum {
     case inProgress = 0
     case finished
 }
-

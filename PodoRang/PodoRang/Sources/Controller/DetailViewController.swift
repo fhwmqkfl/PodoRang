@@ -210,7 +210,6 @@ extension DetailViewController: UITableViewDataSource {
         let checkDay = checkDays[indexPath.row].toStringWithTime()
         cell.mainLabel.text = checkDay
         cell.selectionStyle = .none
-        
         return cell
     }
 }

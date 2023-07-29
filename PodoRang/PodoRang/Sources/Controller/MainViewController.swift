@@ -37,10 +37,10 @@ class MainViewController: UIViewController {
         mainTableView.delegate = self
         setUI()
         goalManager = GoalManager(realm: realm)
+        statusSementedControl.addUnderlineForSelectedSegment()
     }
     
     func setUI() {
-        statusSementedControl.backgroundColor = CustomColor.lightPurple
         alarmButton.isHidden = true
         mainTableView.rowHeight = 100
         mainTableView.separatorInset.left = 30
@@ -103,6 +103,7 @@ class MainViewController: UIViewController {
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {
         refresh()
+        statusSementedControl.changeUnderlinePosition()
     }
     
     @IBAction func addButtonClicked(_ sender: UIBarButtonItem) {
@@ -126,7 +127,6 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let isFinished = statusSementedControl.selectedSegmentIndex == GoalStatus.inProgress.rawValue ? inProgressList.count : finishedList.count
-        
         return isFinished
     }
     

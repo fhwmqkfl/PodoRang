@@ -21,6 +21,8 @@
 		CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141AB2A23A0D000188B72 /* DetailView.swift */; };
 		CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B02A23B4AA00188B72 /* SettingViewController.swift */; };
 		CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */; };
+		CC8149C62A74D21A00121869 /* UISegmentedControl+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */; };
+		CC8149C82A754FCA00121869 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8149C72A754FCA00121869 /* UIImage+.swift */; };
 		CC87472F2A66724E0045CCD2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87472E2A66724E0045CCD2 /* UIViewController.swift */; };
 		CC8747322A667B080045CCD2 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */; };
 		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
@@ -62,6 +64,8 @@
 		CC8141AB2A23A0D000188B72 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		CC8141B02A23B4AA00188B72 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+.swift"; sourceTree = "<group>"; };
+		CC8149C72A754FCA00121869 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		CC87472E2A66724E0045CCD2 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 				CCFE85822A359E1D001FD6C7 /* String+.swift */,
 				CCADCBD22A4C032800BADEFE /* UILabel+.swift */,
 				CC87472E2A66724E0045CCD2 /* UIViewController.swift */,
+				CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */,
+				CC8149C72A754FCA00121869 /* UIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 				CC8141AC2A23A0D000188B72 /* DetailView.swift in Sources */,
 				CCFE52CD2A72B07F00DB6BAA /* GrainCount.swift in Sources */,
 				CC5468AD2A1A88560092B04C /* MainViewController.swift in Sources */,
+				CC8149C82A754FCA00121869 /* UIImage+.swift in Sources */,
 				CC8141B12A23B4AA00188B72 /* SettingViewController.swift in Sources */,
 				CCB582882A2327BA00B5924A /* GoalManager.swift in Sources */,
 				CCFE85832A359E1D001FD6C7 /* String+.swift in Sources */,
@@ -315,6 +322,7 @@
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
 				CC7150B92A610668000B32D1 /* PaddingLabel.swift in Sources */,
 				CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */,
+				CC8149C62A74D21A00121869 /* UISegmentedControl+.swift in Sources */,
 				CCB582842A22606B00B5924A /* Goal.swift in Sources */,
 				CCFE52C42A6A7BB600DB6BAA /* FinishedCell.swift in Sources */,
 				CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */,

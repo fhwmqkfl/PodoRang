@@ -24,7 +24,6 @@ final class GoalManager {
     
     func fetch() -> [Goal] {
         let goalList = realm.objects(Goal.self)
-        
         return Array(goalList)
     }
     
@@ -116,6 +115,7 @@ final class GoalManager {
         if calculateDday(goal: goal, targetDate: today) != nil {
             return true
         }
+        
         return false
     }
 }
