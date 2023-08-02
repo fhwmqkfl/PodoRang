@@ -42,6 +42,8 @@ extension SettingViewController: UITableViewDelegate {
             profileVC.status = .modify
             profileVC.modalPresentationStyle = .fullScreen
             self.present(profileVC, animated: true)
+        } else if menuList[indexPath.row] == .review {
+            presentAlert(message: "Can't use it now 🥲 \n Please wait for the next update!")
         }
     }
 }

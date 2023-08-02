@@ -23,7 +23,7 @@
 		CC8141B32A249B1B00188B72 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */; };
 		CC8149C62A74D21A00121869 /* UISegmentedControl+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */; };
 		CC8149C82A754FCA00121869 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8149C72A754FCA00121869 /* UIImage+.swift */; };
-		CC87472F2A66724E0045CCD2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87472E2A66724E0045CCD2 /* UIViewController.swift */; };
+		CC87472F2A66724E0045CCD2 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87472E2A66724E0045CCD2 /* UIViewController+.swift */; };
 		CC8747322A667B080045CCD2 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */; };
 		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
 		CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */; };
@@ -66,7 +66,7 @@
 		CC8141B22A249B1B00188B72 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+.swift"; sourceTree = "<group>"; };
 		CC8149C72A754FCA00121869 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
-		CC87472E2A66724E0045CCD2 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		CC87472E2A66724E0045CCD2 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		CC8747312A667B080045CCD2 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 				CCFE85802A359E05001FD6C7 /* Date+.swift */,
 				CCFE85822A359E1D001FD6C7 /* String+.swift */,
 				CCADCBD22A4C032800BADEFE /* UILabel+.swift */,
-				CC87472E2A66724E0045CCD2 /* UIViewController.swift */,
+				CC87472E2A66724E0045CCD2 /* UIViewController+.swift */,
 				CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */,
 				CC8149C72A754FCA00121869 /* UIImage+.swift */,
 			);
@@ -332,7 +332,7 @@
 				CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */,
 				CCC6255D2A38A82A003E37ED /* AlarmTableViewCell.swift in Sources */,
 				CCADCBD32A4C032800BADEFE /* UILabel+.swift in Sources */,
-				CC87472F2A66724E0045CCD2 /* UIViewController.swift in Sources */,
+				CC87472F2A66724E0045CCD2 /* UIViewController+.swift in Sources */,
 				CCFE52C72A72B02600DB6BAA /* GoalStatus.swift in Sources */,
 				CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */,
 				CCBA10D02A2DD28A00456AA9 /* AddGoalView.swift in Sources */,
@@ -415,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -469,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -486,6 +486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WS55UQH5C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodoRang/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -493,6 +494,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WS55UQH5C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PodoRang/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -520,6 +523,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
