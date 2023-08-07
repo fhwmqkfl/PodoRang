@@ -2,7 +2,7 @@
 <br>
 <p align="center">
   <a href="https://www.instagram.com/podorang.official/"> 
-    <img alt="PodoRang" title="PodoRang" src="https://github.com/fhwmqkfl/PodoRang/assets/71719160/a71fc739-df6e-4442-9113-2a2877b87ffb" width="300">
+    <img alt="PodoRang" title="PodoRang" src="https://i.ibb.co/2WNLqfS/white.png" width="300">
   </a>
 </p>
 <br>
