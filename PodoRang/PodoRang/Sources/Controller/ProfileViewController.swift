@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = CustomColor.mainPurple.cgColor
+        profileImageView.layer.borderColor = UIColor.clear.cgColor
         profileImageView.backgroundColor = CustomColor.mainPurple
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
@@ -109,8 +109,6 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                     self.profileImageView.image = image as? UIImage
                 }
             }
-        } else {
-            presentAlert(message: "Image not found")
         }
     }
 }
