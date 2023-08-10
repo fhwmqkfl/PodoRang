@@ -43,7 +43,14 @@ extension SettingViewController: UITableViewDelegate {
             profileVC.modalPresentationStyle = .fullScreen
             self.present(profileVC, animated: true)
         } else if menuList[indexPath.row] == .review {
-            presentAlert(message: "Can't use it now 🥲 \n Please wait for the next update!")
+            if let appstoreUrl = URL(string: "https://apps.apple.com/app/id6456408239") {
+                var components = URLComponents(url: appstoreUrl, resolvingAgainstBaseURL: false)
+                components?.queryItems = [
+                    URLQueryItem(name: "action", value: "write-review")
+                ]
+                guard let reviewUrl = components?.url else { return }
+                UIApplication.shared.open(reviewUrl, options: [:], completionHandler: nil)
+            }
         }
     }
 }
