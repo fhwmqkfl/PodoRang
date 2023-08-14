@@ -17,24 +17,24 @@ extension UIViewController {
     
     /// present customized alert
     func presentChoiceAlert(title: String, message: String, buttonTitle: String, preferredStyle: UIAlertController.Style = .alert , completion: @escaping () -> Void) {
-        let text: String = title
+        let text: String = title.localized()
         let attributeString = NSMutableAttributedString(string: text)
         let font = UIFont.boldSystemFont(ofSize: 18)
         attributeString.addAttribute(.font, value: font, range: (text as NSString).range(of: text))
         attributeString.addAttribute(.foregroundColor, value: CustomColor.textGreen, range: (text as NSString).range(of: text))
         
-        let alertController = UIAlertController(title: text, message: message, preferredStyle: preferredStyle)
+        let alertController = UIAlertController(title: text, message: message.localized(), preferredStyle: preferredStyle)
         alertController.setValue(attributeString, forKey: "attributedTitle")
-        let addDate = UIAlertAction(title: buttonTitle, style: .default) { _ in completion() }
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+        let addDate = UIAlertAction(title: buttonTitle.localized(), style: .default) { _ in completion() }
+        let cancel = UIAlertAction(title: "Cancel".localized(), style: .destructive)
         alertController.addAction(addDate)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
     
     func presentAlert(message: String) {
-        let alertController = UIAlertController(title: "", message: message, preferredStyle: UIAlertController.Style.alert)
-        let checked = UIAlertAction(title: "OK", style: .default)
+        let alertController = UIAlertController(title: "", message: message.localized(), preferredStyle: UIAlertController.Style.alert)
+        let checked = UIAlertAction(title: "OK".localized(), style: .default)
         alertController.addAction(checked)
         present(alertController, animated: true)
     }

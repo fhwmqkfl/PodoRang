@@ -26,7 +26,7 @@ class SettingViewController: UIViewController {
     }
     
     func setup() {
-        title = "Setting"
+        self.navigationItem.title = "Setting".localized()
         settingTableView.delegate = self
         settingTableView.dataSource = self
         settingTableView.separatorInset.left = 30
@@ -65,12 +65,12 @@ extension SettingViewController: UITableViewDataSource {
         
         if menu == .alarm {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier) as? AlarmTableViewCell else { return UITableViewCell() }
-            cell.titleLabel.text = menu.rawValue
+            cell.titleLabel.text = menu.rawValue.localized()
             cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:  SettingTableViewCell.identifier) as? SettingTableViewCell else { return UITableViewCell() }
-            cell.titleLabel.text = menu.rawValue
+            cell.titleLabel.text = menu.rawValue.localized()
             cell.selectionStyle = .none
             return cell
         }

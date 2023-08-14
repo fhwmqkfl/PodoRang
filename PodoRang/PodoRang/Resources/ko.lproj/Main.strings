@@ -1,0 +1,11 @@
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "cm8-6f-Zqa"; */
+"cm8-6f-Zqa.title" = "설정";
+
+/* Class = "UILabel"; text = "Account Setup"; ObjectID = "eSD-B8-t5b"; */
+"eSD-B8-t5b.text" = "프로필을 설정해주세요";
+
+/* Class = "UITabBarItem"; title = " main"; ObjectID = "ga4-UM-Cn5"; */
+"ga4-UM-Cn5.title" = "메인";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "utm-0m-Ufs"; */
+"utm-0m-Ufs.placeholder" = "닉네임";

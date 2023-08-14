@@ -127,7 +127,7 @@ class DetailViewController: UIViewController {
     
     func calculateRemainCount(_ checkDaysCount: Int) {
         let remainCount = grainCount.rawValue - checkDaysCount
-        detailView.mainLabel.text = "Only \(remainCount) Grains to achieve"
+        detailView.mainLabel.text = "Only %d Grains to achieve".localized(with: remainCount)
     }
     
     @objc func tapGrapeImage() {
@@ -139,7 +139,7 @@ class DetailViewController: UIViewController {
         
         if goalStatus == GoalStatus.finished {
             let alertController = UIAlertController(title: "", message: "It's a finished Grape!!", preferredStyle: .alert)
-            let checked = UIAlertAction(title: "OK", style: .default)
+            let checked = UIAlertAction(title: "OK".localized(), style: .default)
             alertController.addAction(checked)
             present(alertController, animated: true)
         } else {
@@ -175,8 +175,8 @@ class DetailViewController: UIViewController {
                     }
                 }
             } else {
-                let alertController = UIAlertController(title: "", message: "It hasn't started yet", preferredStyle: .alert)
-                let checked = UIAlertAction(title: "OK", style: .default)
+                let alertController = UIAlertController(title: "", message: "It hasn't started yet".localized(), preferredStyle: .alert)
+                let checked = UIAlertAction(title: "OK".localized(), style: .default)
                 alertController.addAction(checked)
                 present(alertController, animated: true)
             }

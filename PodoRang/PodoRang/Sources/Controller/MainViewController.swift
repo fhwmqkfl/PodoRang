@@ -65,10 +65,10 @@ class MainViewController: UIViewController {
     
     func getUserData() {
         if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
-            mainLabel.text = "Hello, \(userName)"
+            mainLabel.text = "Hello, %@".localized(with: userName)
             loadImage(UIImage: userThumbnail)
         } else {
-            let alertController = UIAlertController(title: "", message: "Please set up your profile and access again", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "", message: "Please set up your profile and access again".localized(), preferredStyle: UIAlertController.Style.alert)
             let checked = UIAlertAction(title: "OK", style: .default) { _ in
                 guard let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
                 profileVC.modalPresentationStyle = .fullScreen
@@ -94,11 +94,11 @@ class MainViewController: UIViewController {
     
     func makeDdayText(dday: Int?, targetDate: Date, startDate: Date) -> String {
         if let dday = dday {
-            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted"
+            let text = targetDate >= startDate ? "D-\(dday)" : "Unstarted".localized()
             return text
         }
         
-        return "Finished"
+        return "Finished".localized()
     }
     
     @IBAction func segmentClicked(_ sender: UISegmentedControl) {

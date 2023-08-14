@@ -28,6 +28,7 @@
 		CC87DBB52A337AC4002D90B6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB42A337AC4002D90B6 /* UIView+.swift */; };
 		CC87DBB72A337CFD002D90B6 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */; };
 		CC8A43252A1F7AFD0063697F /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A43242A1F7AFD0063697F /* CustomColor.swift */; };
+		CCA0C4642A853C9000B36558 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCA0C4662A853C9000B36558 /* Localizable.strings */; };
 		CCADCBCF2A4B4F2E00BADEFE /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */; };
 		CCADCBD12A4B4F4B00BADEFE /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */; };
 		CCADCBD32A4C032800BADEFE /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCADCBD22A4C032800BADEFE /* UILabel+.swift */; };
@@ -71,6 +72,9 @@
 		CC87DBB42A337AC4002D90B6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		CC87DBB62A337CFD002D90B6 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		CC8A43242A1F7AFD0063697F /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		CCA0C4652A853C9000B36558 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CCA0C4672A853C9A00B36558 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		CCA0C4682A853C9A00B36558 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		CCADCBD22A4C032800BADEFE /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				CC5468B32A1A88570092B04C /* LaunchScreen.storyboard */,
 				CC5468AE2A1A88560092B04C /* Main.storyboard */,
 				CC5468B62A1A88570092B04C /* Info.plist */,
+				CCA0C4662A853C9000B36558 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = CC54689C2A1A88560092B04C;
 			packageReferences = (
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC5468B52A1A88570092B04C /* LaunchScreen.storyboard in Resources */,
+				CCA0C4642A853C9000B36558 /* Localizable.strings in Resources */,
 				CC5468B22A1A88570092B04C /* Assets.xcassets in Resources */,
 				CC5468B02A1A88560092B04C /* Main.storyboard in Resources */,
 			);
@@ -350,6 +357,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CC5468AF2A1A88560092B04C /* Base */,
+				CCA0C4672A853C9A00B36558 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -362,6 +370,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		CCA0C4662A853C9000B36558 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCA0C4652A853C9000B36558 /* en */,
+				CCA0C4682A853C9A00B36558 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -369,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -429,6 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -494,7 +513,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -502,9 +521,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = coco.PodoRang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -523,7 +545,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,9 +553,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = coco.PodoRang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

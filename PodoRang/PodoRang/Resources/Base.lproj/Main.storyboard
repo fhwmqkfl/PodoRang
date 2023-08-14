@@ -243,20 +243,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Md-pn-6bW">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="ieh-TG-aTz">
-                                <color key="tintColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="bw7-sd-94Q"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="bell.fill" catalog="system" id="fJ2-11-l4h">
-                                <color key="tintColor" red="0.6470588235294118" green="0.34509803921568627" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ieh-TG-aTz">
+                            <color key="tintColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="addButtonClicked:" destination="BYZ-38-t0r" id="bw7-sd-94Q"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="alarmButton" destination="fJ2-11-l4h" id="Dxh-Rx-ziL"/>
                         <outlet property="mainImageView" destination="X92-QL-ZF9" id="tOa-fv-MQ7"/>
                         <outlet property="mainLabel" destination="B71-YN-Qpa" id="bmJ-pq-zP3"/>
                         <outlet property="mainTableView" destination="vkh-KT-cry" id="Ena-3e-kdW"/>
@@ -443,7 +437,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="nextpageButton" width="24" height="24"/>
         <image name="person" catalog="system" width="128" height="121"/>
