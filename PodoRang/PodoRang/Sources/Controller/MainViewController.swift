@@ -9,7 +9,6 @@ import UIKit
 import RealmSwift
 
 class MainViewController: UIViewController {
-    @IBOutlet weak var alarmButton: UIBarButtonItem!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var mainTableView: UITableView!
@@ -41,7 +40,6 @@ class MainViewController: UIViewController {
     }
     
     func setUI() {
-        alarmButton.isHidden = true
         mainTableView.rowHeight = 100
         mainTableView.separatorInset.left = 30
         mainTableView.separatorInset.right = 30
