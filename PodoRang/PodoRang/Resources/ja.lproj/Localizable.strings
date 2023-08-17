@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  PodoRang
+
+  Created by coco on 2023/08/11.
+  
+*/
+
+// profileVC
+"Modify Account" = "プロフィール編集";
+
+"Account Setup" = "プロフィール設定";
+
+"SAVE" = "保存する";
+
+"Check user name and image" = "イメージまたはユーザー名を\n確認してください";
+
+// mainVC
+"Hello, %@" = "こんにちは, %@";
+
+"Unstarted" = "開始前";
+
+"Finished" = "終わりました";
+
+"Please set up your profile and access again" = "プロフィール設定の確認してください";
+
+// addGoalVC
+"Title" = "目標";
+
+"Select a start date" = "開始日を選択してください";
+
+"Count of Grains" = "ぶどうの実の数";
+
+"Color of Grape" = "ぶどうの種類";
+
+"Selected number will be set as the period" = "ぶどうの実の数はチャレンジ日数になります";
+
+"⚠️ Count & StartDate can't be changed!!" = "⚠️ 保存すると開始日とぶどうの数は変更できません";
+
+"DELETE" = "削除する";
+
+"Add Grape" = "ぶどう追加";
+
+"Modify Grape" = "ぶどう編集";
+
+"Are you sure to delete this goal?" = "本当にこのぶどうを削除しますか？";
+
+"Delete" = "はい";
+
+// detailVC
+"Only %d Grains to achieve" = "あと%d個のぶどうが実れば完成です";
+
+"It's a finished Grape!!" = "もう終わったぶどうです!";
+
+"Remove Grain" = "ぶどうの実を消す";
+
+"remove the painted Grain?" = "塗り替えたぶどうの実を消しますか";
+
+"Remove" = "消す";
+
+"Paint Grain" = "ぶどうの実を描く";
+
+"paint today's Grain?" = "今日の目標を達成しましたか？";
+
+"Paint" = "はい";
+
+"It hasn't started yet" = "まだ開始してないぶどうです";
+
+"Cancel" = "いいえ";
+
+"OK" = "はい";
+
+"date of painting Grains" = "ぶどうが実った日";
+
+// popupView
+"🍇 press the grape,\n you can paint the grape" = "🍇 ぶどうをタッチすると\nぶどうの実を描けます";
+
+"achieve goal once a day \n and draw a grain" = "一日一回目標を達成して\n 実らせてください";
+
+"CLOSE" = "閉じる";
+
+// settingVC
+"Setting" = "設定";
+
+"Alarm" = "アラーム設定";
+
+"Modify Profile" = "プロフィール編集";
+
+"Review" = "レビュー";

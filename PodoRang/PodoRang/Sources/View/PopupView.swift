@@ -33,7 +33,7 @@ class PopupView: UIView {
         infoView.clipsToBounds = true
         infoView.layer.cornerRadius = 10
         
-        mainLabel.text = "🍇 press the grape,\n you can paint the grape"
+        mainLabel.text = "🍇 press the grape,\n you can paint the grape".localized()
         mainLabel.font = .boldSystemFont(ofSize: 18)
         mainLabel.textColor = CustomColor.navigationTitle
         mainLabel.numberOfLines = 2
@@ -42,13 +42,13 @@ class PopupView: UIView {
         
         mainImage.image = UIImage(named: "purpleButton")
         
-        infoLabel.text = "achieve goal once a day \n and draw a grain"
+        infoLabel.text = "achieve goal once a day \n and draw a grain".localized()
         infoLabel.font = .systemFont(ofSize: 14)
         infoLabel.numberOfLines = 2
         infoLabel.setLineSpacing(spacing: 5)
         infoLabel.textAlignment = .center
         
-        closeButton.setTitle("CLOSE", for: .normal)
+        closeButton.setTitle("CLOSE".localized(), for: .normal)
         closeButton.titleLabel?.font = .boldSystemFont(ofSize: 17)
         closeButton.tintColor = .white
         closeButton.backgroundColor = CustomColor.mainPurple

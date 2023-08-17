@@ -91,13 +91,13 @@ class AddGoalView: UIView {
         greenButton.addTarget(self, action: #selector(greenButtonClicked), for: .touchUpInside)
         setHorizontalStackView(colorHorizontalStackView)
         
-        saveButton.setTitle("SAVE", for: .normal)
+        saveButton.setTitle("SAVE".localized(), for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 15
         saveButton.backgroundColor = .systemGray2
         
-        deleteButton.setTitle("DELETE", for: .normal)
+        deleteButton.setTitle("DELETE".localized(), for: .normal)
         deleteButton.backgroundColor = CustomColor.buttonRed
         deleteButton.tintColor = .white
         deleteButton.clipsToBounds = true
@@ -205,13 +205,13 @@ class AddGoalView: UIView {
     }
     
     func setLabel(_ label: UILabel, text: String) {
-        label.text = text
+        label.text = text.localized()
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = CustomColor.textPurple
     }
     
     func setInfoLabel(_ label: UILabel, text: String) {
-        label.text = text
+        label.text = text.localized()
         label.textColor = CustomColor.infoGreen
         label.font = .boldSystemFont(ofSize: 13)
         label.textAlignment = .center

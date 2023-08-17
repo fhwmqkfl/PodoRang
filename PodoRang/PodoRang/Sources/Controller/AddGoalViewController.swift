@@ -41,7 +41,7 @@ class AddGoalViewController: UIViewController {
     func setupUI() {
         addGoalView.goalTextField.delegate = self
         
-        title = "\(setupType.rawValue) Grape"
+        title = "\(setupType.rawValue) Grape".localized()
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = CustomColor.navigationTitle

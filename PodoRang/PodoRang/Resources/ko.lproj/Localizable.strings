@@ -1,0 +1,89 @@
+/* 
+  Localizable.strings
+  PodoRang
+
+  Created by coco on 2023/08/11.
+  
+*/
+
+// profileVC
+"Modify Account" = "프로필 수정";
+
+"Account Setup" = "프로필을 설정해주세요";
+
+"SAVE" = "저장하기";
+
+"Check user name and image" = "프로필 이미지 혹은 닉네임을 확인해주세요";
+
+// mainVC
+"Hello, %@" = "안녕하세요, %@님";
+
+"Unstarted" = "준비중이에요";
+
+"Finished" = "종료되었어요";
+
+"Please set up your profile and access again" = "프로필 설정후 다시 확인해 주세요!";
+
+// addGoalVC
+"Title" = "목표";
+
+"Select a start date" = "시작하는 날짜를 선택해주세요";
+
+"Count of Grains" = "포도알 갯수";
+
+"Color of Grape" = "포도 종류";
+
+"Selected number will be set as the period" = "포도알 갯수는 도전 기간을 의미해요";
+
+"⚠️ Count & StartDate can't be changed!!" = "⚠️ 시작날짜와 갯수는 저장후 변경이 불가능해요!";
+
+"DELETE" = "삭제하기";
+
+"Add Grape" = "포도 추가하기";
+
+"Modify Grape" = "포도 수정하기";
+
+"Are you sure to delete this goal?" = "정말로 이 포도를 삭제하시겠어요?";
+
+"Delete" = "네";
+
+// detailVC
+"Only %d Grains to achieve" = "앞으로 %d개의 포도알을 채우면 완성이에요!";
+
+"It's a finished Grape!!" = "이미 종료된 포도에요!";
+
+"Remove Grain" = "포도알 지우기";
+
+"remove the painted Grain?" = "색칠한 포도알을 지울까요?";
+
+"Remove" = "지우기";
+
+"Paint Grain" = "포도알 그리기";
+
+"paint today's Grain?" = "오늘의 목표를 달성했나요?";
+
+"Paint" = "네";
+
+"It hasn't started yet" = "아직 시작하지 않은 포도에요";
+
+"Cancel" = "아니오";
+
+"OK" = "확인";
+
+"date of painting Grains" = "포도를 채운 날들";
+
+// popupView
+"🍇 press the grape,\n you can paint the grape" = "🍇 포도를 누르면 \n 포도알을 채울 수 있어요";
+
+"achieve goal once a day \n and draw a grain" = "하루 한번 목표를 달성해 \n 포도를 채워보세요";
+
+"CLOSE" = "닫기";
+
+// settingVC
+"Setting" = "설정";
+
+"Alarm" = "알림 설정";
+
+"Modify Profile" = "프로필 수정";
+
+"Review" = "리뷰하기";

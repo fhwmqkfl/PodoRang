@@ -1,0 +1,45 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Abf-Ue-uXt"; */
+"Abf-Ue-uXt.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "안녕하세요"; ObjectID = "B71-YN-Qpa"; */
+"B71-YN-Qpa.text" = "안녕하세요";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "D24-wn-SV7"; */
+"D24-wn-SV7.normalTitle" = "SAVE";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "G4Q-Fe-1Og"; */
+"G4Q-Fe-1Og.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LbK-if-J0F"; */
+"LbK-if-J0F.text" = "Label";
+
+/* Class = "UILabel"; text = "test(0)"; ObjectID = "NFT-za-rv4"; */
+"NFT-za-rv4.text" = "test(0)";
+
+/* Class = "UILabel"; text = "D-17"; ObjectID = "QaS-Rc-E6j"; */
+"QaS-Rc-E6j.text" = "D-17";
+
+/* Class = "UILabel"; text = "test(0)"; ObjectID = "Wyc-dy-4Qq"; */
+"Wyc-dy-4Qq.text" = "test(0)";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "cm8-6f-Zqa"; */
+"cm8-6f-Zqa.title" = "Setting";
+
+/* Class = "UILabel"; text = "Account Setup"; ObjectID = "eSD-B8-t5b"; */
+"eSD-B8-t5b.text" = "Account Setup";
+
+/* Class = "UISegmentedControl"; fXh-zB-ZjE.segmentTitles[0] = "IN PROGRESS"; ObjectID = "fXh-zB-ZjE"; */
+"fXh-zB-ZjE.segmentTitles[0]" = "IN PROGRESS";
+
+/* Class = "UISegmentedControl"; fXh-zB-ZjE.segmentTitles[1] = "FINISHED"; ObjectID = "fXh-zB-ZjE"; */
+"fXh-zB-ZjE.segmentTitles[1]" = "FINISHED";
+
+/* Class = "UITabBarItem"; title = " main"; ObjectID = "ga4-UM-Cn5"; */
+"ga4-UM-Cn5.title" = " main";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "toX-Zq-A8D"; */
+"toX-Zq-A8D.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "utm-0m-Ufs"; */
+"utm-0m-Ufs.placeholder" = "User Name";

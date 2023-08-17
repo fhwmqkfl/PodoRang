@@ -41,19 +41,19 @@ class ProfileViewController: UIViewController {
         if let userName = UserDefaults.standard.string(forKey: UserDefaultsKey.userName), let userThumbnail = UserDefaults.standard.data(forKey: UserDefaultsKey.userThumbnail) {
             nameTextField.text = userName
             profileImageView.image = loadImage(data: userThumbnail)
-            mainLabel.text = Status.modify.rawValue
+            mainLabel.text = Status.modify.rawValue.localized()
         }
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = CustomColor.mainPurple.cgColor
+        profileImageView.layer.borderColor = UIColor.clear.cgColor
         profileImageView.backgroundColor = CustomColor.mainPurple
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.borderColor = CustomColor.mainPurple.cgColor
         nameTextField.layer.cornerRadius = 10
-        saveButton.setTitle("SAVE", for: .normal)
+        saveButton.setTitle("SAVE".localized(), for: .normal)
         saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
-        if let userThumbnail = profileImageView.image, nameTextField.text != "" {
+        if let userThumbnail = profileImageView.image, userThumbnail != UIImage(systemName: "person.fill"), nameTextField.text != "" {
             UserDefaults.standard.set(nameTextField.text!, forKey: "userName")
             saveImage(UIImage: userThumbnail, forKey:"userThumbnail")
             
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController {
                 self.present(mainVC, animated: true)
             }
         } else {
-            presentAlert(message: "Check user name and image")
+            presentAlert(message: "Check user name and image".localized())
         }
     }
 }
@@ -109,8 +109,6 @@ extension ProfileViewController: PHPickerViewControllerDelegate {
                     self.profileImageView.image = image as? UIImage
                 }
             }
-        } else {
-            presentAlert(message: "Image not found")
         }
     }
 }

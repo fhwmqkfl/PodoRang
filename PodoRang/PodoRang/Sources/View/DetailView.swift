@@ -95,14 +95,14 @@ class DetailView: UIView {
     }
     
     func setLabel(_ label: UILabel, title: String) {
-        label.text = title
+        label.text = title.localized()
         label.textColor = CustomColor.infoGreen
         label.font = .boldSystemFont(ofSize: 15)
     }
     
     func setButton(_ button: UIButton, title: String) {
         button.backgroundColor = CustomColor.buttonGreen
-        button.setTitle(title, for: .normal)
+        button.setTitle(title.localized(), for: .normal)
         button.tintColor = .white
         button.clipsToBounds = true
         button.layer.cornerRadius = 10
