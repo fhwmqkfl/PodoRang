@@ -75,6 +75,8 @@
 		CCA0C4652A853C9000B36558 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CCA0C4672A853C9A00B36558 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		CCA0C4682A853C9A00B36558 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CCA0C4692A8A1BE800B36558 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		CCA0C46A2A8A1BE800B36558 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CCADCBCE2A4B4F2E00BADEFE /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CCADCBD02A4B4F4B00BADEFE /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		CCADCBD22A4C032800BADEFE /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				en,
 				Base,
 				ko,
+				ja,
 			);
 			mainGroup = CC54689C2A1A88560092B04C;
 			packageReferences = (
@@ -358,6 +361,7 @@
 			children = (
 				CC5468AF2A1A88560092B04C /* Base */,
 				CCA0C4672A853C9A00B36558 /* ko */,
+				CCA0C4692A8A1BE800B36558 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -375,6 +379,7 @@
 			children = (
 				CCA0C4652A853C9000B36558 /* en */,
 				CCA0C4682A853C9A00B36558 /* ko */,
+				CCA0C46A2A8A1BE800B36558 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -518,7 +523,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = coco.PodoRang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -550,7 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = coco.PodoRang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
