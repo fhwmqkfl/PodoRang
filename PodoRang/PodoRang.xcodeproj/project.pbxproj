@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC1676772A949B6300787D19 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CC1676762A949B6300787D19 /* FirebaseAnalytics */; };
+		CC1676792A949B6300787D19 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CC1676782A949B6300787D19 /* FirebaseCrashlytics */; };
+		CC1C84152AB22A52007496A1 /* UNUserNotificationCenter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C84142AB22A51007496A1 /* UNUserNotificationCenter+.swift */; };
 		CC36347D2A1E36A90071EE4F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */; };
 		CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468A82A1A88560092B04C /* AppDelegate.swift */; };
 		CC5468AB2A1A88560092B04C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5468AA2A1A88560092B04C /* SceneDelegate.swift */; };
@@ -52,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC1C84142AB22A51007496A1 /* UNUserNotificationCenter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+.swift"; sourceTree = "<group>"; };
 		CC36347C2A1E36A90071EE4F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CC5468A52A1A88560092B04C /* PodoRang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodoRang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5468A82A1A88560092B04C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				CC66BB192A5BCC6600A217DD /* RealmSwift in Frameworks */,
 				CC66BB172A5BCC6600A217DD /* Realm in Frameworks */,
 				CC8141AA2A2345E400188B72 /* SnapKit in Frameworks */,
+				CC1676792A949B6300787D19 /* FirebaseCrashlytics in Frameworks */,
+				CC1676772A949B6300787D19 /* FirebaseAnalytics in Frameworks */,
 				CCFE857F2A3461DF001FD6C7 /* TextFieldEffects in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +222,7 @@
 				CC87472E2A66724E0045CCD2 /* UIViewController+.swift */,
 				CC8149C52A74D21A00121869 /* UISegmentedControl+.swift */,
 				CC8149C72A754FCA00121869 /* UIImage+.swift */,
+				CC1C84142AB22A51007496A1 /* UNUserNotificationCenter+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +259,8 @@
 				CCFE857E2A3461DF001FD6C7 /* TextFieldEffects */,
 				CC66BB162A5BCC6600A217DD /* Realm */,
 				CC66BB182A5BCC6600A217DD /* RealmSwift */,
+				CC1676762A949B6300787D19 /* FirebaseAnalytics */,
+				CC1676782A949B6300787D19 /* FirebaseCrashlytics */,
 			);
 			productName = PodoRang;
 			productReference = CC5468A52A1A88560092B04C /* PodoRang.app */;
@@ -287,6 +296,7 @@
 				CC8141A82A2345E400188B72 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CCFE857D2A3461DF001FD6C7 /* XCRemoteSwiftPackageReference "TextFieldEffects" */,
 				CC66BB152A5BCC6600A217DD /* XCRemoteSwiftPackageReference "realm-swift" */,
+				CC1676752A949B6300787D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CC5468A62A1A88560092B04C /* Products */;
 			projectDirPath = "";
@@ -327,6 +337,7 @@
 				CCBA10CE2A2DD25700456AA9 /* AddGoalViewController.swift in Sources */,
 				CCC625612A38A8A8003E37ED /* DetailViewController.swift in Sources */,
 				CC5468A92A1A88560092B04C /* AppDelegate.swift in Sources */,
+				CC1C84152AB22A52007496A1 /* UNUserNotificationCenter+.swift in Sources */,
 				CC8747322A667B080045CCD2 /* UserDefaultsKey.swift in Sources */,
 				CCBFC2722A20B51F0022FEAD /* MainTableViewCell.swift in Sources */,
 				CCFE85812A359E05001FD6C7 /* Date+.swift in Sources */,
@@ -591,6 +602,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC1676752A949B6300787D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		CC66BB152A5BCC6600A217DD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -618,6 +637,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC1676762A949B6300787D19 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC1676752A949B6300787D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CC1676782A949B6300787D19 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC1676752A949B6300787D19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
 		CC66BB162A5BCC6600A217DD /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CC66BB152A5BCC6600A217DD /* XCRemoteSwiftPackageReference "realm-swift" */;

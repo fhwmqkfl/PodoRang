@@ -12,4 +12,5 @@ class AlarmTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
+    @IBOutlet weak var infoLabel: UILabel!
 }
