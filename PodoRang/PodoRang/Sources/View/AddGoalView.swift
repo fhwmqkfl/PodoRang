@@ -264,6 +264,15 @@ class AddGoalView: UIView {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolBar.setItems([flexibleSpace, doneButton], animated: true)
         startDayTextField.inputAccessoryView = toolBar
+    
+        let calendar = Calendar(identifier: .gregorian)
+        let currentDate = Date()
+        var components = DateComponents()
+        components.calendar = calendar
+        components.year = -1
+        components.month = 12
+        let startDate = calendar.date(byAdding: components, to: currentDate)!
+        datePicker.minimumDate = startDate
     }
     
     func setSaveButton(isOn: Bool) {
