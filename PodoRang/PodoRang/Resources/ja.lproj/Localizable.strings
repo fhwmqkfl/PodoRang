@@ -15,6 +15,8 @@
 
 "Check user name and image" = "イメージまたはユーザー名を\n確認してください";
 
+"CANCEL" = "キャンセル";
+
 // mainVC
 "Hello, %@" = "こんにちは, %@";
 

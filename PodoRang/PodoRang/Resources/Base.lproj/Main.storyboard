@@ -50,13 +50,28 @@
                                     <constraint firstAttribute="width" secondItem="cZD-Rc-Nhm" secondAttribute="height" multiplier="1:1" id="czE-n6-jiF"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kI5-g2-cJa">
+                                <rect key="frame" x="40" y="598" width="313" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7hJ-9i-db4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="CANCEL"/>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" destination="c4T-z1-jt3" eventType="touchUpInside" id="cwc-YN-UOL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mqC-AL-8u6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cZD-Rc-Nhm" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="BJ3-XB-tK9"/>
                             <constraint firstItem="D24-wn-SV7" firstAttribute="top" secondItem="utm-0m-Ufs" secondAttribute="bottom" constant="40" id="GE3-Sw-Qu2"/>
+                            <constraint firstItem="kI5-g2-cJa" firstAttribute="top" secondItem="D24-wn-SV7" secondAttribute="bottom" constant="15" id="Hc1-5l-dzp"/>
                             <constraint firstItem="mqC-AL-8u6" firstAttribute="trailing" secondItem="utm-0m-Ufs" secondAttribute="trailing" constant="40" id="LsQ-4T-VVT"/>
+                            <constraint firstItem="mqC-AL-8u6" firstAttribute="trailing" secondItem="kI5-g2-cJa" secondAttribute="trailing" constant="40" id="UBV-Kr-QJs"/>
+                            <constraint firstItem="kI5-g2-cJa" firstAttribute="leading" secondItem="mqC-AL-8u6" secondAttribute="leading" constant="40" id="Uvp-bG-2Qe"/>
                             <constraint firstItem="eSD-B8-t5b" firstAttribute="centerX" secondItem="5OP-pg-4Zw" secondAttribute="centerX" id="b2S-V8-FZ3"/>
                             <constraint firstItem="eSD-B8-t5b" firstAttribute="top" secondItem="mqC-AL-8u6" secondAttribute="top" constant="120" id="gQO-de-kcW"/>
                             <constraint firstItem="utm-0m-Ufs" firstAttribute="top" secondItem="cZD-Rc-Nhm" secondAttribute="bottom" constant="40" id="jie-rp-fjE"/>
@@ -67,6 +82,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="kI5-g2-cJa" id="ECo-ZQ-kvy"/>
                         <outlet property="mainLabel" destination="eSD-B8-t5b" id="BQ5-m5-SwH"/>
                         <outlet property="nameTextField" destination="utm-0m-Ufs" id="gfi-nN-Y8u"/>
                         <outlet property="profileImageView" destination="cZD-Rc-Nhm" id="m2L-5u-eg1"/>
@@ -75,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ji-gV-J78" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-914" y="8"/>
+            <point key="canvasLocation" x="-915.26717557251902" y="7.746478873239437"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
