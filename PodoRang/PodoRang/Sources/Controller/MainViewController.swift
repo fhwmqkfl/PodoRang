@@ -109,7 +109,6 @@ class MainViewController: UIViewController {
         setupVC.goalManger = goalManager
         self.navigationController?.pushViewController(setupVC, animated: true)
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate {

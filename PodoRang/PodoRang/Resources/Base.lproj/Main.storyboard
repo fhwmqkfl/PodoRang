@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5LR-aO-l49">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -323,7 +323,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbK-if-J0F">
-                                                    <rect key="frame" x="40" y="20" width="164" height="35"/>
+                                                    <rect key="frame" x="40" y="18" width="164" height="24"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -331,19 +331,28 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J88-56-aYe">
                                                     <rect key="frame" x="304" y="20" width="51" height="35"/>
                                                 </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqy-uj-PQ2">
+                                                    <rect key="frame" x="40" y="47" width="164" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14.5"/>
+                                                    <color key="textColor" red="0.64705882349999999" green="0.34509803919999998" blue="0.8862745098" alpha="0.71999999999999997" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="J88-56-aYe" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Xqy-uj-PQ2" secondAttribute="trailing" constant="100" id="7cK-IN-h5f"/>
                                                 <constraint firstItem="J88-56-aYe" firstAttribute="top" secondItem="8of-gA-1Gz" secondAttribute="top" constant="20" id="CyU-hj-BWq"/>
-                                                <constraint firstAttribute="bottom" secondItem="LbK-if-J0F" secondAttribute="bottom" constant="20" id="Hle-1o-G8e"/>
                                                 <constraint firstAttribute="trailing" secondItem="J88-56-aYe" secondAttribute="trailing" constant="40" id="PhM-Sr-kgv"/>
+                                                <constraint firstItem="Xqy-uj-PQ2" firstAttribute="top" secondItem="LbK-if-J0F" secondAttribute="bottom" constant="5" id="T2L-V0-83F"/>
                                                 <constraint firstAttribute="bottom" secondItem="J88-56-aYe" secondAttribute="bottom" constant="20" id="cDQ-J2-spC"/>
+                                                <constraint firstItem="Xqy-uj-PQ2" firstAttribute="leading" secondItem="8of-gA-1Gz" secondAttribute="leading" constant="40" id="fHV-sk-Rfe"/>
                                                 <constraint firstItem="LbK-if-J0F" firstAttribute="leading" secondItem="8of-gA-1Gz" secondAttribute="leading" constant="40" id="lVa-NT-QS5"/>
                                                 <constraint firstItem="J88-56-aYe" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LbK-if-J0F" secondAttribute="trailing" constant="100" id="mbA-8N-Zqc"/>
-                                                <constraint firstItem="LbK-if-J0F" firstAttribute="top" secondItem="8of-gA-1Gz" secondAttribute="top" constant="20" id="ybg-Ff-9ER"/>
+                                                <constraint firstItem="LbK-if-J0F" firstAttribute="top" secondItem="8of-gA-1Gz" secondAttribute="top" constant="18" id="ybg-Ff-9ER"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="alarmSwitch" destination="J88-56-aYe" id="fkP-6j-vwu"/>
+                                            <outlet property="infoLabel" destination="Xqy-uj-PQ2" id="xM4-PZ-hWf"/>
                                             <outlet property="titleLabel" destination="LbK-if-J0F" id="3T8-f7-BJN"/>
                                         </connections>
                                     </tableViewCell>
