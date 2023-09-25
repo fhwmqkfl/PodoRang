@@ -40,6 +40,7 @@ class AddGoalViewController: UIViewController {
     
     func setupUI() {
         addGoalView.goalTextField.delegate = self
+        addGoalView.startDayTextField.delegate = self
         
         title = "\(setupType.rawValue) Grape".localized()
         tabBarController?.tabBar.isHidden = true
@@ -95,7 +96,17 @@ extension AddGoalViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        addGoalView.newGoal.title = textField.text!
-        addGoalView.checkValidation()
+        if textField == addGoalView.startDayLabel {
+            addGoalView.newGoal.title = textField.text!
+            addGoalView.checkValidation()
+        }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == addGoalView.startDayTextField {
+            textField.text = Date().toStringWithoutTime()
+        }
+        
+        return true
     }
 }

@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var status: Status = .create
     
@@ -57,6 +58,11 @@ class ProfileViewController: UIViewController {
         saveButton.backgroundColor = CustomColor.mainPurple
         saveButton.layer.cornerRadius = 10
         saveButton.setTitleColor(.white, for: .normal)
+        cancelButton.setTitle("CANCEL".localized(), for: .normal)
+        cancelButton.backgroundColor = CustomColor.buttonGray
+        cancelButton.layer.cornerRadius = 10
+        cancelButton.setTitleColor(.white, for: .normal)
+        cancelButton.isHidden = status == .create ? true : false
     }
     
     func setupImageView() {
@@ -94,6 +100,10 @@ class ProfileViewController: UIViewController {
         } else {
             presentAlert(message: "Check user name and image".localized())
         }
+    }
+    
+    @IBAction func cancelButtonClicked(_ sender: UIButton) {
+        dismiss(animated: true)
     }
 }
 
