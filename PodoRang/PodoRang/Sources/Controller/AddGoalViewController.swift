@@ -96,10 +96,11 @@ extension AddGoalViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == addGoalView.startDayLabel {
+        if textField == addGoalView.goalTextField {
             addGoalView.newGoal.title = textField.text!
-            addGoalView.checkValidation()
         }
+        
+        addGoalView.checkValidation()
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
